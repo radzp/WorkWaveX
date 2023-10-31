@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>amw</groupId>
-    <artifactId>WorkForceX</artifactId>
+    <artifactId>WorkWaveX</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>WorkForceX</name>
-    <description>WorkForceX</description>
+    <name>WorkWaveX</name>
+    <description>WorkWaveX</description>
     <properties>
         <java.version>17</java.version>
     </properties>

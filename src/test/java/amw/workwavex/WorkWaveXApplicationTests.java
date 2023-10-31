@@ -1,10 +1,10 @@
-package amw.workforcex;
+package amw.workwavex;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class WorkForceXApplicationTests {
+class WorkWaveXApplicationTests {
 
     @Test
     void contextLoads() {

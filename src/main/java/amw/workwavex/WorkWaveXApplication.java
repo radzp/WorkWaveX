@@ -1,13 +1,13 @@
-package amw.workforcex;
+package amw.workwavex;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class WorkForceXApplication {
+public class WorkWaveXApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(WorkForceXApplication.class, args);
+        SpringApplication.run(WorkWaveXApplication.class, args);
     }
 
 }
