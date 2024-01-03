@@ -1,0 +1,124 @@
+main .employees-list{
+    margin-top: 1.3rem;
+}
+
+main .employees-list h2{
+    margin-bottom: 0.8rem;
+}
+
+
+main .employees-list table {
+    background-color: var(--color-white);
+    width: 80vw;
+    overflow: hidden;
+    overflow-y: scroll;
+    overflow-x: visible;
+    max-height: 83vh;
+    position: absolute;
+    /*padding: var(--card-padding);*/
+    text-align: center;
+    box-shadow: var(--box-shadow);
+    border-radius: var(--card-border-radius);
+    transition: all 0.3s ease;
+    display: grid;
+}
+
+
+
+main .employees-list table tbody{
+    width: 100%; /* Szerokość nagłówka na 100% */
+    grid-column: 1 / -1;
+    display: table; /* Ustawienie jako tabela dla poprawnego wyświetlania */
+}
+/* Stylowanie komórek danych */
+main .employees-list table tbody td {
+    text-align: center;
+}
+main .employees-list table thead tr th{
+    font-size: 110%;
+}
+main .employees-list table thead{
+    grid-column: 1 / -1;
+
+    padding-top: 20px;
+    padding-bottom: 20px;
+    display: table; /* Ustawienie jako tabela dla poprawnego wyświetlania */
+    width: 100%;
+    position: sticky;
+    top: 0;
+    background: var(--color-white);
+
+}
+
+
+/*make that last child doesnt have that line*/
+main .employees-list table thead tr th:last-child{
+    border-right: none;
+}
+main .employees-list table button{
+    background: none;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    color: var(--color-primary);
+    font-size: 1.2rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+main .employees-list table tbody tr:nth-child(2n){
+    background-color: var(--color-light);
+}
+
+main .employees-list table:hover{
+    box-shadow: none;
+}
+main .employees-list a{
+    text-align: center;
+    display: block;
+    margin: 1rem auto;
+    color: var(--color-primary);
+}
+@media screen and (max-width: 1200px){
+    main .employees-list {
+        width: 83vw;
+        position: absolute;
+        right: 50%;
+        left: 55%;
+        transform: translateX(-50%);
+        margin: 2rem 0 0 0.8rem;
+    }
+
+    main .employees-list table{
+        width: 83vw;
+    }
+
+    /*main table thead tr th:last-child,*/
+    /*main table thead tr th:first-child{*/
+    /*    display: table-row;*/
+    /*    vertical-align: inherit;*/
+    /*}*/
+
+    main table tbody tr td:last-child,
+    main table tbody tr td:first-child{
+        display: table-cell;
+        vertical-align: inherit;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    main .employees-list {
+        position: relative;
+        margin: 3rem 0 0 0;
+        width: 100%;
+        right: -50%;
+        left: auto;
+    }
+
+    main .employees-list table {
+        width: 100%;
+        margin: 0;
+    }
+}
+
+

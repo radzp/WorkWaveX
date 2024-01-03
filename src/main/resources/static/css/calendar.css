@@ -1,0 +1,66 @@
+#calendar {
+    position: absolute;
+    width: 80vw ;
+    max-height: 85vh;
+    margin-top: 4rem;
+    margin-left: 1rem;
+}
+
+/*Kazdy z dni miesiaca*/
+.fc .fc-daygrid-day-frame {
+    border: 1px inset var(--color-dark);
+}
+
+
+/*Nagłowki dni tygodnia*/
+.fc-theme-standard td, .fc-theme-standard th {
+    /*border: 1px solid var(--fc-border-color);*/
+}
+
+/*Aktualny dzień*/
+.fc .fc-daygrid-day.fc-day-today {
+    background-color: var(--color-primary);
+}
+
+/*Wcisniety przycisk*/
+.fc .fc-button-primary:not(:disabled).fc-button-active, .fc .fc-button-primary:not(:disabled):active {
+    /* background-color: var(--fc-button-active-bg-color); */
+    /* border-color: var(--fc-button-active-border-color); */
+    /* color: var(--fc-button-text-color); */
+}
+
+/*Ogół przycisków*/
+.fc .fc-button-primary {
+    margin: 0.5rem;
+}
+/*Kolor eventu*/
+.fc-h-event {
+    /*background-color: var(--fc-event-bg-color);*/
+    /*border: 1px solid var(--fc-event-border-color);*/
+    /*display: block;*/
+}
+
+/*Tytul: np December*/
+.fc .fc-toolbar-title {
+     text-align: center;
+}
+
+/*Lewy tekst w liscie*/
+.fc-direction-ltr .fc-list-day-text, .fc-direction-rtl .fc-list-day-side-text {
+    color: var(--color-white);
+
+}
+/*Prawy tekst w liscie*/
+.fc-direction-ltr .fc-list-day-side-text, .fc-direction-rtl .fc-list-day-text {
+    color: var(--color-white);
+}
+
+/*Element w liscie*/
+.fc .fc-list-event td {
+
+}
+
+/*Hover elementu w liscie*/
+.fc .fc-list-event:hover td {
+
+}

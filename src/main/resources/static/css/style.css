@@ -1,0 +1,657 @@
+/*@import url('https://font.googleaplis.com/css?family=Poppins:300,400,500,600,700,800,900&display=swap');*/
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    min-width: 100vw;
+    background: #0c0b12;
+    /*background-image: url("background.png");*/
+    overflow-x: hidden;
+    overscroll-behavior-y: contain;
+}
+
+body {
+    /*overscroll-behavior-y: none;*/
+}
+
+
+
+.content{
+    display: flex;
+    flex-direction: column;
+    margin-left: 36px;
+    color: white;
+    z-index: 100000000;
+
+
+}
+
+.description h2 {
+    max-width: 400px; /* Adjust the value as needed */
+    font-size: medium;
+    text-align: justify;
+}
+.description{
+    margin: 8px;
+}
+
+.firmname {
+    margin-right: auto;
+}
+.typewriter{
+    overflow: hidden; /* Ensures the content is not revealed until the animation */
+    border-right: .15em solid white; /* The typwriter cursor */
+    white-space: nowrap; /* Keeps the content on a single line */
+    margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+    letter-spacing: .10em; /* Adjust as needed */
+    animation:
+            typing 2.5s steps(40, end),
+            blink-caret .75s step-end infinite;
+    animation-fill-mode: forwards;
+}
+
+/* The typing effect */
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100%}
+}
+
+/* The typewriter cursor effect */
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: white; }
+
+}
+
+header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 30px 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 10000;
+}
+
+header .logo {
+    color: #ffff;
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 2em;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+header ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+header ul li {
+    list-style: none;
+    margin-left: 20px;
+}
+
+header ul li a {
+    text-decoration: none;
+    padding: 6px 15px;
+    color: #ffff;
+    border-radius: 20px;
+}
+
+header ul li a:hover,
+header ul li a.active {
+    background: #ffff;
+    color: #2b1055;
+}
+
+section {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    /*padding: 100px;*/
+    display: flex;
+    /*justify-content: center;*/
+    align-items: center;
+    overflow: hidden;
+}
+
+section::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 100px;
+    background: linear-gradient(to top, #0c0b12, transparent);
+    z-index: 1000;
+}
+
+section img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none;
+
+}
+
+#text{
+    /*position: absolute;*/
+    color: #ffff;
+    white-space: nowrap;
+    font-size: 3.5rem;
+    margin-left: 10px;
+    z-index: 9;
+}
+
+.btn{
+    display: flex;
+}
+
+#btn {
+    text-decoration: none;
+    margin-left: 10px;
+    display: inline-block;
+    padding: 8px 30px;
+    border-radius: 40px;
+    background: #fff;
+    color: #2b1055;
+    font-size: 1.5rem;
+    /*position: relative;*/
+    z-index: 9;
+    /*transform: translateY(100px);*/
+    margin-top: 8px;
+}
+
+.sec {
+    position: relative;
+    padding: 100px;
+    background: #0c0b12;
+}
+
+.sec h2 {
+    font-size: 3.5em;
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+.sec p {
+    font-size: 1em;
+    color: #fff;
+
+}
+
+/* Add a media query for smaller screens */
+@media screen and (max-width: 768px) {
+    body {
+        font-size: 14px; /* Adjust the font size for smaller screens */
+    }
+
+    header {
+        padding: 20px 40px; /* Adjust the padding for the header */
+    }
+
+    header .logo {
+        font-size: 1.5em; /* Adjust the font size of the logo */
+    }
+
+    header ul {
+        margin-top: 10px; /* Adjust the spacing between menu items */
+    }
+
+    header ul li {
+        margin-left: 10px; /* Adjust the spacing between menu items */
+    }
+
+    .content {
+        margin-left: 20px; /* Adjust the margin for the content */
+    }
+
+    .description h2 {
+        max-width: none; /* Remove max-width for the description */
+        font-size: small; /* Adjust the font size for the description */
+    }
+
+    .sec {
+        padding: 50px; /* Adjust the padding for the section */
+    }
+
+    .sec h2 {
+        font-size: 2.5em; /* Adjust the font size for smaller screens */
+    }
+
+    .sec p {
+        font-size: 0.9em; /* Adjust the font size for smaller screens */
+    }
+}
+
+/* Add a media query for smaller screens */
+@media screen and (max-width: 768px) {
+    #btn {
+        padding: 6px 20px; /* Adjust the padding for the button */
+        font-size: 1.2rem; /* Adjust the font size for the button */
+    }
+    .description h2 {
+        max-width: 400px; /* Adjust the value as needed */
+    }
+    .description{
+        margin: 8px;
+    }
+}
+
+.background {
+    position: absolute;
+    top: -16px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../images/background.png');
+    background-size: cover;
+    background-position: left top;
+    z-index: -1;
+}
+
+.login-form {
+    max-width: 400px;
+    margin: 0 auto;
+    background: rgb(20, 19, 28);
+
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.login-form h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: white;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    color: white;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+button[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #ed4451;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button[type="submit"]:hover {
+    background-color: #d33d49;
+}
+.separator {
+    height: 2px;
+    background-color: #404144;
+    margin: 20px 100px;
+}
+
+.login-form h2 i,
+.form-group label i {
+    margin-right: 10px;
+}
+button[type="submit"] i {
+    margin-right: 5px;
+}
+
+
+.login-container{
+    padding-bottom: 80px;
+}
+.password-group {
+    position: relative;
+}
+
+.show-password {
+    position: absolute;
+    right: 10px;
+    top: 70%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 18px;
+    color: #2b1055;
+}
+
+.faq {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    padding: 3%;
+}
+.bold{
+    font-weight: bolder;
+    color: #721fb4;
+}
+.sec-title{
+    font-size: 2rem !important;
+    display: flex;
+    color: white;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+.gradient{
+    margin-left: 1rem;
+    background: linear-gradient(to right, #e93e4f, #721fb4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.faq-name {
+    flex: 0.5;
+    padding: 2% 2% 0 0;
+}
+.faq-header{
+    padding: 5% 0 0 0;
+    font-size: 40px;
+    letter-spacing: 2px;
+    color: white;
+}
+.faq-img{
+    width: 100%;
+    max-width: 400px;
+}
+.faq-box {
+    flex: 1;
+    min-width: 320px;
+    padding: 2% 0 4% 4%;
+    border-left: 2px solid white;
+}
+
+.faq-wrapper {
+    width: 100%;
+    padding: 1.5rem;
+    border-bottom: 1px white solid;
+}
+
+.faq-title {
+    display: block;
+    position: relative;
+    width: 100%;
+    letter-spacing: 1.2px;
+    font-size: 24px;
+    font-weight: 600;
+    color: white;
+}
+
+.faq-title::after {
+    width: 10px;
+    height: 10px;
+    content: "";
+    float: right;
+    border-style: solid;
+    border-width: 2px 2px 0 0;
+    transform: rotate(135deg);
+    transition: 0.4s ease-in-out;
+}
+
+.faq-detail {
+    line-height: 1.5;
+    letter-spacing: 1px;
+    max-height: 0;
+    overflow: hidden;
+    transition: 0.3s ease-in-out;
+    font-size: 14px;
+    color: #8a8e9f;
+}
+
+.faq-trigger {
+    display: none;
+}
+
+.faq-trigger:checked + .faq-title + .faq-detail {
+    max-height: 300px;
+}
+
+.faq-trigger:checked + .faq-title::after {
+    transform: rotate(-45deg);
+    transition: 0.4s ease-in-out;
+}
+
+@media screen and(max-width:680px) {
+    .faq-title {
+        font-size: 20px;
+    }
+}
+
+
+
+/*footer*/
+
+.footer {
+    margin-top: 200px;
+    position: relative;
+    width: 100%;
+    background: #e3434f;
+    min-height: 100px;
+    padding: 20px 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.social-icon,
+.menu {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0;
+    flex-wrap: wrap;
+}
+
+.social-icon__item,
+.menu__item {
+    list-style: none;
+}
+
+.social-icon__link {
+    font-size: 2rem;
+    color: #fff;
+    margin: 0 10px;
+    display: inline-block;
+    transition: 0.5s;
+}
+.social-icon__link:hover {
+    transform: translateY(-10px);
+}
+
+.menu__link {
+    font-size: 1.2rem;
+    color: #fff;
+    margin: 0 10px;
+    display: inline-block;
+    transition: 0.5s;
+    text-decoration: none;
+    opacity: 0.75;
+    font-weight: 300;
+}
+
+.menu__link:hover {
+    opacity: 1;
+}
+
+.footer p {
+    color: #fff;
+    margin: 15px 0 10px 0;
+    font-size: 1rem;
+    font-weight: 300;
+}
+
+.wave {
+    position: absolute;
+    top: -100px;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    background: url("../images/wave.png");
+    background-size: 1000px 100px;
+}
+
+.wave#wave1 {
+    z-index: 1000;
+    opacity: 1;
+    bottom: 0;
+    animation: animateWaves 4s linear infinite;
+}
+
+.wave#wave2 {
+    z-index: 999;
+    opacity: 0.5;
+    bottom: 10px;
+    animation: animate 4s linear infinite !important;
+}
+
+.wave#wave3 {
+    z-index: 1000;
+    opacity: 0.2;
+    bottom: 15px;
+    animation: animateWaves 3s linear infinite;
+}
+
+.wave#wave4 {
+    z-index: 999;
+    opacity: 0.7;
+    bottom: 20px;
+    animation: animate 3s linear infinite;
+}
+
+@keyframes animateWaves {
+    0% {
+        background-position-x: 1000px;
+    }
+    100% {
+        background-positon-x: 0px;
+    }
+}
+
+@keyframes animate {
+    0% {
+        background-position-x: -1000px;
+    }
+    100% {
+        background-positon-x: 0px;
+    }
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-gap: 10px;
+    background-color: #0c0b12;
+
+    margin-left: 75px;
+    margin-right: 75px;
+    color: white;
+}
+.grid-item {
+    border-radius: 10px;
+    background-color: rgb(20, 19, 28);;
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    text-align: center;
+}
+.contact-info{
+    /*display: flex;*/
+    /*flex-direction: column;*/
+    /*justify-content: center;*/
+    /*align-items: center;*/
+    /*height: 90%;*/
+    /*width: 90%;*/
+    /*margin: 15px auto auto;*/
+
+    /*druga wersja*/
+    display: flex;
+    /* justify-content: center; */
+    /* align-items: center; */
+    height: 90%;
+    width: 90%;
+    margin: 15px auto auto;
+    align-content: center;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+.info{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+#map{
+    height: 300px;
+    width: 100%;
+    border-radius: 10px;
+}
+.contact-header{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+.contact-grid {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    width: 100%;
+}
+.contact-grid-item img{
+    border: white solid 1px;
+    border-radius: 40px;
+}
+.contact-grid-item{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+}
+
+.number-code {
+    /* overflow: auto; */
+    display: flex;
+    border: none;
+}
+
+.number-code > div {
+    display: flex;
+}
+
+.number-code > div > input:not(:last-child) {
+    margin-right: calc(8px * 2);
+}
+

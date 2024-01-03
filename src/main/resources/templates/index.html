@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>WorkWaveX</title>
+    <link rel="stylesheet" type="text/css" href="../static/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+          integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+          crossorigin=""/>
+
+    <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+            integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+            crossorigin=""></script>
+
+
+</head>
+<body>
+<header>
+    <a href="#" class="logo">Logo</a>
+    <ul>
+        <li><a href="#" class="active">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#signin">Sign in</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+</header>
+
+<section id="home">
+    <div class="background"></div>
+    <div class="content">
+        <div class="firmname">
+            <h2 class="typewriter" id="text">WorkWaveX</h2>
+        </div>
+        <div class="description">
+            <h2 data-aos="fade-right">Manage employee profiles, track performance, and view important details in one
+                place with WorkWaveX. Our intuitive and powerful work management system is designed to help you
+                optimize productivity, enhance communication, and achieve your organizational goals.</h2>
+        </div>
+        <div data-aos="fade-right" class="btn">
+            <a href="#signin" id="btn">Sign in</a>
+        </div>
+    </div>
+
+</section>
+<div class="sec" id="about" data-aos-duration="1500" data-aos="fade-in">
+    <div class="sec-title">
+        <h1>About<span class="gradient">us</span></h1>
+    </div>
+    <p><span class="bold gradient">WorkWaveX</span> is a comprehensive web application designed to streamline and
+        enhance the efficiency of workforce
+        management within your organization. It offers a centralized platform for managing employees, tracking their
+        work progress,
+        and assigning tasks seamlessly.
+
+        <br> <br>
+        The Employee Management System offers a range of benefits to enhance organizational efficiency and productivity:
+
+        <br>
+        <span class="bold gradient"><br>Centralized Employee Database:</span> The system provides a centralized database
+        of all employees.
+        This allows for easy access to employee information and facilitates effective communication and collaboration
+        among team members.
+
+        <br>
+        <span class="bold gradient"><br>Increased Productivity:</span> The streamlined task assignment and progress
+        tracking system lead to improved
+        productivity and efficiency within the organization.
+
+        <br>
+        <span class="bold gradient"><br>Better Resource Allocation:</span> The application provides data-driven insights
+        that enable optimized allocation of
+        resources and skills, resulting in cost savings and ultimately leading to improved project outcomes.
+
+        <br>
+        <span class="bold gradient"><br>Enhanced Collaboration: </span>The system fosters a collaborative work
+        environment by facilitating clear communication
+        and effective task coordination among team members, promoting a more cohesive and productive work environment.
+
+        <br>
+        <span class="bold gradient"><br>Performance Evaluation:</span> With the help of comprehensive reports and
+        analytics, the system allows for the
+        evaluation of individual and team performance, which aids in performance appraisals and goal setting, ultimately
+        contributing to improved overall performance and goal attainment.
+
+        <br> <br>
+        These benefits collectively contribute to a more efficient and productive work environment, allowing
+        organizations to achieve their goals with greater effectiveness and precision.
+
+
+    </p>
+
+</div>
+
+<div class="separator"></div> <!-- Dodana linia oddzielająca -->
+<div class="sec-title" data-aos-duration="1500" data-aos="fade-in">
+    <h1 id="signin">Sign<span class="gradient">in</span></h1>
+    <p>Unlock the possibilities. Enter your login credentials to start your session.</p>
+</div>
+<div class="login-container">
+    <div data-aos="fade-in" data-aos-duration="1500" class="login-form">
+        <!-- Dodano ikonkę -->
+        <form action="#" method="post">
+            <div class="form-group">
+                <label for="username"><i class="fas fa-user"></i>Username:</label> <!-- Dodano ikonkę -->
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="email"><i class="fas fa-envelope"></i>Email:</label> <!-- Dodano ikonkę -->
+                <input type="text" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="userID"><i class="fa-solid fa-key"></i>User ID:</label> <!-- Dodano ikonkę -->
+                <fieldset id="userID" class='number-code'>
+                    <div>
+                        <input name='code' class='code-input' required/>
+                        <input name='code' class='code-input' required/>
+                        <input name='code' class='code-input' required/>
+                        <input name='code' class='code-input' required/>
+                        <input name='code' class='code-input' required/>
+                        <input name='code' class='code-input' required/>
+                    </div>
+                </fieldset>
+            </div>
+            <div class="form-group password-group">
+                <label for="password"><i class="fas fa-lock"></i>Password:</label> <!-- Dodano ikonkę -->
+                <input type="password" id="password" name="password" required>
+                <span class="show-password" id="showPassword">
+                    <i class="far fa-eye"></i>
+                </span>
+            </div>
+            <button type="submit"> Sign in <i class="fas fa-sign-in-alt"></i></button> <!-- Dodano ikonkę -->
+        </form>
+    </div>
+</div>
+
+<div class="separator"></div> <!-- Dodana linia oddzielająca -->
+
+<div class="sec-title" data-aos-duration="1500" data-aos="fade-in">
+    <h1 id="faq">Frequently Asked<span class="gradient">Questions</span></h1>
+</div>
+<div class="faq" data-aos-duration="1500" data-aos="fade-in">
+    <div class="faq-name">
+        <h1 class="faq-header">Have <br> questions?</h1>
+        <img class="faq-img" src="../static/images/Faq-image-removed.png" alt="">
+    </div>
+    <div class="faq-box">
+        <div class="faq-wrapper">
+            <input type="checkbox" class="faq-trigger" id="faq-trigger-1">
+            <label class="faq-title" for="faq-trigger-1">What is WorkWaveX?</label>
+            <div class="faq-detail">WorkWaveX is a web application that optimizes workforce management in organizations.
+                It
+                centralizes employee information, facilitates task assignment, tracks progress, and provides data-driven
+                insights for resource allocation. This leads to increased productivity, better collaboration, and
+                improved performance evaluation, ultimately enhancing organizational efficiency.
+            </div>
+        </div>
+        <div class="faq-wrapper">
+            <input type="checkbox" class="faq-trigger" id="faq-trigger-2">
+            <label class="faq-title" for="faq-trigger-2">How can I get access to WorkWaveX?</label>
+            <div class="faq-detail">To access the WorkWaveX dashboard, you need to have login credentials provided by
+                your HR department. Once you have the credentials, you can log in through the website.
+            </div>
+        </div>
+        <div class="faq-wrapper">
+            <input type="checkbox" class="faq-trigger" id="faq-trigger-3">
+            <label class="faq-title" for="faq-trigger-3">How is my organization's data protected?</label>
+            <div class="faq-detail">WorkWaveX prioritizes data security and privacy. We have implemented
+                robust measures to ensure the utmost protection of your organization's sensitive information. Our
+                application employs state-of-the-art encryption protocols and follows industry best practices for data
+                storage and transmission. Rest assured, your data is stored in a secure environment, and access is
+                strictly controlled to authorized personnel only. We regularly update our security protocols to stay
+                ahead of potential threats and vulnerabilities. Your trust in us is paramount, and we are committed to
+                maintaining the highest standards of data privacy protection.
+            </div>
+        </div>
+        <div class="faq-wrapper">
+            <input type="checkbox" class="faq-trigger" id="faq-trigger-4">
+            <label class="faq-title" for="faq-trigger-4">What should I do if I encounter a technical problem?</label>
+            <div class="faq-detail">
+                If you encounter a technical problem while using WorkWaveX, please contact our technicians through the
+                provided contact details in the <a href="#contact">Contact section</a>. They will be able to assist you in resolving any issues
+                you may be experiencing.
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="separator"></div>
+<div class="sec-title" data-aos-duration="1500" data-aos="fade-in">
+    <h1 id="contact">Contact<span class="gradient">us</span></h1>
+</div>
+
+<div class="contact" data-aos-duration="1500" data-aos="fade-in">
+    <div class="grid-container">
+        <div class="grid-item">
+            <div class="contact-info">
+                <div class="contact-header">
+                    <h1>Get in touch</h1>
+                    <p>Have a question? We're here to help.</p>
+                </div>
+                <div class="contact-grid">
+                    <div class="contact-grid-item">
+                        <img src="../static/images/contact-person.png" style="height: 20vh;">
+                    </div>
+                    <div class="contact-grid-item">
+                        <div class="info">
+                            <div>
+                                <p><i class="fas fa-phone-alt"></i> +48 123 456 789</p>
+                            </div>
+                            <div>
+                                <p><i class="fas fa-envelope"></i> email@email.com </p>
+                            </div>
+                            <div>
+                                <p><i class="fas fa-map-marker-alt"></i> Lublin, Poland</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="grid-item">
+            <div id="map"></div>
+        </div>
+    </div>
+
+</div>
+
+
+<footer class="footer">
+    <div class="waves">
+        <div class="wave" id="wave1"></div>
+        <div class="wave" id="wave2"></div>
+        <div class="wave" id="wave3"></div>
+        <div class="wave" id="wave4"></div>
+    </div>
+    <ul class="social-icon">
+        <li class="social-icon__item"><a class="social-icon__link" href="#">
+            <ion-icon name="logo-facebook"></ion-icon>
+        </a></li>
+    </ul>
+    <ul class="menu">
+        <li class="menu__item"><a class="menu__link" href="#">Home</a></li>
+        <li class="menu__item"><a class="menu__link" href="#about">About</a></li>
+        <li class="menu__item"><a class="menu__link" href="#signin">Sign in</a></li>
+        <li class="menu__item"><a class="menu__link" href="#faq">FAQ</a></li>
+        <li class="menu__item"><a class="menu__link" href="#contact">Contact</a></li>
+
+    </ul>
+    <p>&copy;2024 Anna Paczesna & Marcin Wojcik | All Rights Reserved</p>
+</footer>
+
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+<script src="../static/js/map.js"></script>
+<script>
+    AOS.init();
+    document.addEventListener('DOMContentLoaded', function () {
+        var typewriterElement = document.querySelector('.typewriter');
+
+        typewriterElement.addEventListener('animationend', function (event) {
+            if (event.animationName === 'typing') {
+                setTimeout(function () {
+                    typewriterElement.style.borderRight = 'none'; // Remove the border to hide the cursor
+                }, 2000); // Wait for 2 seconds after the animation ends
+            }
+        });
+    });
+
+    document.addEventListener('DOMContentLoaded', function () {
+        var showPassword = document.getElementById('showPassword');
+        var passwordInput = document.getElementById('password');
+
+        showPassword.addEventListener('click', function () {
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                showPassword.innerHTML = '<i class="far fa-eye-slash"></i>';
+            } else {
+                passwordInput.type = 'password';
+                showPassword.innerHTML = '<i class="far fa-eye"></i>';
+            }
+        });
+    });
+
+    const inputElements = [...document.querySelectorAll('input.code-input')]
+
+    inputElements.forEach((ele, index) => {
+        ele.addEventListener('keydown', (e) => {
+            // if the keycode is backspace & the current field is empty
+            // focus the input before the current. Then the event happens
+            // which will clear the "before" input box.
+            if (e.keyCode === 8 && e.target.value === '') inputElements[Math.max(0, index - 1)].focus()
+        })
+        ele.addEventListener('input', (e) => {
+            // take the first character of the input
+            // this actually breaks if you input an emoji like 👨‍👩‍👧‍👦....
+            // but I'm willing to overlook insane security code practices.
+            const [first, ...rest] = e.target.value
+            e.target.value = first ?? '' // first will be undefined when backspace was entered, so set the input to ""
+            const lastInputBox = index === inputElements.length - 1
+            const didInsertContent = first !== undefined
+            if (didInsertContent && !lastInputBox) {
+                // continue to input the rest of the string
+                inputElements[index + 1].focus()
+                inputElements[index + 1].value = rest.join('')
+                inputElements[index + 1].dispatchEvent(new Event('input'))
+            }
+        })
+    })
+
+
+    // mini example on how to pull the data on submit of the form
+    function onSubmit(e) {
+        e.preventDefault()
+        const code = inputElements.map(({value}) => value).join('')
+        console.log(code)
+    }
+
+</script>
+
+</body>
+</html>

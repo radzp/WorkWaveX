@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+    <link rel="stylesheet" href="../static/css/dashboard.css">
+    <link rel="stylesheet" href="../static/css/activity.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <title>WorkWaveX</title>
+</head>
+
+<body>
+
+<div class="container">
+    <!-- Sidebar Section -->
+    <aside>
+        <div class="toggle">
+            <div class="logo">
+                <img src="images/contact-person.png">
+                <h2>Work<span class="danger">WaveX</span></h2>
+            </div>
+            <div class="close" id="close-btn">
+                    <span class="material-icons-sharp">
+                        close
+                    </span>
+            </div>
+        </div>
+
+        <div class="sidebar">
+            <a href="dashboard.html">
+                    <span class="material-icons-sharp">
+                        dashboard
+                    </span>
+                <h3>Dashboard</h3>
+            </a>
+            <a href="employees.html">
+                    <span class="material-icons-sharp">
+                        person_outline
+                    </span>
+                <h3>Employees</h3>
+            </a>
+            <a href="calendar.html">
+                    <span class="material-icons-sharp">
+                        calendar_today
+                    </span>
+                <h3>Calendar</h3>
+            </a>
+            <a href="activity.html" class="active">
+                    <span class="material-icons-sharp">
+                        insights
+                    </span>
+                <h3>Activity</h3>
+            </a>
+            <a href="chat.html">
+                    <span class="material-icons-sharp">
+                        mail_outline
+                    </span>
+                <h3>Chat</h3>
+                <span class="message-count">27</span>
+            </a>
+            <a href="projects.html">
+                    <span class="material-icons-sharp">
+                        inventory
+                    </span>
+                <h3>Projects</h3>
+            </a>
+            <a href="reports.html">
+                    <span class="material-icons-sharp">
+                        report_gmailerrorred
+                    </span>
+                <h3>Reports</h3>
+            </a>
+            <a href="settings.html">
+                    <span class="material-icons-sharp">
+                        settings
+                    </span>
+                <h3>Settings</h3>
+            </a>
+            <a href="#">
+                    <span class="material-icons-sharp">
+                        add
+                    </span>
+                <h3>New Login</h3>
+            </a>
+            <a href="#">
+                    <span class="material-icons-sharp">
+                        logout
+                    </span>
+                <h3>Logout</h3>
+            </a>
+        </div>
+    </aside>
+    <!-- End of Sidebar Section -->
+
+    <!-- Main Content -->
+    <main>
+        <h1>Activity</h1>
+
+        <div class="wrapper">
+
+            <div class="block-wrapper block-1">
+                <h1>Active employees</h1>
+                <div class="block-content">
+                    <div class="active-users">
+                        <div class="user-list">
+<!--                            <div class="user">-->
+<!--                                <img src="images/user_ocean.png">-->
+<!--                                <h2>Jack</h2>-->
+<!--                                <div class="status-info">-->
+<!--                                    <p>Active</p>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div class="user">-->
+<!--                                <img src="images/user_peach.png">-->
+<!--                                <h2>Amir</h2>-->
+<!--                                <div class="status-info">-->
+<!--                                    <p>Active</p>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div class="user">-->
+<!--                                <img src="images/user_ocean.png">-->
+<!--                                <h2>More</h2>-->
+<!--                                <div class="status-info">-->
+<!--                                <p>Active</p>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div class="user">-->
+<!--                                <img src="images/user_peach.png">-->
+<!--                                <h2>More</h2>-->
+<!--                                <div class="status-info">-->
+<!--                                    <p>Active</p>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div class="user">-->
+<!--                                <img src="images/user_pink.png">-->
+<!--                                <h2>More</h2>-->
+<!--                                <div class="status-info">-->
+<!--                                    <p>Active</p>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div class="user">-->
+<!--                                <img src="images/user_green.png">-->
+<!--                                <h2>More</h2>-->
+<!--                                <div class="status-info">-->
+<!--                                    <p>Active</p>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div class="user">-->
+<!--                                <img src="images/user_peach.png">-->
+<!--                                <h2>More</h2>-->
+<!--                                <div class="status-info">-->
+<!--                                    <p>Active</p>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div class="user">-->
+<!--                                <img src="images/user_ocean.png">-->
+<!--                                <h2>More</h2>-->
+<!--                                <div class="status-info">-->
+<!--                                    <p>Active</p>-->
+<!--                                </div>-->
+<!--                            </div>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="block-wrapper block-2">
+                <h1>% of active employees</h1>
+                <div class="block-content">
+                    <canvas id="myChart"></canvas>
+                </div>
+            </div>
+            <div class="block-wrapper block-3">
+                <h1>Mean activity of employees</h1>
+                <div class="block-content">
+                    <canvas id="allEmployeesMeanChart"></canvas>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+    <!-- End of Main Content -->
+
+    <!-- Right Section -->
+    <div class="right-section">
+        <div class="nav">
+            <button id="menu-btn">
+                    <span class="material-icons-sharp">
+                        menu
+                    </span>
+            </button>
+            <div class="light-mode">
+                    <span class="material-icons-sharp">
+                        light_mode
+                    </span>
+                <span class="material-icons-sharp active">
+                        dark_mode
+                    </span>
+            </div>
+
+            <div class="profile">
+                <div class="info">
+                    <p>Hey, <b>Reza</b></p>
+                    <small class="text-muted">Admin</small>
+                </div>
+                <div class="profile-photo">
+                    <img src="images/contact-person.png">
+                </div>
+            </div>
+
+        </div>
+        <!-- End of Nav -->
+
+
+    </div>
+
+
+</div>
+<!--Dodac to przed wszystkimi scriptami-->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<!--------------------------------------->
+<script src="../static/js/activity.js"></script>
+<script src="../static/js/dashboard.js"></script>
+</body>
+
+</html>

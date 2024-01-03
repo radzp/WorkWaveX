@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@24,400,0,0"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="../static/css/dashboard.css">
+    <link rel="stylesheet" href="../static/css/projects.css">
+    <link rel="stylesheet" href="../static/css/projectdetails.css">
+
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+    <title>WorkWaveX</title>
+</head>
+
+<body>
+
+<div class="container">
+    <!-- Sidebar Section -->
+    <aside>
+        <div class="toggle">
+            <div class="logo">
+                <img src="../static/images/contact-person.png">
+                <h2>Work<span class="danger">WaveX</span></h2>
+            </div>
+            <div class="close" id="close-btn">
+                    <span class="material-icons-sharp">
+                        close
+                    </span>
+            </div>
+        </div>
+
+        <div class="sidebar">
+            <a href="dashboard.html">
+                    <span class="material-icons-sharp">
+                        dashboard
+                    </span>
+                <h3>Dashboard</h3>
+            </a>
+            <a href="employees.html">
+                    <span class="material-icons-sharp">
+                        person_outline
+                    </span>
+                <h3>Employees</h3>
+            </a>
+            <a href="calendar.html">
+                    <span class="material-icons-sharp">
+                        calendar_today
+                    </span>
+                <h3>Calendar</h3>
+            </a>
+            <a href="activity.html">
+                    <span class="material-icons-sharp">
+                        insights
+                    </span>
+                <h3>Activity</h3>
+            </a>
+            <a href="chat.html">
+                    <span class="material-icons-sharp">
+                        mail_outline
+                    </span>
+                <h3>Chat</h3>
+                <span class="message-count">27</span>
+            </a>
+            <a href="projects.html" class="active">
+                    <span class="material-icons-sharp">
+                        inventory
+                    </span>
+                <h3>Projects</h3>
+            </a>
+            <a href="reports.html">
+                    <span class="material-icons-sharp">
+                        report_gmailerrorred
+                    </span>
+                <h3>Reports</h3>
+            </a>
+            <a href="settings.html">
+                    <span class="material-icons-sharp">
+                        settings
+                    </span>
+                <h3>Settings</h3>
+            </a>
+            <a href="#">
+                    <span class="material-icons-sharp">
+                        add
+                    </span>
+                <h3>New Login</h3>
+            </a>
+            <a href="#">
+                    <span class="material-icons-sharp">
+                        logout
+                    </span>
+                <h3>Logout</h3>
+            </a>
+        </div>
+    </aside>
+    <!-- End of Sidebar Section -->
+    <main>
+
+
+
+        <h1>Project 1 Details</h1>
+        <div class="wrapper">
+            <div class="block-wrapper days-left">
+                <div class="quantity-block">
+                    <h3>Days left</h3>
+                    <div class="counting-number">
+                        5
+                    </div>
+                </div>
+            </div>
+
+            <div class="block-wrapper tasks-quantity">
+                <div class="quantity-block">
+                    <h3>Tasks </h3>
+                    <div class="counting-number">
+                        10
+                    </div>
+                </div>
+            </div>
+
+            <div class="block-wrapper project-progress">
+                <div class="quantity-block">
+                    <h3>Progress </h3>
+                    <div class="counting-number">
+                        80%
+                    </div>
+                </div>
+            </div>
+
+            <div class="block-wrapper members-list">
+                <div class="list-header">
+                    <h3>Members List (10)</h3>
+                    <div class="line"></div>
+                </div>
+                <div class="members">
+                    <div class="member-row">
+                        <div class="member-img">
+                            <img src="../static/images/user_pink.png">
+                        </div>
+                        <div class="member-info">
+                            <p class="member-name">Reza</p>
+                            <p class="member-email">email@email.com</p>
+                        </div>
+                    </div>
+                    <div class="member-row">
+                        <div class="member-img">
+                            <img src="../static/images/user_pink.png">
+                        </div>
+                        <div class="member-info">
+                            <p class="member-name">Reza</p>
+                            <p class="member-email">email@email.com</p>
+                        </div>
+                    </div>
+                    <div class="member-row">
+                        <div class="member-img">
+                            <img src="../static/images/user_pink.png">
+                        </div>
+                        <div class="member-info">
+                            <p class="member-name">Reza</p>
+                            <p class="member-email">email@email.com</p>
+                        </div>
+                    </div>
+                    <div class="member-row">
+                        <div class="member-img">
+                            <img src="../static/images/user_pink.png">
+                        </div>
+                        <div class="member-info">
+                            <p class="member-name">Reza</p>
+                            <p class="member-email">email@email.com</p>
+                        </div>
+                    </div>
+                    <div class="member-row">
+                        <div class="member-img">
+                            <img src="../static/images/user_pink.png">
+                        </div>
+                        <div class="member-info">
+                            <p class="member-name">Reza</p>
+                            <p class="member-email">email@email.com</p>
+                        </div>
+                    </div>
+                    <div class="member-row">
+                        <div class="member-img">
+                            <img src="../static/images/user_pink.png">
+                        </div>
+                        <div class="member-info">
+                            <p class="member-name">Reza</p>
+                            <p class="member-email">email@email.com</p>
+                        </div>
+                    </div>
+                    <div class="member-row">
+                        <div class="member-img">
+                            <img src="../static/images/user_pink.png">
+                        </div>
+                        <div class="member-info">
+                            <p class="member-name">Reza</p>
+                            <p class="member-email">email@email.com</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="block-wrapper project-details-description">
+                <div class="description-header">
+                    <h3>Project Description</h3>
+                    <div class="line"></div>
+                </div>
+                <div class="description">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium, adipisci alias
+                        asperiores
+                        aspernatur atque autem blanditiis consequatur cumque cupiditate delectus doloremque dolorum
+                        ducimus
+                        ea
+                        eligendi eos error est eum eveniet excepturi exercitationem facilis fuga fugiat hic illum
+                        impedit
+                        incidunt ipsa ipsum iure laboriosam laborum libero magnam magni maiores maxime minima minus
+                        molestiae
+                        molestias mollitia natus nemo neque nihil nisi nobis nostrum nulla numquam obcaecati officia
+                        officiis
+                        omnis optio pariatur perferendis perspiciatis placeat porro possimus praesentium provident
+                        
+                </div>
+            </div>
+
+            <div class="block-wrapper to-do">
+                <div class="task-header">
+                    <h3>To Do</h3>
+                    <button>+</button>
+                </div>
+                <div class="line"></div>
+                <div class="task-content">
+
+                    <div class="task-block">
+                        <div class="task-row">
+                            <div class="priority high">
+                                <div class="priority-icon">
+                                <span class="material-icons-sharp">
+                                    arrow_upward
+                                </span>
+                                </div>
+                                <div class="priority-text">
+                                    <p>High</p>
+                                </div>
+                            </div>
+                            <div class="task-options">
+                                <span class="material-icons-sharp task-menu">
+                                    more_vert
+                                </span>
+                                <div class="context-menu">
+                                    <button class="edit-button">Edit</button>
+                                    <button class="delete-button">Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="task-row">
+                            <div class="task-name">
+                                <p>Task Name</p>
+                            </div>
+                        </div>
+                        <div class="task-row">
+                            <div class="project-date">
+                                <div class="start-date">
+                                    <p>21-12-2010</p>
+                                </div>
+                                <div class="end-date">
+                                    <p>21-12-2010</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="task-row">
+                            <div class="assigned-to">
+                                <div class="assigned-member">
+                                    <img src="../static/images/user_pink.png">
+                                </div>
+                                <div class="assigned-member">
+                                    <img src="../static/images/user_pink.png">
+                                </div>
+                                <div class="assigned-member">
+                                    <img src="../static/images/user_pink.png">
+                                </div>
+                                <div class="assigned-member">
+                                    <img src="../static/images/user_pink.png">
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="task-block">
+                        <div class="task-row">
+                            <div class="priority medium">
+                                <div class="priority-icon">
+                                <span class="material-icons-sharp">
+                                    arrow_forward
+                                </span>
+                                </div>
+                                <div class="priority-text">
+                                    <p>Medium</p>
+                                </div>
+                            </div>
+                            <div class="task-options">
+                                <span class="material-icons-sharp task-menu">
+                                    more_vert
+                                </span>
+                                <div class="context-menu">
+                                    <button class="edit-button">Edit</button>
+                                    <button class="delete-button">Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="task-row">
+                            <div class="task-name">
+                                <p>Task Name</p>
+                            </div>
+                        </div>
+                        <div class="task-row">
+                            <div class="project-date">
+                                <div class="start-date">
+                                    <p>21-12-2010</p>
+                                </div>
+                                <div class="end-date">
+                                    <p>21-12-2010</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="task-row">
+                            <div class="assigned-to">
+                                <div class="assigned-member">
+                                    <img src="../static/images/user_pink.png">
+                                </div>
+                                <div class="assigned-member">
+                                    <img src="../static/images/user_pink.png">
+                                </div>
+                                <div class="assigned-member">
+                                    <img src="../static/images/user_pink.png">
+                                </div>
+                                <div class="assigned-member">
+                                    <img src="../static/images/user_pink.png">
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="task-block">
+                        <div class="task-row">
+                            <div class="priority low">
+                                <div class="priority-icon">
+                                <span class="material-icons-sharp">
+                                    arrow_downward
+                                </span>
+                                </div>
+                                <div class="priority-text">
+                                    <p>Low</p>
+                                </div>
+                            </div>
+                            <div class="task-options">
+                                <span class="material-icons-sharp task-menu">
+                                    more_vert
+                                </span>
+                                <div class="context-menu">
+                                    <button class="edit-button">Edit</button>
+                                    <button class="delete-button">Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="task-row">
+                            <div class="task-name">
+                                <p>Task Name</p>
+                            </div>
+                        </div>
+                        <div class="task-row">
+                            <div class="project-date">
+                                <div class="start-date">
+                                    <p>21-12-2010</p>
+                                </div>
+                                <div class="end-date">
+                                    <p>21-12-2010</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="task-row">
+                            <div class="assigned-to">
+                                <div class="assigned-member">
+                                    <img src="../static/images/user_pink.png">
+                                </div>
+                                <div class="assigned-member">
+                                    <img src="../static/images/user_pink.png">
+                                </div>
+                                <div class="assigned-member">
+                                    <img src="../static/images/user_pink.png">
+                                </div>
+                                <div class="assigned-member">
+                                    <img src="../static/images/user_pink.png">
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="block-wrapper in-progress">
+                <div class="task-header">
+                    <h3>In progress</h3>
+                    <div class="line"></div>
+                </div>
+                <div class="task-content">
+
+                </div>
+            </div>
+
+            <div class="block-wrapper review">
+                <div class="task-header">
+                    <h3>Review</h3>
+                    <div class="line"></div>
+                </div>
+                <div class="task-content">
+
+                </div>
+            </div>
+
+            <div class="block-wrapper done">
+                <div class="task-header">
+                    <h3>Done</h3>
+                    <div class="line"></div>
+                </div>
+                <div class="task-content">
+
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- End of Main Content -->
+
+    <!-- Right Section -->
+    <div class="right-section">
+        <div class="nav">
+            <button id="menu-btn">
+                    <span class="material-icons-sharp">
+                        menu
+                    </span>
+            </button>
+            <div class="light-mode">
+                    <span class="material-icons-sharp">
+                        light_mode
+                    </span>
+                <span class="material-icons-sharp active">
+                        dark_mode
+                    </span>
+            </div>
+
+            <div class="profile">
+                <div class="info">
+                    <p>Hey, <b>Reza</b></p>
+                    <small class="text-muted">Admin</small>
+                </div>
+                <div class="profile-photo">
+                    <img src="../static/images/profile-1.jpg">
+                </div>
+            </div>
+
+        </div>
+        <!-- End of Nav -->
+
+
+    </div>
+
+
+</div>
+</body>
+<script src="../static/js/dashboard.js"></script>
+<!--<script src="js/projects.js"></script>-->
+<script>
+    // Get all the tasks and the task containers
+    const tasks = document.querySelectorAll('.task-block');
+    const containers = document.querySelectorAll('.task-content');
+
+    // Add drag events to tasks
+    tasks.forEach(task => {
+        task.setAttribute('draggable', 'true');
+        task.addEventListener('dragstart', handleDragStart, false);
+        task.addEventListener('dragend', handleDragEnd, false);
+    });
+
+    // Add drag events to task containers
+    containers.forEach(container => {
+        container.addEventListener('dragover', handleDragOver, false);
+        container.addEventListener('drop', handleDrop, false);
+    });
+
+    let draggedTask = null;
+
+    function handleDragStart(e) {
+        // Store the task being dragged
+        draggedTask = this;
+        e.dataTransfer.effectAllowed = 'move';
+    }
+
+    function handleDragEnd(e) {
+        // Clear the stored task when the dragging ends
+        draggedTask = null;
+    }
+
+    function handleDragOver(e) {
+        // Prevent default to allow drop
+        e.preventDefault();
+        e.dataTransfer.dropEffect = 'move';
+    }
+
+    function handleDrop(e) {
+        // Prevent default action
+        e.preventDefault();
+
+        // Check if the drop target is a valid task container
+        if (this.classList.contains('task-content')) {
+            // Move the dragged task to the dropped container
+            if (draggedTask && this !== draggedTask) {
+                this.appendChild(draggedTask);
+            }
+        }
+    }
+
+    // Get all the more_vert icons and context menu links
+    const moreVertIcons = document.querySelectorAll('.material-icons-sharp');
+    const editButtons = document.querySelectorAll('.context-menu .edit-button');
+    const deleteButtons = document.querySelectorAll('.context-menu .delete-button');
+
+    // Add click events to more_vert icons
+    moreVertIcons.forEach(icon => {
+        icon.addEventListener('click', toggleMenu, false);
+    });
+
+    // Add click events to edit buttons
+    editButtons.forEach(button => {
+        button.addEventListener('click', editTask, false);
+    });
+
+    // Add click events to delete buttons
+    deleteButtons.forEach(button => {
+        button.addEventListener('click', deleteTask, false);
+    });
+
+    function toggleMenu(e) {
+    // Check if the currentTarget is a more_vert icon
+    if (!e.currentTarget.classList.contains('task-menu')) {
+        return;
+    }
+
+    e.stopPropagation();
+    const contextMenu = e.currentTarget.nextElementSibling;
+    contextMenu.style.display = contextMenu.style.display === 'none' ? 'block' : 'none';
+}
+
+    // Close the context menu when clicking outside of it
+    window.onclick = function() {
+        const contextMenus = document.querySelectorAll('.context-menu');
+        contextMenus.forEach(contextMenu => {
+            if (contextMenu.style.display === 'block') {
+                contextMenu.style.display = 'none';
+            }
+        });
+    }
+
+    function editTask(e) {
+        e.stopPropagation();
+        // Here you can add the code to edit the task
+        console.log('Edit task');
+    }
+
+    function deleteTask(e) {
+        e.stopPropagation();
+        // Here you can add the code to delete the task
+        console.log('Delete task');
+    }
+
+</script>
+</html>
