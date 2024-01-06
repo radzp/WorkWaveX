@@ -24,6 +24,7 @@ public class User implements UserDetails {
     @Id   // JPA annotation to specify the primary key of an entity
     @GeneratedValue // JPA annotation to specify the primary key generation strategy to use
     private Integer id;
+    private String user_name;
     private String firstName;
     private String secondName;
     private String lastName;
