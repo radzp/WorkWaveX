@@ -8,6 +8,8 @@ public class WorkWaveXApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(WorkWaveXApplication.class, args);
+
     }
+
 
 }
