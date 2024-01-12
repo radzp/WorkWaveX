@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
@@ -276,9 +276,11 @@
         e.preventDefault()
 
         // Pobierz wartości z pól formularza
-        const employeeName = document.querySelector('input[name="employeeName"]').value
+        const firstName = document.querySelector('input[name="firstName"]').value
+        const lastName = document.querySelector('input[name="lastName"]').value
         const position = document.querySelector('input[name="position"]').value
         const email = document.querySelector('input[name="email"]').value
+        const salary = document.querySelector('input[name="salary"]').value
         const password = document.querySelector('input[name="password"]').value
         const repeatedPassword = document.querySelector('input[name="repeatedPassword"]').value
 
@@ -293,15 +295,16 @@
 
         // Utwórz obiekt z danymi formularza
         const registerData = {
-            employeeName,
-            position,
+            firstName,
+            lastName,
             email,
+            position,
             fullPhoneNumber,
             salary,
             password
         }
         // URL endpointu API rejestracji
-        const registerUrl = 'https://localhost:8080/api/v1/auth/register';
+        const registerUrl = 'http://localhost:8080/api/v1/auth/register';
         // Wykonaj żądanie POST do API rejestracji
         fetch(registerUrl, {
             method: 'POST',
