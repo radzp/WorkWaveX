@@ -24,14 +24,12 @@ public class User implements UserDetails {
     @Id   // JPA annotation to specify the primary key of an entity
     @GeneratedValue // JPA annotation to specify the primary key generation strategy to use
     private Integer id;
-    private String user_name;
     private String firstName;
-    private String secondName;
     private String lastName;
     private String email;
     private String position;
-    private String hours;
-    private String salary;
+    private Double salary;
+    private String fullPhoneNumber;
     private String password;
 
     @Enumerated(EnumType.STRING) // JPA annotation to specify the type of the enum
