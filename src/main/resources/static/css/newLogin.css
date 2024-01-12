@@ -1,0 +1,84 @@
+.register-group{
+
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    color: var(--color-dark);
+}
+
+.form-group input,
+.form-group select{
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+button[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #ed4451;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button[type="submit"]:hover {
+    background-color: #d33d49;
+}
+.separator {
+    height: 2px;
+    background-color: #404144;
+    margin: 20px 100px;
+}
+
+.login-form h2 i,
+.form-group label i {
+    margin-right: 10px;
+}
+button[type="submit"] i {
+    margin-right: 5px;
+}
+
+
+.login-container{
+    padding-bottom: 80px;
+}
+.password-group {
+    position: relative;
+}
+
+.show-password {
+    position: absolute;
+    right: 10px;
+    top: 70%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 18px;
+    color: #2b1055;
+}
+.number-code {
+    /* overflow: auto; */
+    display: flex;
+    border: none;
+}
+
+.number-code > div {
+    display: flex;
+}
+
+
+
+.number-code > div > input:not(:last-child),
+.number-code > div > select{
+    margin-right: calc(8px * 2);
+}
