@@ -1,5 +1,6 @@
 package amw.workwavex.config;
 
+import amw.workwavex.user.Role;
 import jakarta.servlet.Filter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -26,8 +27,12 @@ public class SecurityConfiguration {
                 .authorizeRequests(authorize -> authorize
                         .requestMatchers("/api/v1/auth/**")
                         .permitAll()
-                        .anyRequest()
+                        .requestMatchers("/css/**", "/js/**", "/images/**")
                         .permitAll()
+                        .requestMatchers("/")
+                        .permitAll()
+                        .anyRequest()
+                        .authenticated()
                 )
                 .sessionManagement(session -> session
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS)

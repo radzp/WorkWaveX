@@ -318,7 +318,8 @@ dmethod="post">
         })
             .then(response => response.json())
             .then(data => {
-                // Obsłuż odpowiedź z API
+                document.cookie = `jwtToken=${data.token}; path=/`;
+                window.location.href = "http://localhost:8080/dashboard";
                 console.log(data);
             })
             .catch(error => {
