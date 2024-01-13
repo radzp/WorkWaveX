@@ -27,9 +27,7 @@ public class SecurityConfiguration {
                 .authorizeRequests(authorize -> authorize
                         .requestMatchers("/api/v1/auth/**")
                         .permitAll()
-                        .requestMatchers("/css/**", "/js/**", "/images/**")
-                        .permitAll()
-                        .requestMatchers("/")
+                        .requestMatchers("/", "","/css/**", "/js/**", "/images/**")
                         .permitAll()
                         .anyRequest()
                         .authenticated()
@@ -37,6 +35,9 @@ public class SecurityConfiguration {
                 .sessionManagement(session -> session
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 )
+                .logout((logout) -> logout
+                        .logoutSuccessUrl("/")
+                        .permitAll())
                 .authenticationProvider(authenticationProvider)
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
 

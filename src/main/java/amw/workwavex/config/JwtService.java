@@ -65,6 +65,7 @@ public class JwtService {
                 .setSubject(userDetails.getUsername())
                 .setIssuedAt(new Date(System.currentTimeMillis())) //helps to check if the token is still valid
                 .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 24)) //the token will expire after 24 hours
+//                .setExpiration(new Date(System.currentTimeMillis() + 1000)) //the token will expire after 1 seconds (DEBUGGING PURPOSE)
                 .signWith(getSingInKey(), SignatureAlgorithm.HS256) //signing key which is used to verify that the sender of the JWT is who it claims to be and ensures that the message was not changed along the way, ensure that the same person who sent the JWT signed it with the same key
                 .compact(); //generates and returns the JWT token
     }

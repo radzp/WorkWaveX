@@ -46,12 +46,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                 .orElse(null);
 
 
-//        // Jeśli ciasteczko "jwtToken" nie istnieje i użytkownik nie jest już na stronie logowania, przekieruj na stronę logowania
-//        if (jwtCookie == null && !request.getRequestURI().equals("/")) {
-//            response.sendRedirect("/");
-//            return;
-//        }
-
         String jwt = null;
         String userEmail = null;
 
