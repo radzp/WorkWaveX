@@ -96,6 +96,7 @@ public class JwtService {
         return extractClaim(token, Claims::getExpiration); //this method will extract the expiration date from the JWT token
     }
 
+
     /*
     * extractAllClaims(String token): Ta metoda jest używana do wyodrębnienia wszystkich roszczeń z podanego tokena JWT.
     *  Używa ona biblioteki JJWT do parsowania tokena i zwraca ciało tokena jako obiekt Claims.

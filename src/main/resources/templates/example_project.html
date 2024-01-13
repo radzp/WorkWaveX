@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
@@ -8,9 +8,9 @@
     <link rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@24,400,0,0"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="../static/css/dashboard.css">
-    <link rel="stylesheet" href="../static/css/projects.css">
-    <link rel="stylesheet" href="../static/css/projectdetails.css">
+    <link rel="stylesheet" href="../static/css/dashboard.css" th:href="@{css/dashboard.css}">
+    <link rel="stylesheet" href="../static/css/projects.css" th:href="@{css/projects.css}">
+    <link rel="stylesheet" href="../static/css/projectdetails.css" th:href="@{css/projectdetails.css}">
 
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -25,7 +25,7 @@
     <aside>
         <div class="toggle">
             <div class="logo">
-                <img src="../static/images/contact-person.png">
+                <img src="../static/images/contact-person.png" th:src="@{/images/contact-person.png}">
                 <h2>Work<span class="danger">WaveX</span></h2>
             </div>
             <div class="close" id="close-btn">
@@ -36,62 +36,62 @@
         </div>
 
         <div class="sidebar">
-            <a href="dashboard.html">
+            <a href="dashboard.html" th:href="@{/dashboard}">
                     <span class="material-icons-sharp">
                         dashboard
                     </span>
                 <h3>Dashboard</h3>
             </a>
-            <a href="employees.html">
+            <a href="employees.html" th:href="@{/empolyees}">
                     <span class="material-icons-sharp">
                         person_outline
                     </span>
                 <h3>Employees</h3>
             </a>
-            <a href="calendar.html">
+            <a href="calendar.html" th:href="@{/calendar}">
                     <span class="material-icons-sharp">
                         calendar_today
                     </span>
                 <h3>Calendar</h3>
             </a>
-            <a href="activity.html">
+            <a href="activity.html" th:href="@{/activity}">
                     <span class="material-icons-sharp">
                         insights
                     </span>
                 <h3>Activity</h3>
             </a>
-            <a href="chat.html">
+            <a href="chat.html" th:href="@{/chat}">
                     <span class="material-icons-sharp">
                         mail_outline
                     </span>
                 <h3>Chat</h3>
                 <span class="message-count">27</span>
             </a>
-            <a href="projects.html" class="active">
+            <a href="projects.html" class="active" th:href="@{/projetcs}">
                     <span class="material-icons-sharp">
                         inventory
                     </span>
                 <h3>Projects</h3>
             </a>
-            <a href="reports.html">
+            <a href="reports.html" th:href="@{/reportss}">
                     <span class="material-icons-sharp">
                         report_gmailerrorred
                     </span>
                 <h3>Reports</h3>
             </a>
-            <a href="settings.html">
+            <a href="settings.html" th:href="@{/settings}">
                     <span class="material-icons-sharp">
                         settings
                     </span>
                 <h3>Settings</h3>
             </a>
-            <a href="#">
+            <a href="newLogin.html" th:href="@{/newLogin}">
                     <span class="material-icons-sharp">
                         add
                     </span>
                 <h3>New Login</h3>
             </a>
-            <a href="#">
+            <a href="#" th:href="@{/logout}">
                     <span class="material-icons-sharp">
                         logout
                     </span>
@@ -150,7 +150,7 @@
                     </div>
                     <div class="member-row">
                         <div class="member-img">
-                            <img src="../static/images/user_pink.png">
+                            <img src="../static/images/user_pink.png" th:src="@{/images/user_pink.png}">
                         </div>
                         <div class="member-info">
                             <p class="member-name">Reza</p>
@@ -159,7 +159,7 @@
                     </div>
                     <div class="member-row">
                         <div class="member-img">
-                            <img src="../static/images/user_pink.png">
+                            <img src="../static/images/user_pink.png" th:src="@{/images/user_pink.png}">
                         </div>
                         <div class="member-info">
                             <p class="member-name">Reza</p>
@@ -168,7 +168,7 @@
                     </div>
                     <div class="member-row">
                         <div class="member-img">
-                            <img src="../static/images/user_pink.png">
+                            <img src="../static/images/user_pink.png" th:src="@{/images/user_pink.png}">
                         </div>
                         <div class="member-info">
                             <p class="member-name">Reza</p>
@@ -177,7 +177,7 @@
                     </div>
                     <div class="member-row">
                         <div class="member-img">
-                            <img src="../static/images/user_pink.png">
+                            <img src="../static/images/user_pink.png" th:src="@{/images/user_pink.png}">
                         </div>
                         <div class="member-info">
                             <p class="member-name">Reza</p>
@@ -186,7 +186,7 @@
                     </div>
                     <div class="member-row">
                         <div class="member-img">
-                            <img src="../static/images/user_pink.png">
+                            <img src="../static/images/user_pink.png" th:src="@{/images/user_pink.png}">
                         </div>
                         <div class="member-info">
                             <p class="member-name">Reza</p>
@@ -195,7 +195,7 @@
                     </div>
                     <div class="member-row">
                         <div class="member-img">
-                            <img src="../static/images/user_pink.png">
+                            <img src="../static/images/user_pink.png" th:src="@{/images/user_pink.png}">
                         </div>
                         <div class="member-info">
                             <p class="member-name">Reza</p>
@@ -275,16 +275,16 @@
                         <div class="task-row">
                             <div class="assigned-to">
                                 <div class="assigned-member">
-                                    <img src="../static/images/user_pink.png">
+                                    <img src="../static/images/user_pink.png" th:src="@{/images/user_pink.png}">
                                 </div>
                                 <div class="assigned-member">
-                                    <img src="../static/images/user_pink.png">
+                                    <img src="../static/images/user_pink.png" th:src="@{/images/user_pink.png}">
                                 </div>
                                 <div class="assigned-member">
-                                    <img src="../static/images/user_pink.png">
+                                    <img src="../static/images/user_pink.png" th:src="@{/images/user_pink.png}">
                                 </div>
                                 <div class="assigned-member">
-                                    <img src="../static/images/user_pink.png">
+                                    <img src="../static/images/user_pink.png" th:src="@{/images/user_pink.png}">
                                 </div>
                             </div>
                         </div>
@@ -331,16 +331,16 @@
                         <div class="task-row">
                             <div class="assigned-to">
                                 <div class="assigned-member">
-                                    <img src="../static/images/user_pink.png">
+                                    <img src="../static/images/user_pink.png" th:src="@{/images/user_pink.png}">
                                 </div>
                                 <div class="assigned-member">
-                                    <img src="../static/images/user_pink.png">
+                                    <img src="../static/images/user_pink.png" th:src="@{/images/user_pink.png}">
                                 </div>
                                 <div class="assigned-member">
-                                    <img src="../static/images/user_pink.png">
+                                    <img src="../static/images/user_pink.png" th:src="@{/images/user_pink.png}">
                                 </div>
                                 <div class="assigned-member">
-                                    <img src="../static/images/user_pink.png">
+                                    <img src="../static/images/user_pink.png" th:src="@{/images/user_pink.png}">
                                 </div>
                             </div>
                         </div>
@@ -387,16 +387,16 @@
                         <div class="task-row">
                             <div class="assigned-to">
                                 <div class="assigned-member">
-                                    <img src="../static/images/user_pink.png">
+                                    <img src="../static/images/user_pink.png" th:src="@{/images/user_pink.png}">
                                 </div>
                                 <div class="assigned-member">
-                                    <img src="../static/images/user_pink.png">
+                                    <img src="../static/images/user_pink.png" th:src="@{/images/user_pink.png}">
                                 </div>
                                 <div class="assigned-member">
-                                    <img src="../static/images/user_pink.png">
+                                    <img src="../static/images/user_pink.png" th:src="@{/images/user_pink.png}">
                                 </div>
                                 <div class="assigned-member">
-                                    <img src="../static/images/user_pink.png">
+                                    <img src="../static/images/user_pink.png" th:src="@{/images/user_pink.png}">
                                 </div>
                             </div>
                         </div>
@@ -462,7 +462,7 @@
                     <small class="text-muted">Admin</small>
                 </div>
                 <div class="profile-photo">
-                    <img src="../static/images/profile-1.jpg">
+                    <img src="../static/images/profile-1.jpg" th:src="@{/images/profile-1.jpg}">
                 </div>
             </div>
 
@@ -475,7 +475,7 @@
 
 </div>
 </body>
-<script src="../static/js/dashboard.js"></script>
+<script src="../static/js/dashboard.js" th:src="@{js/dashboard.js}"></script>
 <!--<script src="js/projects.js"></script>-->
 <script>
     // Get all the tasks and the task containers

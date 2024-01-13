@@ -110,7 +110,7 @@
     <div data-aos="fade-in" data-aos-duration="1500" class="login-form">
         <!-- Dodano ikonkę -->
         <form onsubmit="onSubmit(event)"
-dmethod="post">
+method="post">
             <div class="form-group">
                 <label for="email"><i class="fas fa-envelope"></i>Email:</label> <!-- Dodano ikonkę -->
                 <input type="text" id="email" name="email" required>
@@ -135,7 +135,7 @@ dmethod="post">
 <div class="faq" data-aos-duration="1500" data-aos="fade-in">
     <div class="faq-name">
         <h1 class="faq-header">Have <br> questions?</h1>
-        <img class="faq-img" src="../static/images/Faq-image-removed.png" alt="">
+        <img class="faq-img" src="../static/images/Faq-image-removed.png" alt="" th:src="@{/images/Faq-image-removed.png}">
     </div>
     <div class="faq-box">
         <div class="faq-wrapper">

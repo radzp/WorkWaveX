@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@24,400,0,0" />
-    <link rel="stylesheet" href="../static/css/dashboard.css">
-    <link rel="stylesheet" href="../static/css/calendar.css">
+    <link rel="stylesheet" href="../static/css/dashboard.css" th:href="@{css/dashboard.css}">
+    <link rel="stylesheet" href="../static/css/calendar.css" th:href="@{css/calendar.css}">
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.js'></script>
     <title>WorkWaveX</title>
 </head>
@@ -19,7 +19,7 @@
     <aside>
         <div class="toggle">
             <div class="logo">
-                <img src="../static/images/contact-person.png">
+                <img src="../static/images/contact-person.png" th:src="@{/images/contact-person.png}">
                 <h2>Work<span class="danger">WaveX</span></h2>
             </div>
             <div class="close" id="close-btn">
@@ -30,19 +30,19 @@
         </div>
 
         <div class="sidebar">
-            <a href="dashboard.html">
+            <a href="dashboard.html" th:href="@{/dashboard}">
                     <span class="material-icons-sharp">
                         dashboard
                     </span>
                 <h3>Dashboard</h3>
             </a>
-            <a href="employees.html" >
+            <a href="employees.html" th:href="@{/employees}" >
                     <span class="material-icons-sharp">
                         person_outline
                     </span>
                 <h3>Employees</h3>
             </a>
-            <a href="calendar.html" class="active">
+            <a href="calendar.html" class="active" th:href="@{/calendar}">
                     <span class="material-icons-sharp">
                         calendar_today
                     </span>
@@ -61,19 +61,19 @@
                 <h3>Chat</h3>
                 <span class="message-count">27</span>
             </a>
-            <a href="projects.html">
+            <a href="projects.html" th:href="@{/projects}">
                     <span class="material-icons-sharp">
                         inventory
                     </span>
                 <h3>Projects</h3>
             </a>
-            <a href="reports.html">
+            <a href="reports.html" th:href="@{/reports}">
                     <span class="material-icons-sharp">
                         report_gmailerrorred
                     </span>
                 <h3>Reports</h3>
             </a>
-            <a href="settings.html">
+            <a href="settings.html" th:href="@{/settings}">
                     <span class="material-icons-sharp">
                         settings
                     </span>
@@ -85,7 +85,7 @@
                     </span>
                 <h3>New Login</h3>
             </a>
-            <a href="#">
+            <a href="#" th:href="@{/logut}">
                     <span class="material-icons-sharp">
                         logout
                     </span>
@@ -126,7 +126,7 @@
                     <small class="text-muted">Admin</small>
                 </div>
                 <div class="profile-photo">
-                    <img src="../static/images/profile-1.jpg">
+                    <img src="../static/images/profile-1.jpg" th:src="@{/images/profile-1.jpg}">
                 </div>
             </div>
 
@@ -138,8 +138,8 @@
 
 
 </div>
-<script src="../static/js/dashboard.js"></script>
-<script type="module" src="../static/js/calendar.js"></script>
+<script src="../static/js/dashboard.js" th:src="@{dashboard.js}"></script>
+<script type="module" src="../static/js/calendar.js" th:src="@{calendar.js}"></script>
 <script>
 
 </script>

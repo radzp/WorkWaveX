@@ -33,17 +33,7 @@ public class AuthenticationController {
             @RequestBody AuthenticationRequest request,
             HttpServletResponse response
     ) {
-        AuthenticationResponse authResponse = service.authenticate(request);
-
-        // Utwórz ciasteczko z tokenem JWT
-        Cookie jwtCookie = new Cookie("jwtToken", authResponse.getToken());
-        jwtCookie.setHttpOnly(true);
-        jwtCookie.setPath("/");
-        //jwtCookie.setSecure(true); // Ustaw na true, jeśli używasz HTTPS
-
-        // Dodaj ciasteczko do odpowiedzi
-        response.addCookie(jwtCookie);
-
+        AuthenticationResponse authResponse = service.authenticate(request, response);
         return ResponseEntity.ok(authResponse);
     }
 

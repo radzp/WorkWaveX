@@ -39,6 +39,14 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             @NonNull HttpServletResponse response,
             @NonNull FilterChain filterChain
     ) throws ServletException, IOException {
+
+
+        // Dodajemy warunek, który sprawdza, czy żądanie jest do pliku statycznego
+        if (request.getRequestURI().startsWith("/css/") || request.getRequestURI().startsWith("/js/") || request.getRequestURI().startsWith("/images/") || request.getRequestURI().equals("/")) {
+            filterChain.doFilter(request, response);
+            return;
+        }
+
         // Pobierz ciasteczko z tokenem JWT
         Cookie jwtCookie = Arrays.stream(request.getCookies())
                 .filter(cookie -> "jwtToken".equals(cookie.getName()))
