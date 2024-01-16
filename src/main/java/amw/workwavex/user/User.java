@@ -1,5 +1,8 @@
 package amw.workwavex.user;
 
+import amw.workwavex.project.Project;
+import amw.workwavex.task.Task;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,6 +14,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 @Data   // Lombok annotation to create all the getters, setters, equals, hash, and toString methods, based on the fields
 @Builder // Lombok annotation to create builder API for the class
@@ -31,10 +35,21 @@ public class User implements UserDetails {
     private Double salary;
     private String fullPhoneNumber;
     private String password;
-
     @Enumerated(EnumType.STRING) // JPA annotation to specify the type of the enum
     private Role role;
 
+    @OneToMany(mappedBy = "user",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true,
+            fetch = FetchType.LAZY)
+    @JsonManagedReference
+    private Set<Task> tasks;
+
+    @ManyToMany(mappedBy = "projectMembers",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY)
+    @JsonManagedReference
+    private Set<Project> projects;
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority(role.name())); // Spring Security interface to represent an authority granted to an Authentication object

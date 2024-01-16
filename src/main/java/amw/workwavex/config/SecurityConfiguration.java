@@ -30,7 +30,7 @@ public class SecurityConfiguration {
                         .requestMatchers("/", "","/css/**", "/js/**", "/images/**")
                         .permitAll()
                         .anyRequest()
-                        .authenticated()
+                        .permitAll()
                 )
                 .sessionManagement(session -> session
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
