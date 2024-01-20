@@ -2,10 +2,7 @@ package amw.workwavex.user;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,4 +18,19 @@ public class UserController {
         return ResponseEntity.ok(userService.getAllUserDTOs());
     }
 
+    @GetMapping("/email/{email}")
+    public ResponseEntity<UserDTO> getUserByEmail(@PathVariable String email) {
+        return ResponseEntity.ok(userService.getUserByEmail(email));
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<UserDTO> getUserById(@PathVariable Integer id) {
+        return ResponseEntity.ok(userService.getUserById(id));
+    }
+
+    @GetMapping("/name/{firstName}/{lastName}")
+    public ResponseEntity<UserDTO> getUserByNameAndSurname(@PathVariable String firstName, @PathVariable String lastName) {
+        return ResponseEntity.ok(userService.getUserByNameAndSurname(firstName, lastName));
+    }
 }
+
