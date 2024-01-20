@@ -86,6 +86,8 @@ document.addEventListener('DOMContentLoaded', function () {
         .catch(error => console.error('Error:', error));
 
 
+
+
     // Pobierz wszystkie divy z klasą .members-images
     // const membersImagesDivs = document.querySelectorAll('.members-images');
     const openModal = document.querySelector('#addProjectButton');
