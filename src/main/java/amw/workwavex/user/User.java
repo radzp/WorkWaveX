@@ -35,7 +35,7 @@ public class User implements UserDetails {
     private Double salary;
     private String fullPhoneNumber;
     private String password;
-    @Enumerated(EnumType.STRING) // JPA annotation to specify the type of the enum
+    @Enumerated(EnumType.STRING)
     private Role role;
 
     @OneToMany(mappedBy = "user",

@@ -1,18 +1,16 @@
 document.addEventListener('DOMContentLoaded', () => {
-    fetch('fetch/employeesList.json')
+    fetch('/api/v1/user-controller/all')
         .then(response => response.json())
-        .then(Employees => {
-            Employees.forEach(employee => {
+        .then(users => {
+            users.forEach(user => {
                 const tr = document.createElement('tr');
                 tr.innerHTML = `
-                <td id="employeeName">${employee.employeeName}</td>
-                <td id="employeeIdNumber">${employee.IDNumber}</td>
-                <td id="employeePhoto">${employee.photo}</td>
-                <td id="employeePosition">${employee.position}</td>
-                <td id="employeeEmail">${employee.email}</td>
-                <td id="employeePhoneNumber">${employee.phoneNumber}</td>
-                <td id="employeeHours">${employee.hours}</td>
-                <td id="employeeSalary">${employee.salary}</td>
+                <td>${user.firstName} ${user.lastName}</td>
+                <td>${user.id}</td>
+                <td>${user.position}</td>
+                <td>${user.email}</td>
+                <td>${user.fullPhoneNumber}</td>
+                <td>${user.salary}</td>
                 <td><button class="material-symbols-sharp edit-button">
                     edit
                     </button>
@@ -33,16 +31,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 editButtons.forEach((button, index) => {
                     button.addEventListener('click', () => {
                         // Pobranie danych pracownika
-                        let employee = Employees[index];
+                        let employee = users[index];
 
                         // Wypełnienie pól formularza danymi pracownika
-                        document.getElementById('employeeName').value = employee.employeeName;
-                        document.getElementById('idNumber').value = parseInt(employee.IDNumber);
-                        document.getElementById('photo').value = employee.photo;
+                        document.getElementById('employeeName').value = employee.firstName + ' ' + employee.lastName;
+                        document.getElementById('idNumber').value = parseInt(employee.id);
                         document.getElementById('position').value = employee.position;
                         document.getElementById('email').value = employee.email;
-                        document.getElementById('phoneNumber').value = employee.phoneNumber;
-                        document.getElementById('hours').value = employee.hours;
+                        document.getElementById('phoneNumber').value = employee.fullPhoneNumber;
                         document.getElementById('salary').value = employee.salary;
 
                         // Wyświetlenie modala

@@ -48,10 +48,13 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         }
 
         // Pobierz ciasteczko z tokenem JWT
-        Cookie jwtCookie = Arrays.stream(request.getCookies())
-                .filter(cookie -> "jwtToken".equals(cookie.getName()))
-                .findFirst()
-                .orElse(null);
+        Cookie jwtCookie = null;
+        if (request.getCookies() != null) {
+            jwtCookie = Arrays.stream(request.getCookies())
+                    .filter(cookie -> "jwtToken".equals(cookie.getName()))
+                    .findFirst()
+                    .orElse(null);
+        }
 
 
         String jwt = null;
