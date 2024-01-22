@@ -233,3 +233,8 @@ $(document).ready(function () {
 });
 
 });
+// Przejdź przez każdy obrazek członka projektu
+document.querySelectorAll('.members-images img').forEach(img => {
+    // Pobierz imię i nazwisko z atrybutu alt
+    img.title = img.alt;
+});
