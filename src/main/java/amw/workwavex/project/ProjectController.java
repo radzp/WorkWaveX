@@ -1,7 +1,11 @@
 package amw.workwavex.project;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.List;
 
@@ -41,4 +45,18 @@ public class ProjectController {
     public void deleteProject(@PathVariable Integer id) {
         projectService.deleteProject(id);
     }
+
+@GetMapping("/{id}/details")
+public ModelAndView getProjectDetails(@PathVariable Integer id) {
+    ProjectDTO project = projectService.getProjectById(id);
+    ModelAndView modelAndView = new ModelAndView();
+    if (project != null) {
+        modelAndView.addObject("project", project);
+        modelAndView.setViewName("example_project");
+    } else {
+        // handle the case when the project is null
+        // for example, redirect to an error page or a list of projects
+    }
+    return modelAndView;
+}
 }

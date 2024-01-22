@@ -8,9 +8,9 @@
     <link rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@24,400,0,0"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="../static/css/dashboard.css" th:href="@{css/dashboard.css}">
-    <link rel="stylesheet" href="../static/css/projects.css" th:href="@{css/projects.css}">
-    <link rel="stylesheet" href="../static/css/projectdetails.css" th:href="@{css/projectdetails.css}">
+    <link rel="stylesheet" href="/css/dashboard.css" th:href="@{/css/dashboard.css}">
+    <link rel="stylesheet" href="/css/projects.css" th:href="@{/css/projects.css}">
+    <link rel="stylesheet" href="/css/projectdetails.css" th:href="@{/css/projectdetails.css}">
 
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -104,7 +104,7 @@
 
 
 
-        <h1>Project 1 Details</h1>
+        <h1 th:text="${project.projectName}">Project 1 Details</h1>
         <div class="wrapper">
             <div class="block-wrapper days-left">
                 <div class="quantity-block">
@@ -223,7 +223,7 @@
                         molestias mollitia natus nemo neque nihil nisi nobis nostrum nulla numquam obcaecati officia
                         officiis
                         omnis optio pariatur perferendis perspiciatis placeat porro possimus praesentium provident
-                        
+
                 </div>
             </div>
 
@@ -475,7 +475,7 @@
 
 </div>
 </body>
-<script src="../static/js/dashboard.js" th:src="@{js/dashboard.js}"></script>
+<script src="/js/dashboard.js" th:src="@{/js/dashboard.js}"></script>
 <!--<script src="js/projects.js"></script>-->
 <script>
     // Get all the tasks and the task containers

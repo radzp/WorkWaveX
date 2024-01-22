@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', function () {
                                 <h3>Tasks</h3>
                             </div>
                             <h3>
-                                <a href="#">Go to the project</a>
+                                <a href="/api/v1/projects/${project.id}/details">View Details</a>
                             </h3>
                         </div>
                     </div>

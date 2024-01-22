@@ -96,4 +96,10 @@ public class ProjectService {
                         .collect(Collectors.toSet()));
         return dto;
     }
+
+    public ProjectDTO getProjectById(Integer id) {
+        return projectRepository.findById(id)
+                .map(this::convertToDTO)
+                .orElse(null);
+    }
 }
