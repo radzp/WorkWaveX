@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Pobierz kontener, do którego będą dodawane projekty
     const projectsContainer = document.querySelector('.wrapper');
 
-    fetch('fetch/projects.json')
+    fetch('/api/v1/projects/all')
         .then(response => response.json())
         .then(projects => {
             // Dla każdego projektu
@@ -12,49 +12,50 @@ document.addEventListener('DOMContentLoaded', function () {
                 const projectElement = document.createElement('div');
                 projectElement.classList.add('block-wrapper');
                 projectElement.innerHTML = `
-        <div class="block-content">
-            <div class="project-header">
-                <h2>${project.name}</h2>
-            </div>
-            <div class="project-body">
-                <div class="project-info">
-                    <div class="project-info-item">
-                        <div class="status-date">
-                            <h3 class="project-status ${project.status.toLowerCase()}">${project.status}</h3>
-                            <div class="project-due-date">
-                                <h3>Due date</h3>
-                                <p>${project.end}</p>
+                    <div class="block-content">
+                        <div class="project-header">
+                            <h2>${project.projectName}</h2>
+                        </div>
+                        <div class="project-body">
+                            <div class="project-info">
+                                <div class="project-info-item">
+                                    <div class="status-date">
+                                        <h3 class="project-status ${project.projectStatus.toLowerCase()}">${project.projectStatus}</h3>
+                                        <div class="project-due-date">
+                                            <h3>Due date</h3>
+                                            <p>${project.endDate}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="project-info-item">
+                                    <p class="project-description">${project.projectDescription}</p>
+                                </div>
+                                <div class="project-info-item">
+                                    <h3>MEMBERS</h3>
+                                    <div class="members-images">
+                                        <!-- Tutaj można dodać obrazy członków projektu -->
+                                    </div>
+                                </div>
+                                <div class="project-info-item">
+                                    <div class="project-info-item-footer">
+                                        <div class="tasks-counter">
+                                            <p>${project.projectTasks.length}</p>
+                                            <h3>Tasks</h3>
+                                        </div>
+                                        <h3>
+                                            <a href="#">Go to the project</a>
+                                        </h3>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="project-info-item">
-                        <p class="project-description">${project.description}</p>
-                    </div>
-                    <div class="project-info-item">
-                        <h3>MEMBERS</h3>
-                        <div class="members-images">
-                            <!-- Tutaj można dodać obrazy członków projektu -->
-                        </div>
-                    </div>
-                    <div class="project-info-item">
-                        <div class="project-info-item-footer">
-                            <div class="tasks-counter">
-                                <p>${project.tasksID.length}</p>
-                                <h3>Tasks</h3>
-                            </div>
-                            <h3>
-                                <a href="#">Go to the project</a>
-                            </h3>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-      `;
+                `;
 
                 // Dodaj element HTML do kontenera na stronie
                 projectsContainer.appendChild(projectElement);
             });
+
 
             // Pobierz wszystkie divy z klasą .members-images
             const membersImagesDivs = document.querySelectorAll('.members-images');
@@ -154,6 +155,21 @@ document.addEventListener('DOMContentLoaded', function () {
             startDate: projectStartDate,
             endDate: projectEndDate
         };
+        // Send POST request to server
+        fetch('/api/v1/projects/create', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(newProject)
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Success:', data);
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
 
         // Append new project to the list (you might need to adjust this part based on your HTML structure)
         const projectsWrapper = document.querySelector('.wrapper');
@@ -210,7 +226,6 @@ document.addEventListener('DOMContentLoaded', function () {
     truncateDescription();
 
 })
-;
 $(document).ready(function () {
 
     function matchCustom(params, data) {

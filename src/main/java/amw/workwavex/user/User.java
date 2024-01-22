@@ -2,7 +2,8 @@ package amw.workwavex.user;
 
 import amw.workwavex.project.Project;
 import amw.workwavex.task.Task;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -16,17 +17,19 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
-@Data   // Lombok annotation to create all the getters, setters, equals, hash, and toString methods, based on the fields
-@Builder // Lombok annotation to create builder API for the class
-@NoArgsConstructor // Lombok annotation to create constructor without parameters
-@AllArgsConstructor // Lombok annotation to create constructor with all of the parameters
-@Entity // JPA annotation to make this object ready for storage in a JPA-based data store
-@Table(name= "_user") // JPA annotation to specify the table name (if not specified, the class name will be used as the table name
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
+@Table(name= "_user")
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id")
 public class User implements UserDetails {
 
-
-    @Id   // JPA annotation to specify the primary key of an entity
-    @GeneratedValue // JPA annotation to specify the primary key generation strategy to use
+    @Id
+    @GeneratedValue
     private Integer id;
     private String firstName;
     private String lastName;
@@ -42,17 +45,16 @@ public class User implements UserDetails {
             cascade = CascadeType.ALL,
             orphanRemoval = true,
             fetch = FetchType.LAZY)
-    @JsonManagedReference
     private Set<Task> tasks;
 
     @ManyToMany(mappedBy = "projectMembers",
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY)
-    @JsonManagedReference
     private Set<Project> projects;
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority(role.name())); // Spring Security interface to represent an authority granted to an Authentication object
+        return List.of(new SimpleGrantedAuthority(role.name()));
     }
 
     @Override
@@ -62,9 +64,8 @@ public class User implements UserDetails {
 
     @Override
     public String getUsername() {
-        return email; //logowanie za pomoca emaila
+        return email;
     }
-
 
     @Override
     public boolean isAccountNonExpired() {

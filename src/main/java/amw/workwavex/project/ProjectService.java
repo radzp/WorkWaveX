@@ -1,9 +1,13 @@
 package amw.workwavex.project;
 
+import amw.workwavex.user.User;
+import amw.workwavex.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -11,6 +15,7 @@ import java.util.stream.Collectors;
 public class ProjectService {
 
     private final ProjectRepository projectRepository;
+    private final UserRepository userRepository;
 
     public List<ProjectDTO> getAllProjects() {
         return projectRepository.findAll().stream()
@@ -31,7 +36,17 @@ public class ProjectService {
     }
 
     public ProjectDTO createProject(Project newProject) {
-        return convertToDTO(projectRepository.save(newProject));
+        Set<User> members = newProject.getProjectMembers()
+                .stream()
+                .map(User::getId)
+                .map(userRepository::findById)
+                .filter(Optional::isPresent)
+                .map(Optional::get)
+                .collect(Collectors.toSet());
+
+        newProject.setProjectMembers(members);
+        Project savedProject = projectRepository.save(newProject);
+        return convertToDTO(savedProject);
     }
 
     public ProjectDTO updateProject(Integer id, Project updatedProject) {
@@ -59,6 +74,8 @@ public class ProjectService {
         dto.setProjectStatus(project.getProjectStatus());
         dto.setStartDate(project.getStartDate());
         dto.setEndDate(project.getEndDate());
+        dto.setProjectMembers(project.getProjectMembers());
+        dto.setProjectTasks(project.getProjectTasks());
         return dto;
     }
 }

@@ -27,7 +27,7 @@ public class ProjectController {
         return projectService.getProjectsByUserId(userId);
     }
 
-    @PostMapping("")
+    @PostMapping("/create")
     public ProjectDTO createProject(@RequestBody Project newProject) {
         return projectService.createProject(newProject);
     }
