@@ -35,11 +35,11 @@ public class Project {
     @OneToMany(mappedBy = "project", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Task> projectTasks = new HashSet<>();
 
-    @EqualsAndHashCode.Exclude
+    @EqualsAndHashCode.Exclude // wykluczenie z metody equals() i hashCode() pola projectMembers
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(
             name = "_project_user",
             joinColumns = @JoinColumn(name = "project_id"),
             inverseJoinColumns = @JoinColumn(name = "user_id"))
-    private Set<User> projectMembers;
+    private Set<User> projectMembers = new HashSet<>();
 }

@@ -139,20 +139,23 @@ document.addEventListener('DOMContentLoaded', function () {
         // Extract form data
         const projectName = document.querySelector('#projectName').value;
         const projectDescription = document.querySelector('#projectDescription').value;
-        const projectMembers = Array.from(document.querySelector('#projectMembers').selectedOptions).map(option => option.value);
+        // const projectMembers = Array.from(document.querySelector('#projectMembers').selectedOptions).map(option => option.value);
+        const projectMembers = $('#projectMembers').val().map(id => ({ id: Number(id) }));
         const projectStatus = document.querySelector('#projectStatus').value;
         const projectStartDate = document.querySelector('#projectStartDate').value;
         const projectEndDate = document.querySelector('#projectEndDate').value;
 
-        // Create new project
         const newProject = {
-            name: projectName,
-            description: projectDescription,
-            members: projectMembers,
-            status: projectStatus,
+            projectName: projectName,
+            projectDescription: projectDescription,
+            projectMembers: projectMembers,
+            projectStatus: projectStatus,
             startDate: projectStartDate,
             endDate: projectEndDate
         };
+
+        console.log(newProject); // Dodaj tę linię
+
         // Send POST request to server
         fetch('/api/v1/projects/create', {
             method: 'POST',
@@ -168,56 +171,6 @@ document.addEventListener('DOMContentLoaded', function () {
             .catch((error) => {
                 console.error('Error:', error);
             });
-
-        // Append new project to the list (you might need to adjust this part based on your HTML structure)
-        const projectsWrapper = document.querySelector('.wrapper');
-        const newProjectElement = document.createElement('div');
-        newProjectElement.classList.add('block-wrapper');
-        newProjectElement.innerHTML = `
-        <div class="block-content">
-            <div class="project-header">
-                <h2>${newProject.name}</h2>
-            </div>
-            <div class="project-body">
-                <div class="project-info">
-                    <div class="project-info-item">
-                        <div class="status-date">
-                            <h3 class="project-status ${newProject.status.toLowerCase()}">${newProject.status}</h3>
-                            <div class="project-due-date">
-                                <h3>Due date</h3>
-                                <p>${newProject.endDate}</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="project-info-item">
-                        <p class="project-description">${newProject.description}</p>
-                    </div>
-                    <div class="project-info-item">
-                        <h3>MEMBERS</h3>
-                        <div class="members-images">
-                            <!-- You might need to adjust this part based on how you want to display members -->
-                            ${newProject.members.map(member => `<img src="images/${member}.png" alt="">`).join('')}
-                        </div>
-                    </div>
-                    <div class="project-info-item">
-                        <div class="project-info-item-footer">
-                            <div class="tasks-counter">
-                                <p>0</p>
-                                <h3>Tasks</h3>
-                            </div>
-                            <h3>
-                                <a href="#">Go to the project</a>
-                            </h3>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    `;
-        projectsWrapper.insertBefore(newProjectElement, projectsWrapper.children[1]);
-
-        truncateDescription();
-
         modal.close();
     });
 
@@ -256,27 +209,27 @@ $(document).ready(function () {
         return null;
     }
 
-    // Inicjalizacja Select2 na elemencie select
-    $('#projectMembers').select2({
-        dropdownParent: $('.form'),
-        matcher: matchCustom,
-        minimumInputLength: 1, // Ilość wpisanych znaków, po których zaczyna się wyszukiwanie
-        placeholder: 'Select members', // Tekst wyświetlany, gdy nie wybrano żadnego użytkownika
-        allowClear: true, // Pozwala na usunięcie wszystkich wybranych użytkowników
-        ajax: {
-            url: 'fetch/employeesList.json',
-            dataType: 'json',
-            processResults: function (data) {
-                return {
-                    results: data.map(employee => {
-                        return {
-                            id: employee.IDNumber,
-                            text: employee.employeeName + ' (ID Number: ' + employee.IDNumber + ')'
-                        }
-                    })
-                };
-            }
+ $('#projectMembers').select2({
+    dropdownParent: $('.form'),
+    matcher: matchCustom,
+    minimumInputLength: 1, // Ilość wpisanych znaków, po których zaczyna się wyszukiwanie
+    placeholder: 'Select members', // Tekst wyświetlany, gdy nie wybrano żadnego użytkownika
+    allowClear: true, // Pozwala na usunięcie wszystkich wybranych użytkowników
+    ajax: {
+        url: '/api/v1/user-controller/all', // Zmieniony URL
+        dataType: 'json',
+        processResults: function (data) {
+            console.log(data)
+            return {
+                results: data.map(user => { // Zmienione z employee na user
+                    return {
+                        id: user.id, // Zmienione z IDNumber na id
+                        text: user.firstName + ' ' + user.lastName // Zmienione na firstName i lastName
+                    }
+                })
+            };
         }
-    });
+    }
+});
 
 });
