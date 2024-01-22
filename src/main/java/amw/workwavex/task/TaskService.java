@@ -44,6 +44,7 @@ public class TaskService {
         dto.setId(task.getId());
         dto.setTaskName(task.getTaskName());
         dto.setTaskDescription(task.getTaskDescription());
+        dto.setTaskStatus(task.getTaskStatus());
         dto.setStartDate(task.getStartDate());
         dto.setEndDate(task.getEndDate());
         return dto;

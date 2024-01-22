@@ -10,6 +10,7 @@ public class TaskDTO {
     private Integer id;
     private String taskName;
     private String taskDescription;
+    private TaskStatus taskStatus;
     private LocalDate startDate;
     private LocalDate endDate;
 }
