@@ -26,6 +26,12 @@ public class ProjectController {
         return projectService.getProjectsByName(name);
     }
 
+    @GetMapping("/{id}")
+    public ProjectDTO getProjectById(@PathVariable Integer id) {
+        return projectService.getProjectById(id);
+    }
+
+
     @GetMapping("/user/{userId}")
     public List<ProjectDTO> getProjectsByUserId(@PathVariable Integer userId) {
         return projectService.getProjectsByUserId(userId);

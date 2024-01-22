@@ -103,14 +103,13 @@
     <main>
 
 
-
         <h1 th:text="${project.projectName}">Project 1 Details</h1>
         <div class="wrapper">
             <div class="block-wrapper days-left">
                 <div class="quantity-block">
                     <h3>Days left</h3>
                     <div class="counting-number">
-                        5
+                        ###
                     </div>
                 </div>
             </div>
@@ -118,8 +117,8 @@
             <div class="block-wrapper tasks-quantity">
                 <div class="quantity-block">
                     <h3>Tasks </h3>
-                    <div class="counting-number">
-                        10
+                    <div class="counting-number" th:text="${#lists.size(project.projectTasks)}">
+                        <!-- Tutaj powinna być liczba zadań w projekcie -->
                     </div>
                 </div>
             </div>
@@ -128,78 +127,24 @@
                 <div class="quantity-block">
                     <h3>Progress </h3>
                     <div class="counting-number">
-                        80%
+                        <!-- Tutaj powinien być procent postępu projektu -->
                     </div>
                 </div>
             </div>
 
             <div class="block-wrapper members-list">
                 <div class="list-header">
-                    <h3>Members List (10)</h3>
+                    <h3>Members List</h3>
                     <div class="line"></div>
                 </div>
-                <div class="members">
-                    <div class="member-row">
-                        <div class="member-img">
-                            <img src="../static/images/user_pink.png">
-                        </div>
-                        <div class="member-info">
-                            <p class="member-name">Reza</p>
-                            <p class="member-email">email@email.com</p>
-                        </div>
-                    </div>
+                <div class="members" th:each="user : ${project.projectMembers}">
                     <div class="member-row">
                         <div class="member-img">
                             <img src="../static/images/user_pink.png" th:src="@{/images/user_pink.png}">
                         </div>
                         <div class="member-info">
-                            <p class="member-name">Reza</p>
-                            <p class="member-email">email@email.com</p>
-                        </div>
-                    </div>
-                    <div class="member-row">
-                        <div class="member-img">
-                            <img src="../static/images/user_pink.png" th:src="@{/images/user_pink.png}">
-                        </div>
-                        <div class="member-info">
-                            <p class="member-name">Reza</p>
-                            <p class="member-email">email@email.com</p>
-                        </div>
-                    </div>
-                    <div class="member-row">
-                        <div class="member-img">
-                            <img src="../static/images/user_pink.png" th:src="@{/images/user_pink.png}">
-                        </div>
-                        <div class="member-info">
-                            <p class="member-name">Reza</p>
-                            <p class="member-email">email@email.com</p>
-                        </div>
-                    </div>
-                    <div class="member-row">
-                        <div class="member-img">
-                            <img src="../static/images/user_pink.png" th:src="@{/images/user_pink.png}">
-                        </div>
-                        <div class="member-info">
-                            <p class="member-name">Reza</p>
-                            <p class="member-email">email@email.com</p>
-                        </div>
-                    </div>
-                    <div class="member-row">
-                        <div class="member-img">
-                            <img src="../static/images/user_pink.png" th:src="@{/images/user_pink.png}">
-                        </div>
-                        <div class="member-info">
-                            <p class="member-name">Reza</p>
-                            <p class="member-email">email@email.com</p>
-                        </div>
-                    </div>
-                    <div class="member-row">
-                        <div class="member-img">
-                            <img src="../static/images/user_pink.png" th:src="@{/images/user_pink.png}">
-                        </div>
-                        <div class="member-info">
-                            <p class="member-name">Reza</p>
-                            <p class="member-email">email@email.com</p>
+                            <p class="member-name" th:text="${user.firstName}">Reza</p>
+                            <p class="member-email" th:text="${user.email}">email@email.com</p>
                         </div>
                     </div>
                 </div>
@@ -211,7 +156,8 @@
                     <div class="line"></div>
                 </div>
                 <div class="description">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium, adipisci alias
+                    <p th:text="${project.projectDescription}">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                        Accusantium, adipisci alias
                         asperiores
                         aspernatur atque autem blanditiis consequatur cumque cupiditate delectus doloremque dolorum
                         ducimus
@@ -223,7 +169,7 @@
                         molestias mollitia natus nemo neque nihil nisi nobis nostrum nulla numquam obcaecati officia
                         officiis
                         omnis optio pariatur perferendis perspiciatis placeat porro possimus praesentium provident
-
+                    </p>
                 </div>
             </div>
 
@@ -235,173 +181,6 @@
                 <div class="line"></div>
                 <div class="task-content">
 
-<!--                    <div class="task-block">-->
-<!--                        <div class="task-row">-->
-<!--                            <div class="priority high">-->
-<!--                                <div class="priority-icon">-->
-<!--                                <span class="material-icons-sharp">-->
-<!--                                    arrow_upward-->
-<!--                                </span>-->
-<!--                                </div>-->
-<!--                                <div class="priority-text">-->
-<!--                                    <p>High</p>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                            <div class="task-options">-->
-<!--                                <span class="material-icons-sharp task-menu">-->
-<!--                                    more_vert-->
-<!--                                </span>-->
-<!--                                <div class="context-menu">-->
-<!--                                    <button class="edit-button">Edit</button>-->
-<!--                                    <button class="delete-button">Delete</button>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <div class="task-row">-->
-<!--                            <div class="task-name">-->
-<!--                                <p>Task Name</p>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <div class="task-row">-->
-<!--                            <div class="project-date">-->
-<!--                                <div class="start-date">-->
-<!--                                    <p>21-12-2010</p>-->
-<!--                                </div>-->
-<!--                                <div class="end-date">-->
-<!--                                    <p>21-12-2010</p>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <div class="task-row">-->
-<!--                            <div class="assigned-to">-->
-<!--                                <div class="assigned-member">-->
-<!--                                    <img src="../static/images/user_pink.png" th:src="@{/images/user_pink.png}">-->
-<!--                                </div>-->
-<!--                                <div class="assigned-member">-->
-<!--                                    <img src="../static/images/user_pink.png" th:src="@{/images/user_pink.png}">-->
-<!--                                </div>-->
-<!--                                <div class="assigned-member">-->
-<!--                                    <img src="../static/images/user_pink.png" th:src="@{/images/user_pink.png}">-->
-<!--                                </div>-->
-<!--                                <div class="assigned-member">-->
-<!--                                    <img src="../static/images/user_pink.png" th:src="@{/images/user_pink.png}">-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-
-<!--                    </div>-->
-
-<!--                    <div class="task-block">-->
-<!--                        <div class="task-row">-->
-<!--                            <div class="priority medium">-->
-<!--                                <div class="priority-icon">-->
-<!--                                <span class="material-icons-sharp">-->
-<!--                                    arrow_forward-->
-<!--                                </span>-->
-<!--                                </div>-->
-<!--                                <div class="priority-text">-->
-<!--                                    <p>Medium</p>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                            <div class="task-options">-->
-<!--                                <span class="material-icons-sharp task-menu">-->
-<!--                                    more_vert-->
-<!--                                </span>-->
-<!--                                <div class="context-menu">-->
-<!--                                    <button class="edit-button">Edit</button>-->
-<!--                                    <button class="delete-button">Delete</button>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <div class="task-row">-->
-<!--                            <div class="task-name">-->
-<!--                                <p>Task Name</p>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <div class="task-row">-->
-<!--                            <div class="project-date">-->
-<!--                                <div class="start-date">-->
-<!--                                    <p>21-12-2010</p>-->
-<!--                                </div>-->
-<!--                                <div class="end-date">-->
-<!--                                    <p>21-12-2010</p>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <div class="task-row">-->
-<!--                            <div class="assigned-to">-->
-<!--                                <div class="assigned-member">-->
-<!--                                    <img src="../static/images/user_pink.png" th:src="@{/images/user_pink.png}">-->
-<!--                                </div>-->
-<!--                                <div class="assigned-member">-->
-<!--                                    <img src="../static/images/user_pink.png" th:src="@{/images/user_pink.png}">-->
-<!--                                </div>-->
-<!--                                <div class="assigned-member">-->
-<!--                                    <img src="../static/images/user_pink.png" th:src="@{/images/user_pink.png}">-->
-<!--                                </div>-->
-<!--                                <div class="assigned-member">-->
-<!--                                    <img src="../static/images/user_pink.png" th:src="@{/images/user_pink.png}">-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-
-<!--                    </div>-->
-
-<!--                    <div class="task-block">-->
-<!--                        <div class="task-row">-->
-<!--                            <div class="priority low">-->
-<!--                                <div class="priority-icon">-->
-<!--                                <span class="material-icons-sharp">-->
-<!--                                    arrow_downward-->
-<!--                                </span>-->
-<!--                                </div>-->
-<!--                                <div class="priority-text">-->
-<!--                                    <p>Low</p>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                            <div class="task-options">-->
-<!--                                <span class="material-icons-sharp task-menu">-->
-<!--                                    more_vert-->
-<!--                                </span>-->
-<!--                                <div class="context-menu">-->
-<!--                                    <button class="edit-button">Edit</button>-->
-<!--                                    <button class="delete-button">Delete</button>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <div class="task-row">-->
-<!--                            <div class="task-name">-->
-<!--                                <p>Task Name</p>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <div class="task-row">-->
-<!--                            <div class="project-date">-->
-<!--                                <div class="start-date">-->
-<!--                                    <p>21-12-2010</p>-->
-<!--                                </div>-->
-<!--                                <div class="end-date">-->
-<!--                                    <p>21-12-2010</p>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <div class="task-row">-->
-<!--                            <div class="assigned-to">-->
-<!--                                <div class="assigned-member">-->
-<!--                                    <img src="../static/images/user_pink.png" th:src="@{/images/user_pink.png}">-->
-<!--                                </div>-->
-<!--                                <div class="assigned-member">-->
-<!--                                    <img src="../static/images/user_pink.png" th:src="@{/images/user_pink.png}">-->
-<!--                                </div>-->
-<!--                                <div class="assigned-member">-->
-<!--                                    <img src="../static/images/user_pink.png" th:src="@{/images/user_pink.png}">-->
-<!--                                </div>-->
-<!--                                <div class="assigned-member">-->
-<!--                                    <img src="../static/images/user_pink.png" th:src="@{/images/user_pink.png}">-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-
-<!--                    </div>-->
 
                 </div>
             </div>

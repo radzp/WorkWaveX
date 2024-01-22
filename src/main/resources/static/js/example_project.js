@@ -66,6 +66,27 @@ document.addEventListener('DOMContentLoaded', function () {
             })
             .catch(error => console.error('Error:', error));
 
+        fetch(`/api/v1/projects/${projectId}`)
+            .then(response => response.json())
+            .then(project => {
+                    // Get the project's end date
+                    const projectEndDate = new Date(project.endDate);
+
+                    // Get the current date
+                    const currentDate = new Date();
+
+                    // Calculate the difference in milliseconds
+                    const differenceInMilliseconds = projectEndDate - currentDate;
+
+                    // Convert the difference from milliseconds to days
+                    const differenceInDays = Math.ceil(differenceInMilliseconds / (1000 * 60 * 60 * 24));
+
+                    // Display the number of days left for the project
+                    document.querySelector('.days-left .counting-number').textContent = differenceInDays;
+                })
+            .catch(error => console.error('Error:', error));
+
+
         // Get all the tasks and the task containers
         const tasks = document.querySelectorAll('.task-block');
         const containers = document.querySelectorAll('.task-content');
