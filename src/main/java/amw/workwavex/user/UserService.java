@@ -45,6 +45,7 @@ public class UserService {
         userDTO.setPosition(user.getPosition());
         userDTO.setSalary(user.getSalary());
         userDTO.setFullPhoneNumber(user.getFullPhoneNumber());
+        userDTO.setRole(user.getRole().name());
         return userDTO;
     }
 }

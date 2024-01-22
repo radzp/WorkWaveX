@@ -119,16 +119,23 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="position"><i class="fas fa-envelope"></i>Position:</label> <!-- Dodano ikonkę -->
+                    <label for="position"><i class="fas fa-briefcase"></i>Position:</label> <!-- Dodano ikonkę -->
                     <input type="text" id="position" name="position" required>
                 </div>
                 <div class="form-group">
-                    <label for="salary"><i class="fas fa-envelope"></i>Salary:</label> <!-- Dodano ikonkę -->
+                    <label for="role"><i class="fas fa-user-tag"></i>Role:</label> <!-- Dodano ikonkę -->
+                    <select id="role" name="role">
+                        <option value="USER" selected>USER</option>
+                        <option value="ADMIN">ADMIN</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="salary"><i class="fas fa-dollar-sign"></i>Salary:</label> <!-- Dodano ikonkę -->
                     <input type="number" id="salary" name="salary" min="2700" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="phoneNumber"><i class="fa-solid fa-key"></i>Phone number:</label> <!-- Dodano ikonkę -->
+                    <label for="phoneNumber"><i class="fas fa-phone"></i>Phone number:</label> <!-- Dodano ikonkę -->
                     <fieldset id="phoneNumber" class='number-code'>
                         <div>
                             <select name='areaCode' class='code-input' required>
@@ -150,15 +157,15 @@
                                 <option value="+36">+36 (Hungary)</option>
                                 <option value="+32">+32 (Belgium)</option>
                             </select>
-                            <input name='code' class='code-input' maxlength="1" type="number" required/>
-                            <input name='code' class='code-input' maxlength="1" type="number" required/>
-                            <input name='code' class='code-input' maxlength="1" type="number" required/>
-                            <input name='code' class='code-input' maxlength="1" type="number" required/>
-                            <input name='code' class='code-input' maxlength="1" type="number" required/>
-                            <input name='code' class='code-input' maxlength="1" type="number" required/>
-                            <input name='code' class='code-input' maxlength="1" type="number" required/>
-                            <input name='code' class='code-input' maxlength="1" type="number" required/>
-                            <input name='code' class='code-input' maxlength="1" type="number" required/>
+                            <input name='code' class='code-input' maxlength="1" type="text" pattern="\d" required/>
+                            <input name='code' class='code-input' maxlength="1" type="text" pattern="\d" required/>
+                            <input name='code' class='code-input' maxlength="1" type="text" pattern="\d" required/>
+                            <input name='code' class='code-input' maxlength="1" type="text" pattern="\d" required/>
+                            <input name='code' class='code-input' maxlength="1" type="text" pattern="\d" required/>
+                            <input name='code' class='code-input' maxlength="1" type="text" pattern="\d" required/>
+                            <input name='code' class='code-input' maxlength="1" type="text" pattern="\d" required/>
+                            <input name='code' class='code-input' maxlength="1" type="text" pattern="\d" required/>
+                            <input name='code' class='code-input' maxlength="1" type="text" pattern="\d" required/>
                         </div>
                     </fieldset>
                 </div>
@@ -170,7 +177,8 @@
                 </span>
                 </div>
                 <div class="form-group password-group">
-                    <label for="repeatedPassword"><i class="fas fa-lock"></i>Password:</label> <!-- Dodano ikonkę -->
+                    <label for="repeatedPassword"><i class="fas fa-lock"></i>Repeated Password:</label>
+                    <!-- Dodano ikonkę -->
                     <input type="password" id="repeatedPassword" name="repeatedPassword" required>
                     <span class="show-password" id="showRepeatedPassword">
                     <i class="far fa-eye"></i>
@@ -283,6 +291,14 @@
         const salary = document.querySelector('input[name="salary"]').value
         const password = document.querySelector('input[name="password"]').value
         const repeatedPassword = document.querySelector('input[name="repeatedPassword"]').value
+        const role = document.querySelector('select[name="role"]').value
+
+
+        // Sprawdź, czy hasła są takie same
+        if (password !== repeatedPassword) {
+            alert("Repeated password doesn't match with password");
+            return;
+        }
 
         // Pobierz wartość z pola wyboru kodu kierunkowego
         const areaCode = areaCodeElement.value
@@ -301,7 +317,8 @@
             position,
             fullPhoneNumber,
             salary,
-            password
+            password,
+            role
         }
         // URL endpointu API rejestracji
         const registerUrl = 'http://localhost:8080/api/v1/auth/register';
@@ -313,16 +330,24 @@
             },
             body: JSON.stringify(registerData)
         })
-            .then(response => response.json())
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
             .then(data => {
                 // Obsłuż odpowiedź z API
                 console.log(data);
+                alert("User created successfully!");
             })
             .catch(error => {
                 // Obsłuż błąd
                 console.error('Error:', error);
+                alert("Failed to create user!");
             });
         console.log(registerData)
+
     }
 </script>
 </html>

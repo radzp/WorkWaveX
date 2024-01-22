@@ -13,4 +13,5 @@ public class UserDTO {
     private String position;
     private Double salary;
     private String fullPhoneNumber;
+    private String role;
 }
