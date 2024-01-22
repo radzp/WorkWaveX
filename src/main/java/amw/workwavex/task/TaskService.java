@@ -39,7 +39,7 @@ public class TaskService {
         taskRepository.deleteById(id);
     }
 
-    private TaskDTO convertToDTO(Task task) {
+    public TaskDTO convertToDTO(Task task) {
         TaskDTO dto = new TaskDTO();
         dto.setId(task.getId());
         dto.setTaskName(task.getTaskName());

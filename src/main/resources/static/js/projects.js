@@ -8,51 +8,51 @@ document.addEventListener('DOMContentLoaded', function () {
         .then(projects => {
             // Dla każdego projektu
             projects.forEach(project => {
-                // Stwórz element HTML dla projektu
+                // Create an HTML element for the project
                 const projectElement = document.createElement('div');
                 projectElement.classList.add('block-wrapper');
                 projectElement.innerHTML = `
-                    <div class="block-content">
-                        <div class="project-header">
-                            <h2>${project.projectName}</h2>
-                        </div>
-                        <div class="project-body">
-                            <div class="project-info">
-                                <div class="project-info-item">
-                                    <div class="status-date">
-                                        <h3 class="project-status ${project.projectStatus.toLowerCase()}">${project.projectStatus}</h3>
-                                        <div class="project-due-date">
-                                            <h3>Due date</h3>
-                                            <p>${project.endDate}</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="project-info-item">
-                                    <p class="project-description">${project.projectDescription}</p>
-                                </div>
-                                <div class="project-info-item">
-                                    <h3>MEMBERS</h3>
-                                    <div class="members-images">
-                                        <!-- Tutaj można dodać obrazy członków projektu -->
-                                    </div>
-                                </div>
-                                <div class="project-info-item">
-                                    <div class="project-info-item-footer">
-                                        <div class="tasks-counter">
-                                            <p>${project.projectTasks.length}</p>
-                                            <h3>Tasks</h3>
-                                        </div>
-                                        <h3>
-                                            <a href="#">Go to the project</a>
-                                        </h3>
-                                    </div>
-                                </div>
+        <div class="block-content">
+            <div class="project-header">
+                <h2>${project.projectName}</h2>
+            </div>
+            <div class="project-body">
+                <div class="project-info">
+                    <div class="project-info-item">
+                        <div class="status-date">
+                            <h3 class="project-status ${project.projectStatus.toLowerCase()}">${project.projectStatus}</h3>
+                            <div class="project-due-date">
+                                <h3>Due date</h3>
+                                <p>${project.endDate}</p>
                             </div>
                         </div>
                     </div>
-                `;
+                    <div class="project-info-item">
+                        <p class="project-description">${project.projectDescription}</p>
+                    </div>
+                    <div class="project-info-item">
+                        <h3>MEMBERS</h3>
+                        <div class="members-images">
+                            ` + project.projectMembers.map(member => `<img src="images/user_aqua.png" alt="${member.firstName} ${member.lastName}">`).join('') + `
+                        </div>
+                    </div>
+                    <div class="project-info-item">
+                        <div class="project-info-item-footer">
+                            <div class="tasks-counter">
+                                <p>${project.projectTasks.length}</p>
+                                <h3>Tasks</h3>
+                            </div>
+                            <h3>
+                                <a href="#">Go to the project</a>
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
 
-                // Dodaj element HTML do kontenera na stronie
+                // Add the HTML element to the container on the page
                 projectsContainer.appendChild(projectElement);
             });
 
@@ -85,8 +85,6 @@ document.addEventListener('DOMContentLoaded', function () {
             truncateDescription();
         })
         .catch(error => console.error('Error:', error));
-
-
 
 
     // Pobierz wszystkie divy z klasą .members-images

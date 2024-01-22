@@ -1,7 +1,10 @@
 package amw.workwavex.project;
 
+import amw.workwavex.task.TaskService;
 import amw.workwavex.user.User;
 import amw.workwavex.user.UserRepository;
+import amw.workwavex.user.UserService;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +19,8 @@ public class ProjectService {
 
     private final ProjectRepository projectRepository;
     private final UserRepository userRepository;
+    private final UserService userService;
+    private final TaskService taskService;
 
     public List<ProjectDTO> getAllProjects() {
         return projectRepository.findAll().stream()
@@ -46,6 +51,12 @@ public class ProjectService {
 
         newProject.setProjectMembers(members);
         Project savedProject = projectRepository.save(newProject);
+        
+        // Save the relationship in the users as well
+        members.forEach(member -> {
+            member.getProjects().add(savedProject);
+            userRepository.save(member);
+        });
         return convertToDTO(savedProject);
     }
 
@@ -74,8 +85,15 @@ public class ProjectService {
         dto.setProjectStatus(project.getProjectStatus());
         dto.setStartDate(project.getStartDate());
         dto.setEndDate(project.getEndDate());
-        dto.setProjectMembers(project.getProjectMembers());
-        dto.setProjectTasks(project.getProjectTasks());
+        dto.setProjectMembers(
+                project.getProjectMembers().stream()
+                        .map(userService::convertToDTO) // użyj metody convertToDTO z UserService
+                        .collect(Collectors.toSet())
+        );
+        dto.setProjectTasks(
+                project.getProjectTasks().stream()
+                        .map(taskService::convertToDTO) // użyj metody convertToDTO z TaskService
+                        .collect(Collectors.toSet()));
         return dto;
     }
 }
