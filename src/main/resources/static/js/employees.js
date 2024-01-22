@@ -48,6 +48,43 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             submitButton.addEventListener('click', () => {
+                const employeeData = {
+                    id: document.getElementById('idNumber').value,
+                    firstName: document.getElementById('employeeName').value.split(' ')[0],
+                    lastName: document.getElementById('employeeName').value.split(' ')[1],
+                    position: document.getElementById('position').value,
+                    email: document.getElementById('email').value,
+                    fullPhoneNumber: document.getElementById('phoneNumber').value,
+                    salary: document.getElementById('salary').value
+                };
+
+                // Walidacja danych
+                if (!employeeData.firstName || !employeeData.lastName || !employeeData.position || !employeeData.email || !employeeData.fullPhoneNumber || !employeeData.salary) {
+                    alert('Wszystkie pola muszą być wypełnione');
+                    return;
+                }
+
+                const emailRegex = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
+                if (!emailRegex.test(employeeData.email)) {
+                    alert('Niepoprawny format email');
+                    return;
+                }
+
+                fetch(`/api/v1/user-controller/${employeeData.id}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(employeeData),
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log('Success:', data);
+                    })
+                    .catch((error) => {
+                        console.error('Error:', error);
+                    });
+
                 modal.close();
             });
 

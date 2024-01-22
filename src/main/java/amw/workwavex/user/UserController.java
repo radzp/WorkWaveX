@@ -32,5 +32,11 @@ public class UserController {
     public ResponseEntity<UserDTO> getUserByNameAndSurname(@PathVariable String firstName, @PathVariable String lastName) {
         return ResponseEntity.ok(userService.getUserByNameAndSurname(firstName, lastName));
     }
+
+    // UserController.java
+    @PutMapping("/{id}")
+    public ResponseEntity<UserDTO> updateUser(@PathVariable Integer id, @RequestBody UserDTO userDTO) {
+        return ResponseEntity.ok(userService.updateUser(id, userDTO));
+    }
 }
 

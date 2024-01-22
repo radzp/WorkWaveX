@@ -48,4 +48,21 @@ public class UserService {
         userDTO.setRole(user.getRole().name());
         return userDTO;
     }
+
+    // UserService.java
+    public UserDTO updateUser(Integer id, UserDTO userDTO) {
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        user.setFirstName(userDTO.getFirstName());
+        user.setLastName(userDTO.getLastName());
+        user.setPosition(userDTO.getPosition());
+        user.setEmail(userDTO.getEmail());
+        user.setFullPhoneNumber(userDTO.getFullPhoneNumber());
+        user.setSalary(userDTO.getSalary());
+
+        User updatedUser = userRepository.save(user);
+
+        return convertToDTO(updatedUser);
+    }
 }
