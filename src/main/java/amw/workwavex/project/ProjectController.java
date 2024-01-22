@@ -32,8 +32,8 @@ public class ProjectController {
     }
 
     @PostMapping("/create")
-    public ProjectDTO createProject(@RequestBody Project newProject) {
-        return projectService.createProject(newProject);
+    public ProjectDTO createProject(@RequestBody ProjectDTO newProjectDTO) {
+        return projectService.createProject(newProjectDTO);
     }
 
     @PutMapping("/{id}")
@@ -46,17 +46,17 @@ public class ProjectController {
         projectService.deleteProject(id);
     }
 
-@GetMapping("/{id}/details")
-public ModelAndView getProjectDetails(@PathVariable Integer id) {
-    ProjectDTO project = projectService.getProjectById(id);
-    ModelAndView modelAndView = new ModelAndView();
-    if (project != null) {
-        modelAndView.addObject("project", project);
-        modelAndView.setViewName("example_project");
-    } else {
-        // handle the case when the project is null
-        // for example, redirect to an error page or a list of projects
+    @GetMapping("/{id}/details")
+    public ModelAndView getProjectDetails(@PathVariable Integer id) {
+        ProjectDTO project = projectService.getProjectById(id);
+        ModelAndView modelAndView = new ModelAndView();
+        if (project != null) {
+            modelAndView.addObject("project", project);
+            modelAndView.setViewName("example_project");
+        } else {
+            // handle the case when the project is null
+            // for example, redirect to an error page or a list of projects
+        }
+        return modelAndView;
     }
-    return modelAndView;
-}
 }

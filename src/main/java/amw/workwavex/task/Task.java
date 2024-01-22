@@ -5,10 +5,7 @@ import amw.workwavex.user.User;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDate;
 
@@ -29,8 +26,11 @@ public class Task {
     private String taskDescription;
     @Enumerated(EnumType.STRING)
     private TaskStatus taskStatus;
+    @Enumerated(EnumType.STRING)
+    private TaskPriority taskPriority;
     private LocalDate startDate;
     private LocalDate endDate;
+    @EqualsAndHashCode.Exclude // Exclude from hashCode() method
     @ManyToOne
     @JoinColumn(name = "project_id")
     private Project project;

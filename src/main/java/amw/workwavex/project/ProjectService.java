@@ -1,7 +1,10 @@
 package amw.workwavex.project;
 
+import amw.workwavex.task.Task;
 import amw.workwavex.task.TaskService;
+import amw.workwavex.task.TaskDTO;
 import amw.workwavex.user.User;
+import amw.workwavex.user.UserDTO;
 import amw.workwavex.user.UserRepository;
 import amw.workwavex.user.UserService;
 import jakarta.transaction.Transactional;
@@ -40,23 +43,46 @@ public class ProjectService {
                 .collect(Collectors.toList());
     }
 
-    public ProjectDTO createProject(Project newProject) {
-        Set<User> members = newProject.getProjectMembers()
-                .stream()
-                .map(User::getId)
+    @Transactional
+    public ProjectDTO createProject(ProjectDTO newProjectDTO) {
+        Project newProject = new Project();
+        newProject.setProjectName(newProjectDTO.getProjectName());
+        newProject.setProjectDescription(newProjectDTO.getProjectDescription());
+        newProject.setProjectStatus(newProjectDTO.getProjectStatus());
+        newProject.setStartDate(newProjectDTO.getStartDate());
+        newProject.setEndDate(newProjectDTO.getEndDate());
+
+        Set<User> members = newProjectDTO.getProjectMembers().stream()
+                .map(UserDTO::getId)
                 .map(userRepository::findById)
                 .filter(Optional::isPresent)
                 .map(Optional::get)
                 .collect(Collectors.toSet());
-
         newProject.setProjectMembers(members);
+
+        // Przypisz zadania do projektu
+        Set<Task> tasks = newProjectDTO.getProjectTasks().stream()
+                .map(TaskDTO::getId)
+                .map(taskService::getTaskById)
+                .filter(Optional::isPresent)
+                .map(Optional::get)
+                .collect(Collectors.toSet());
+        newProject.setProjectTasks(tasks);
+
         Project savedProject = projectRepository.save(newProject);
-        
+
         // Save the relationship in the users as well
         members.forEach(member -> {
             member.getProjects().add(savedProject);
             userRepository.save(member);
         });
+
+        // Save the relationship in the tasks as well
+        tasks.forEach(task -> {
+            task.setProject(savedProject);
+            taskService.saveTask(task);
+        });
+
         return convertToDTO(savedProject);
     }
 

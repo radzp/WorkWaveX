@@ -28,6 +28,10 @@ public class TaskController {
         return taskService.updateTask(id, updatedTask);
     }
 
+    @GetMapping("/project/{projectId}")
+    public List<TaskDTO> getTasksByProjectId(@PathVariable Integer projectId) {
+        return taskService.getTasksByProjectId(projectId);
+    }
     @DeleteMapping("/{id}")
     public void deleteTask(@PathVariable Integer id) {
         taskService.deleteTask(id);
