@@ -15,6 +15,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     edit
                     </button>
                 </td>
+                <td><button class="material-symbols-sharp delete-button">
+                    delete
+                    </button>
+                </td>
             `;
                 document.querySelector('table tbody').appendChild(tr);
             });
@@ -23,6 +27,28 @@ document.addEventListener('DOMContentLoaded', () => {
             const modal = document.querySelector('.modal');
 
             const submitButton = document.querySelector('.submit');
+            const deleteButtons = document.querySelectorAll('.delete-button');
+            deleteButtons.forEach((deleteButton, index) => {
+                deleteButton.addEventListener('click', () => {
+                    const confirmation = confirm('Do you really wanna delete this user?');
+                    if (confirmation) {
+                        const userId = users[index].id;
+                        fetch(`/api/v1/user-controller/${userId}`, {
+                            method: 'DELETE',
+                        })
+                            .then(response => {
+                                if (response.ok) {
+                                    console.log(`User with id ${userId} has been deleted.`);
+                                    // Usuń wiersz użytkownika z tabeli
+                                    deleteButton.parentElement.parentElement.remove();
+                                } else {
+                                    console.error('Error:', response.statusText);
+                                }
+                            })
+                            .catch(error => console.error('Error:', error));
+                    }
+                });
+            });
 
             editButtons.forEach(editButton => {
                 editButton.addEventListener('click', () => {

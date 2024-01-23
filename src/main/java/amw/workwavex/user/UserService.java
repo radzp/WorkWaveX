@@ -65,4 +65,8 @@ public class UserService {
 
         return convertToDTO(updatedUser);
     }
+
+    public void deleteUserById(Integer id) {
+        userRepository.deleteById(id);
+    }
 }

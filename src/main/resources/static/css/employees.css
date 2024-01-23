@@ -123,5 +123,7 @@ main .employees-list a{
 
 
 }
-
+.delete-button{
+    color: red !important;
+}
 
