@@ -6,17 +6,17 @@ document.addEventListener('DOMContentLoaded', function () {
 
 // Wyślij żądanie do serwera, aby pobrać zadania dla danego projektu
         fetch(`/api/v1/tasks/project/${projectId}`)
-            .then(response => response.json())
-            .then(tasks => {
-                // Teraz masz listę zadań dla danego projektu
-                console.log(tasks);
-                // Możesz je wyświetlić w dowolny sposób, na przykład dodając elementy HTML do strony
-                tasks.forEach(task => {
-                    // Tworzenie i dodawanie elementów HTML dla każdego zadania...
-                    const taskContainer = document.querySelector('.task-content'); // Znajdź kontener dla zadań
-                    const taskBlock = document.createElement('div');
-                    taskBlock.classList.add('task-block');
-                    taskBlock.innerHTML = `
+    .then(response => response.json())
+    .then(tasks => {
+        // Teraz masz listę zadań dla danego projektu
+        console.log(tasks);
+        // Możesz je wyświetlić w dowolny sposób, na przykład dodając elementy HTML do strony
+        tasks.forEach(task => {
+            // Tworzenie i dodawanie elementów HTML dla każdego zadania...
+            const taskContainer = document.querySelector('.task-content'); // Znajdź kontener dla zadań
+            const taskBlock = document.createElement('div');
+            taskBlock.classList.add('task-block');
+            taskBlock.innerHTML = `
                 <div class="task-row">
                     <div class="priority ${task.taskPriority.toLowerCase()}">
                         <div class="priority-icon">
@@ -60,11 +60,29 @@ document.addEventListener('DOMContentLoaded', function () {
                         </div>
                     </div>
                 </div>
+            
             `;
-                    taskContainer.appendChild(taskBlock);
-                });
-            })
-            .catch(error => console.error('Error:', error));
+            taskContainer.appendChild(taskBlock);
+        });
+
+        // Get all the tasks and the task containers
+        const tasksItem = document.querySelectorAll('.task-block');
+        const containers = document.querySelectorAll('.task-content');
+
+        // Add drag events to tasks
+        tasksItem.forEach(task => {
+            task.setAttribute('draggable', 'true');
+            task.addEventListener('dragstart', handleDragStart, false);
+            task.addEventListener('dragend', handleDragEnd, false);
+        });
+
+        // Add drag events to task containers
+        containers.forEach(container => {
+            container.addEventListener('dragover', handleDragOver, false);
+            container.addEventListener('drop', handleDrop, false);
+        });
+    })
+    .catch(error => console.error('Error:', error));
 
         fetch(`/api/v1/projects/${projectId}`)
             .then(response => response.json())
@@ -86,23 +104,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 })
             .catch(error => console.error('Error:', error));
 
-
-        // Get all the tasks and the task containers
-        const tasks = document.querySelectorAll('.task-block');
-        const containers = document.querySelectorAll('.task-content');
-
-        // Add drag events to tasks
-        tasks.forEach(task => {
-            task.setAttribute('draggable', 'true');
-            task.addEventListener('dragstart', handleDragStart, false);
-            task.addEventListener('dragend', handleDragEnd, false);
-        });
-
-        // Add drag events to task containers
-        containers.forEach(container => {
-            container.addEventListener('dragover', handleDragOver, false);
-            container.addEventListener('drop', handleDrop, false);
-        });
 
         let draggedTask = null;
 
