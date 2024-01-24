@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         })
                             .then(response => {
                                 if (response.ok) {
-                                    console.log(`User with id ${userId} has been deleted.`);
+                                    alert(`User with id ${userId} has been deleted.`);
                                     // Usuń wiersz użytkownika z tabeli
                                     deleteButton.parentElement.parentElement.remove();
                                 } else {

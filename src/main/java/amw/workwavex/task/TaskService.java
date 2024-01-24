@@ -67,4 +67,10 @@ public class TaskService {
     public void saveTask(Task task) {
         taskRepository.save(task);
     }
+
+    public List<TaskEvent> getAllEventTasks() {
+        return getAllTasks().stream()
+                .map(TaskEvent::new)
+                .collect(Collectors.toList());
+    }
 }

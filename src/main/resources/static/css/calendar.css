@@ -47,12 +47,12 @@
 
 /*Lewy tekst w liscie*/
 .fc-direction-ltr .fc-list-day-text, .fc-direction-rtl .fc-list-day-side-text {
-    color: var(--color-white);
+    color: black;
 
 }
 /*Prawy tekst w liscie*/
 .fc-direction-ltr .fc-list-day-side-text, .fc-direction-rtl .fc-list-day-text {
-    color: var(--color-white);
+    color: black;
 }
 
 /*Element w liscie*/
@@ -62,5 +62,6 @@
 
 /*Hover elementu w liscie*/
 .fc .fc-list-event:hover td {
-
+    background-color: rgba(0, 0, 0, 0.005);
+    mix-blend-mode: luminosity;
 }

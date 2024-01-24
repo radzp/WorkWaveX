@@ -16,7 +16,7 @@
     --color-dark-variant: #a3bdcc;
     --color-light: rgba(0, 0, 0, 0.4);
     --box-shadow: 0 2rem 3rem var(--color-light);
-
+    --color-text-contrast: #fff;
 
 
     --card-border-radius: 2rem;
@@ -36,6 +36,7 @@
     --color-dark-variant: #677483;
     --color-background: #f6f6f9;
     --box-shadow: 0 2rem 3rem var(--color-light);
+    --color-text-contrast: #000000;
 }
 
 *{

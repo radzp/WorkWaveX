@@ -17,6 +17,10 @@ public class TaskController {
     public List<TaskDTO> getAllTasks() {
         return taskService.getAllTasks();
     }
+    @GetMapping("/allEvents")
+    public List<TaskEvent> getAllEventTasks() {
+        return taskService.getAllEventTasks();
+    }
 
     @PostMapping("/create")
     public TaskDTO createTask(@RequestBody Task newTask) {
