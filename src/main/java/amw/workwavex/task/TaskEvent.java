@@ -5,7 +5,6 @@ import lombok.Data;
 import java.time.format.DateTimeFormatter;
 
 @Data
-// Nowa klasa TaskEvent
 public class TaskEvent {
     private String title;
     private String start;

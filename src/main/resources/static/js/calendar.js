@@ -14,8 +14,13 @@ document.addEventListener('DOMContentLoaded', function() {
             end: 'prev,next'
         },
         eventClick: function(info) {
+            var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            var start = new Date(info.event.start).toLocaleDateString('en-EN', options);
+            var end = new Date(info.event.end).toLocaleDateString('en-EN', options);
             alert('Title: ' + info.event.title +
-                '\nDescription: ' + info.event.extendedProps.description);
+                '\nDescription: ' + info.event.extendedProps.description +
+                '\nStart: ' + start +
+                '\nEnd: ' + end);
         }
     });
 
