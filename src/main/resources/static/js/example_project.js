@@ -6,17 +6,19 @@ document.addEventListener('DOMContentLoaded', function () {
 
 // Wyślij żądanie do serwera, aby pobrać zadania dla danego projektu
         fetch(`/api/v1/tasks/project/${projectId}`)
-    .then(response => response.json())
-    .then(tasks => {
-        // Teraz masz listę zadań dla danego projektu
-        console.log(tasks);
-        // Możesz je wyświetlić w dowolny sposób, na przykład dodając elementy HTML do strony
-        tasks.forEach(task => {
-            // Tworzenie i dodawanie elementów HTML dla każdego zadania...
-            const taskContainer = document.querySelector('.task-content'); // Znajdź kontener dla zadań
-            const taskBlock = document.createElement('div');
-            taskBlock.classList.add('task-block');
-            taskBlock.innerHTML = `
+            .then(response => response.json())
+            .then(tasks => {
+                // Teraz masz listę zadań dla danego projektu
+                console.log(tasks);
+                // Możesz je wyświetlić w dowolny sposób, na przykład dodając elementy HTML do strony
+                tasks.forEach(task => {
+                    // Tworzenie i dodawanie elementów HTML dla każdego zadania...
+                    const taskContainer = document.querySelector(`#${mapTaskStatusToContainerId(task.taskStatus)}`); // Znajdź kontener dla zadań na podstawie statusu zadania
+                    const taskContent = taskContainer.querySelector('.task-content'); // Znajdź kontener zadań wewnątrz kontenera
+                    const taskBlock = document.createElement('div');
+                    taskBlock.classList.add('task-block');
+                    taskBlock.setAttribute('data-id', task.id);
+                    taskBlock.innerHTML = `
                 <div class="task-row">
                     <div class="priority ${task.taskPriority.toLowerCase()}">
                         <div class="priority-icon">
@@ -42,6 +44,9 @@ document.addEventListener('DOMContentLoaded', function () {
                     <div class="task-name">
                         <p>${task.taskName}</p>
                     </div>
+                    <div class="task-description">
+                        <p>${task.taskDescription}</p>
+                        </div>
                 </div>
                 <div class="task-row">
                     <div class="project-date">
@@ -62,46 +67,46 @@ document.addEventListener('DOMContentLoaded', function () {
                 </div>
             
             `;
-            taskContainer.appendChild(taskBlock);
-        });
+                    taskContent.appendChild(taskBlock); // Dodaj blok zadania do kontenera zadań, a nie do kontenera otaczającego
+                });
 
-        // Get all the tasks and the task containers
-        const tasksItem = document.querySelectorAll('.task-block');
-        const containers = document.querySelectorAll('.task-content');
+                // Get all the tasks and the task containers
+                const tasksItem = document.querySelectorAll('.task-block');
+                const containers = document.querySelectorAll('.task-content');
 
-        // Add drag events to tasks
-        tasksItem.forEach(task => {
-            task.setAttribute('draggable', 'true');
-            task.addEventListener('dragstart', handleDragStart, false);
-            task.addEventListener('dragend', handleDragEnd, false);
-        });
+                // Add drag events to tasks
+                tasksItem.forEach(task => {
+                    task.setAttribute('draggable', 'true');
+                    task.addEventListener('dragstart', handleDragStart, false);
+                    task.addEventListener('dragend', handleDragEnd, false);
+                });
 
-        // Add drag events to task containers
-        containers.forEach(container => {
-            container.addEventListener('dragover', handleDragOver, false);
-            container.addEventListener('drop', handleDrop, false);
-        });
-    })
-    .catch(error => console.error('Error:', error));
+                // Add drag events to task containers
+                containers.forEach(container => {
+                    container.addEventListener('dragover', handleDragOver, false);
+                    container.addEventListener('drop', handleDrop, false);
+                });
+            })
+            .catch(error => console.error('Error:', error));
 
         fetch(`/api/v1/projects/${projectId}`)
             .then(response => response.json())
             .then(project => {
-                    // Get the project's end date
-                    const projectEndDate = new Date(project.endDate);
+                // Get the project's end date
+                const projectEndDate = new Date(project.endDate);
 
-                    // Get the current date
-                    const currentDate = new Date();
+                // Get the current date
+                const currentDate = new Date();
 
-                    // Calculate the difference in milliseconds
-                    const differenceInMilliseconds = projectEndDate - currentDate;
+                // Calculate the difference in milliseconds
+                const differenceInMilliseconds = projectEndDate - currentDate;
 
-                    // Convert the difference from milliseconds to days
-                    const differenceInDays = Math.ceil(differenceInMilliseconds / (1000 * 60 * 60 * 24));
+                // Convert the difference from milliseconds to days
+                const differenceInDays = Math.ceil(differenceInMilliseconds / (1000 * 60 * 60 * 24));
 
-                    // Display the number of days left for the project
-                    document.querySelector('.days-left .counting-number').textContent = differenceInDays;
-                })
+                // Display the number of days left for the project
+                document.querySelector('.days-left .counting-number').textContent = differenceInDays;
+            })
             .catch(error => console.error('Error:', error));
 
 
@@ -128,12 +133,94 @@ document.addEventListener('DOMContentLoaded', function () {
             // Prevent default action
             e.preventDefault();
 
+            // Find the closest parent element with the class 'task-content'
+            let dropTarget = e.target;
+            while (!dropTarget.classList.contains('task-content')) {
+                dropTarget = dropTarget.parentElement;
+            }
+
+            console.log(`Drop event triggered on element with id: ${dropTarget.id}`); // Debugging line
+
             // Check if the drop target is a valid task container
-            if (this.classList.contains('task-content')) {
+            if (dropTarget.classList.contains('task-content')) {
+                console.log('Drop target is a valid task container'); // Debugging line
+
                 // Move the dragged task to the dropped container
-                if (draggedTask && this !== draggedTask) {
-                    this.appendChild(draggedTask);
+                if (draggedTask && dropTarget !== draggedTask) {
+                    console.log('Moving the dragged task to the dropped container'); // Debugging line
+
+                    dropTarget.appendChild(draggedTask);
+                    updateTaskStatus(draggedTask, dropTarget.parentElement.id);
+                    console.log("Wykonano updateTaskStatus")
+
+                    // Debugging code
+                    console.log(`Task ID: ${draggedTask.getAttribute('data-id')}`);
+                    console.log(`New status: ${dropTarget.id}`);
+                } else {
+                    console.log('Dragged task is the same as the drop target'); // Debugging line
                 }
+            } else {
+                console.log('Drop target is not a valid task container'); // Debugging line
+            }
+        }
+
+        function updateTaskStatus(taskElement, newStatus) {
+            const taskId = taskElement.getAttribute('data-id');
+            const taskStatus = mapContainerIdToTaskStatus(newStatus);
+
+            console.log(`Task ID 2: ${taskId}`);
+            console.log(`New status 2: ${taskStatus}`);
+
+            fetch(`/api/v1/tasks/${taskId}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    taskName: taskElement.querySelector('.task-name p').textContent,
+                    taskDescription: taskElement.querySelector('.task-description p').textContent,
+                    taskStatus: taskStatus,
+                    taskPriority: taskElement.querySelector('.priority').classList[1].toUpperCase(),
+                    startDate: taskElement.querySelector('.start-date p').textContent,
+                    endDate: taskElement.querySelector('.end-date p').textContent,
+                }),
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Success:', data);
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                });
+        }
+
+        function mapContainerIdToTaskStatus(containerId) {
+            console.log(`Container ID: ${containerId}`); // Debugging line
+            switch (containerId) {
+                case 'to-do':
+                    return 'TODO';
+                case 'in-progress':
+                    return 'IN_PROGRESS';
+                case 'review':
+                    return 'REVIEW';
+                case 'done':
+                    return 'DONE';
+                default:
+                    return null;
+            }
+        }
+        function mapTaskStatusToContainerId(taskStatus) {
+            switch (taskStatus) {
+                case 'TODO':
+                    return 'to-do';
+                case 'IN_PROGRESS':
+                    return 'in-progress';
+                case 'REVIEW':
+                    return 'review';
+                case 'DONE':
+                    return 'done';
+                default:
+                    return null;
             }
         }
 
