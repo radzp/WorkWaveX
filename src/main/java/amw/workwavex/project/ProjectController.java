@@ -1,5 +1,6 @@
 package amw.workwavex.project;
 
+import amw.workwavex.task.TaskService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.ui.Model;
@@ -16,6 +17,7 @@ import java.util.List;
 public class ProjectController {
 
     private final ProjectService projectService;
+    private final TaskService taskService;
 
     @GetMapping("/all")
     public List<ProjectDTO> getAllProjects() {
@@ -58,10 +60,15 @@ public class ProjectController {
         ProjectDTO project = projectService.getProjectById(id);
         ModelAndView modelAndView = new ModelAndView();
         if (project != null) {
+            long totalTasks = taskService.getTotalTasksByProjectId(id);
+            long doneTasks = taskService.getDoneTasksByProjectId(id);
+            double progress = (double) doneTasks / totalTasks * 100;
+            String formattedProgress = String.format("%.2f", progress);
             modelAndView.addObject("project", project);
+            modelAndView.addObject("progress", formattedProgress);
             modelAndView.setViewName("example_project");
         } else {
-
+            // handle case when project is null
         }
         return modelAndView;
     }

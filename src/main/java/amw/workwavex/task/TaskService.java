@@ -84,4 +84,14 @@ public class TaskService {
                 })
                 .orElse(null);
     }
+
+    public long getTotalTasksByProjectId(Integer id) {
+        return taskRepository.findAllByProjectId(id).size();
+    }
+
+    public long getDoneTasksByProjectId(Integer id) {
+        return taskRepository.findAllByProjectId(id).stream()
+                .filter(task -> task.getTaskStatus().equals(TaskStatus.DONE))
+                .count();
+    }
 }
