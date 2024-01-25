@@ -35,7 +35,6 @@ document.addEventListener('DOMContentLoaded', function () {
                             more_vert
                         </span>
                         <div class="context-menu">
-                            <button class="edit-button">Edit</button>
                             <button class="delete-button">Delete</button>
                         </div>
                     </div>
@@ -85,6 +84,21 @@ document.addEventListener('DOMContentLoaded', function () {
                 containers.forEach(container => {
                     container.addEventListener('dragover', handleDragOver, false);
                     container.addEventListener('drop', handleDrop, false);
+                });
+
+                // Get all the more_vert icons and context menu links
+                const moreVertIcons = document.querySelectorAll('.material-icons-sharp');
+                const deleteButtons = document.querySelectorAll('.context-menu .delete-button');
+
+                // Add click events to more_vert icons
+                moreVertIcons.forEach(icon => {
+                    icon.addEventListener('click', toggleMenu, false);
+                });
+
+
+                // Add click events to delete buttons
+                deleteButtons.forEach(button => {
+                    button.addEventListener('click', deleteTask, false);
                 });
             })
             .catch(error => console.error('Error:', error));
@@ -209,6 +223,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     return null;
             }
         }
+
         function mapTaskStatusToContainerId(taskStatus) {
             switch (taskStatus) {
                 case 'TODO':
@@ -224,25 +239,6 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         }
 
-        // Get all the more_vert icons and context menu links
-        const moreVertIcons = document.querySelectorAll('.material-icons-sharp');
-        const editButtons = document.querySelectorAll('.context-menu .edit-button');
-        const deleteButtons = document.querySelectorAll('.context-menu .delete-button');
-
-        // Add click events to more_vert icons
-        moreVertIcons.forEach(icon => {
-            icon.addEventListener('click', toggleMenu, false);
-        });
-
-        // Add click events to edit buttons
-        editButtons.forEach(button => {
-            button.addEventListener('click', editTask, false);
-        });
-
-        // Add click events to delete buttons
-        deleteButtons.forEach(button => {
-            button.addEventListener('click', deleteTask, false);
-        });
 
         function toggleMenu(e) {
             // Check if the currentTarget is a more_vert icon
@@ -265,16 +261,38 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         }
 
-        function editTask(e) {
-            e.stopPropagation();
-            // Here you can add the code to edit the task
-            console.log('Edit task');
-        }
 
         function deleteTask(e) {
             e.stopPropagation();
-            // Here you can add the code to delete the task
-            console.log('Delete task');
+            let taskElement = e.currentTarget.closest('.task-block');
+            let taskId = taskElement.getAttribute('data-id');
+            let taskName = taskElement.querySelector('.task-name p').textContent;
+
+            let confirmDelete = confirm("Do you really want to delete this task?");
+            if (confirmDelete) {
+                fetch(`/api/v1/tasks/${taskId}`, {
+                    method: 'DELETE',
+                })
+                    .then(response => {
+                        if (response.ok && response.status === 204) {
+                            // Wyświetlenie alertu, że zadanie zostało pomyślnie usunięte
+                            alert(`Task ${taskName} has been successfully deleted`);
+                            // Usunięcie elementu zadania z DOM
+                            taskElement.remove();
+                            location.reload();
+                        } else {
+                            return response.json();
+                        }
+                    })
+                    .then(data => {
+                        if (data) {
+                            console.log('Error:', data);
+                        }
+                    })
+                    .catch((error) => {
+                        console.error('Error:', error);
+                    });
+            }
         }
     }
 );
