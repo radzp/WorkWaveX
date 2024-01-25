@@ -81,7 +81,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const startDateInput = document.querySelector('#projectStartDate');
     const endDateInput = document.querySelector('#projectEndDate');
-
+    const today = new Date().toISOString().split('T')[0];
+    startDateInput.min = today;
+    endDateInput.min = today;
     startDateInput.addEventListener('change', function () {
         endDateInput.min = startDateInput.value;
     });
