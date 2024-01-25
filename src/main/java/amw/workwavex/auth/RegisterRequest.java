@@ -18,5 +18,5 @@ public class RegisterRequest {
     private Double salary;
     private String fullPhoneNumber;
     private String password;
-    private String role = "USER";
+    private String role;
 }

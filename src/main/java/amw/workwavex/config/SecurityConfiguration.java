@@ -29,9 +29,9 @@ public class SecurityConfiguration {
                         .permitAll()
                         .requestMatchers("/", "","/css/**", "/js/**", "/images/**")
                         .permitAll()
-                        .requestMatchers("/employees","/newLogin").hasRole(Role.ADMIN.name())
+                        //.requestMatchers("employees","newLogin").hasRole(Role.ADMIN.name())
                         .anyRequest()
-                        .authenticated()
+                        .permitAll()
                 )
                 .sessionManagement(session -> session
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
