@@ -194,6 +194,7 @@ body{
     margin-top: 8px;
 }
 .modal-content .modalHeader{
+    margin-bottom: 5px;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;

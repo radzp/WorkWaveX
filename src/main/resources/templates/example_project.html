@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="/css/dashboard.css" th:href="@{/css/dashboard.css}">
     <link rel="stylesheet" href="/css/projects.css" th:href="@{/css/projects.css}">
     <link rel="stylesheet" href="/css/projectdetails.css" th:href="@{/css/projectdetails.css}">
+    <link rel="stylesheet" href="/css/modal.css" th:href="@{/css/modal.css}">
 
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -42,7 +43,7 @@
                     </span>
                 <h3>Dashboard</h3>
             </a>
-            <a href="employees.html" th:href="@{/empolyees}">
+            <a href="employees.html" th:href="@{/employees}">
                     <span class="material-icons-sharp">
                         person_outline
                     </span>
@@ -73,7 +74,7 @@
                     </span>
                 <h3>Projects</h3>
             </a>
-            <a href="reports.html" th:href="@{/reportss}">
+            <a href="reports.html" th:href="@{/reports}">
                     <span class="material-icons-sharp">
                         report_gmailerrorred
                     </span>
@@ -102,6 +103,47 @@
     <!-- End of Sidebar Section -->
     <main>
 
+        <dialog class="modal" id="modal">
+            <div class="modal-content">
+                <form class="form" method="dialog">
+                    <div class="modalHeader">
+                        <h2>Add new task</h2>
+                        <button id="closeModal">X</button>
+                    </div>
+                    <label for="taskName"> Task Name
+                        <input type="text" id="taskName" name="taskName" required>
+                    </label>
+                    <label for="taskDescription"> Task Description
+                        <textarea id="taskDescription" name="taskDescription" rows="4" cols="5" maxlength="100" style="resize: none;" required></textarea>
+                    </label>
+                    <label for="taskStatus"> Task Status
+                        <select id="taskStatus" name="taskStatus" required>
+                            <option value="TODO">TODO</option>
+                            <option value="IN_PROGRESS">IN_PROGRESS</option>
+                            <option value="REVIEW">REVIEW</option>
+                            <option value="DONE">DONE</option>
+                        </select>
+                    </label>
+                    <label for="taskPriority"> Task Priority
+                        <select id="taskPriority" name="taskPriority" required>
+                            <option value="LOW" selected>LOW</option>
+                            <option value="MEDIUM">MEDIUM</option>
+                            <option value="HIGH">HIGH</option>
+                        </select>
+                    </label>
+                    <label for="startDate"> Start Date
+                        <input type="date" id="startDate" name="startDate" required>
+                    </label>
+                    <label for="endDate"> End Date
+                        <input type="date" id="endDate" name="endDate" required>
+                    </label>
+                    <div class="buttons">
+                        <button class="cancel" type="reset">Reset</button>
+                        <button class="submit" type="submit">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </dialog>
 
         <h1 th:text="${project.projectName}">Project 1 Details</h1>
         <div class="wrapper">
@@ -176,11 +218,10 @@
             <div class="block-wrapper to-do" id="to-do">
                 <div class="task-header">
                     <h3>To Do</h3>
-                    <button>+</button>
+                    <button id="addTask">+</button>
                 </div>
                 <div class="line"></div>
-                <div class="task-content" >
-
+                <div class="task-content">
 
                 </div>
             </div>
