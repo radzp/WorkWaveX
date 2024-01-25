@@ -64,7 +64,7 @@ main .active-users .user-list{
     font-size: 1rem;
     animation: blink 1.5s infinite;
 }
-/*make blink animation*/
+
 @keyframes blink{
     0%{
         color: green;
@@ -110,7 +110,7 @@ main .active-users .user-list .user img{
     }
 }
 
-/*active users*/
+
 main .active-users .user-list .user{
     flex-basis: 25%;
     max-width: 25%;

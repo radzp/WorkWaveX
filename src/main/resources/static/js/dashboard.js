@@ -13,7 +13,6 @@ closeBtn.addEventListener('click', () => {
     sideMenu.style.display = 'none';
 });
 
-// if windows width is more than 768 px display side menu
 window.addEventListener('resize', () => {
     if (window.innerWidth > 768) {
         sideMenu.style.display = 'block';

@@ -1,9 +1,9 @@
 .modal {
     max-height: 80vh;
-    position: fixed; /* Pozycja modalu względem okna przeglądarki */
-    top: 50%; /* Pozycja od góry na 50% wysokości okna przeglądarki */
-    left: 50%; /* Pozycja od lewej na 50% szerokości okna przeglądarki */
-    transform: translate(-50%, -50%); /* Przesunięcie modalu o połowę jego wysokości i szerokości w lewo i do góry, aby go wyśrodkować */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     overflow-x: hidden;
     overflow-y: hidden;
     align-items: center;
@@ -21,29 +21,29 @@
     padding: var(--card-padding);
     box-shadow: var(--box-shadow);
     transition: all 0.3s ease;
-    width: 100%; /* Szerokość dialogu */
-    max-width: 800px; /* Maksymalna szerokość dialogu */
-    margin: auto; /* Wyśrodkowanie dialogu */
+    width: 100%;
+    max-width: 800px;
+    margin: auto;
 }
 
 .modal-content {
 
-    font-family: 'Poppins', sans-serif; /* Czcionka tekstu w dialogu */
+    font-family: 'Poppins', sans-serif;
     color: var(--color-dark);
 }
 
 .modal-content label {
-    display: block; /* Wyświetlanie etykiet jako bloków */
-    margin-bottom: 5px; /* Dolne marginesy etykiet */
+    display: block;
+    margin-bottom: 5px;
 }
 
 .modal-content input,
 .modal-content select,
 .modal-content textarea{
-    width: 100%; /* Szerokość pól formularza */
-    padding: 10px; /* Wewnętrzne marginesy pól formularza */
-    border-radius: 5px; /* Zaokrąglenie rogów pól formularza */
-    margin-bottom: 20px; /* Dolne marginesy pól formularza */
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
     background-color: var(--color-background);
     color: var(--color-dark);
 }

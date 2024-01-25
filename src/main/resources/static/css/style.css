@@ -35,7 +35,7 @@ body {
 }
 
 .description h2 {
-    max-width: 400px; /* Adjust the value as needed */
+    max-width: 400px;
     font-size: medium;
     text-align: justify;
 }
@@ -47,24 +47,24 @@ body {
     margin-right: auto;
 }
 .typewriter{
-    overflow: hidden; /* Ensures the content is not revealed until the animation */
-    border-right: .15em solid white; /* The typwriter cursor */
-    white-space: nowrap; /* Keeps the content on a single line */
-    margin: 0 auto; /* Gives that scrolling effect as the typing happens */
-    letter-spacing: .10em; /* Adjust as needed */
+    overflow: hidden;
+    border-right: .15em solid white;
+    white-space: nowrap;
+    margin: 0 auto;
+    letter-spacing: .10em;
     animation:
             typing 2.5s steps(40, end),
             blink-caret .75s step-end infinite;
     animation-fill-mode: forwards;
 }
 
-/* The typing effect */
+
 @keyframes typing {
     from { width: 0 }
     to { width: 100%}
 }
 
-/* The typewriter cursor effect */
+
 @keyframes blink-caret {
     from, to { border-color: transparent }
     50% { border-color: white; }
@@ -194,58 +194,56 @@ section img {
 
 }
 
-/* Add a media query for smaller screens */
 @media screen and (max-width: 768px) {
     body {
-        font-size: 14px; /* Adjust the font size for smaller screens */
+        font-size: 14px;
     }
 
     header {
-        padding: 20px 40px; /* Adjust the padding for the header */
+        padding: 20px 40px;
     }
 
     header .logo {
-        font-size: 1.5em; /* Adjust the font size of the logo */
+        font-size: 1.5em;
     }
 
     header ul {
-        margin-top: 10px; /* Adjust the spacing between menu items */
+        margin-top: 10px;
     }
 
     header ul li {
-        margin-left: 10px; /* Adjust the spacing between menu items */
+        margin-left: 10px;
     }
 
     .content {
-        margin-left: 20px; /* Adjust the margin for the content */
+        margin-left: 20px;
     }
 
     .description h2 {
-        max-width: none; /* Remove max-width for the description */
-        font-size: small; /* Adjust the font size for the description */
+        max-width: none;
+        font-size: small;
     }
 
     .sec {
-        padding: 50px; /* Adjust the padding for the section */
+        padding: 50px;
     }
 
     .sec h2 {
-        font-size: 2.5em; /* Adjust the font size for smaller screens */
+        font-size: 2.5em;
     }
 
     .sec p {
-        font-size: 0.9em; /* Adjust the font size for smaller screens */
+        font-size: 0.9em;
     }
 }
 
-/* Add a media query for smaller screens */
 @media screen and (max-width: 768px) {
     #btn {
-        padding: 6px 20px; /* Adjust the padding for the button */
-        font-size: 1.2rem; /* Adjust the font size for the button */
+        padding: 6px 20px;
+        font-size: 1.2rem;
     }
     .description h2 {
-        max-width: 400px; /* Adjust the value as needed */
+        max-width: 400px;
     }
     .description{
         margin: 8px;
@@ -594,7 +592,6 @@ button[type="submit"] i {
     /*width: 90%;*/
     /*margin: 15px auto auto;*/
 
-    /*druga wersja*/
     display: flex;
     /* justify-content: center; */
     /* align-items: center; */

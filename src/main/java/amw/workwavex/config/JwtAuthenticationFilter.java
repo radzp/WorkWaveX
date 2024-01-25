@@ -50,7 +50,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             return;
         }
 
-        // Pobierz ciasteczko z tokenem JWT
+        // Pobieram ciasteczko z tokenem JWT
         Cookie jwtCookie = null;
         if (request.getCookies() != null) {
             jwtCookie = Arrays.stream(request.getCookies())

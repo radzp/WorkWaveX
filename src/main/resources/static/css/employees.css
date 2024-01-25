@@ -26,11 +26,11 @@ main .employees-list table {
 
 
 main .employees-list table tbody{
-    width: 100%; /* Szerokość nagłówka na 100% */
+    width: 100%;
     grid-column: 1 / -1;
-    display: table; /* Ustawienie jako tabela dla poprawnego wyświetlania */
+    display: table;
 }
-/* Stylowanie komórek danych */
+
 main .employees-list table tbody td {
     text-align: center;
 }
@@ -42,7 +42,7 @@ main .employees-list table thead{
 
     padding-top: 20px;
     padding-bottom: 20px;
-    display: table; /* Ustawienie jako tabela dla poprawnego wyświetlania */
+    display: table;
     width: 100%;
     position: sticky;
     top: 0;
@@ -50,8 +50,6 @@ main .employees-list table thead{
 
 }
 
-
-/*make that last child doesnt have that line*/
 main .employees-list table thead tr th:last-child{
     border-right: none;
 }

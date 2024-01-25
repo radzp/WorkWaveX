@@ -1,20 +1,16 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // Pobierz ID projektu, dla którego chcesz wyświetlić zadania
-    const urlPath = window.location.pathname; // Zwróci "/api/v1/projects/1/details"
-    const parts = urlPath.split('/'); // Podzieli ścieżkę na części: ["", "api", "v1", "projects", "1", "details"]
-    const projectId = parts[parts.length - 2]; // Pobiera przedostatnią część, która jest ID projektu
 
-// Wyślij żądanie do serwera, aby pobrać zadania dla danego projektu
+    const urlPath = window.location.pathname;
+    const parts = urlPath.split('/');
+    const projectId = parts[parts.length - 2];
+
     fetch(`/api/v1/tasks/project/${projectId}`)
         .then(response => response.json())
         .then(tasks => {
-            // Teraz masz listę zadań dla danego projektu
             console.log(tasks);
-            // Możesz je wyświetlić w dowolny sposób, na przykład dodając elementy HTML do strony
             tasks.forEach(task => {
-                // Tworzenie i dodawanie elementów HTML dla każdego zadania...
-                const taskContainer = document.querySelector(`#${mapTaskStatusToContainerId(task.taskStatus)}`); // Znajdź kontener dla zadań na podstawie statusu zadania
-                const taskContent = taskContainer.querySelector('.task-content'); // Znajdź kontener zadań wewnątrz kontenera
+                const taskContainer = document.querySelector(`#${mapTaskStatusToContainerId(task.taskStatus)}`);
+                const taskContent = taskContainer.querySelector('.task-content');
                 const taskBlock = document.createElement('div');
                 taskBlock.classList.add('task-block');
                 taskBlock.setAttribute('data-id', task.id);
@@ -76,37 +72,31 @@ document.addEventListener('DOMContentLoaded', function () {
                 </div>
             
             `;
-                taskContent.appendChild(taskBlock); // Dodaj blok zadania do kontenera zadań, a nie do kontenera otaczającego
+                taskContent.appendChild(taskBlock);
             });
 
-            // Get all the tasks and the task containers
             const tasksItem = document.querySelectorAll('.task-block');
             const containers = document.querySelectorAll('.task-content');
 
-            // Add drag events to tasks
             tasksItem.forEach(task => {
                 task.setAttribute('draggable', 'true');
                 task.addEventListener('dragstart', handleDragStart, false);
                 task.addEventListener('dragend', handleDragEnd, false);
             });
 
-            // Add drag events to task containers
             containers.forEach(container => {
                 container.addEventListener('dragover', handleDragOver, false);
                 container.addEventListener('drop', handleDrop, false);
             });
 
-            // Get all the more_vert icons and context menu links
             const moreVertIcons = document.querySelectorAll('.material-icons-sharp');
             const deleteButtons = document.querySelectorAll('.context-menu .delete-button');
 
-            // Add click events to more_vert icons
             moreVertIcons.forEach(icon => {
                 icon.addEventListener('click', toggleMenu, false);
             });
 
 
-            // Add click events to delete buttons
             deleteButtons.forEach(button => {
                 button.addEventListener('click', deleteTask, false);
             });
@@ -116,19 +106,12 @@ document.addEventListener('DOMContentLoaded', function () {
     fetch(`/api/v1/projects/${projectId}`)
         .then(response => response.json())
         .then(project => {
-            // Get the project's end date
+
             const projectEndDate = new Date(project.endDate);
-
-            // Get the current date
             const currentDate = new Date();
-
-            // Calculate the difference in milliseconds
             const differenceInMilliseconds = projectEndDate - currentDate;
-
-            // Convert the difference from milliseconds to days
             const differenceInDays = Math.ceil(differenceInMilliseconds / (1000 * 60 * 60 * 24));
 
-            // Display the number of days left for the project
             document.querySelector('.days-left .counting-number').textContent = differenceInDays;
         })
         .catch(error => console.error('Error:', error));
@@ -137,54 +120,47 @@ document.addEventListener('DOMContentLoaded', function () {
     let draggedTask = null;
 
     function handleDragStart(e) {
-        // Store the task being dragged
         draggedTask = this;
         e.dataTransfer.effectAllowed = 'move';
     }
 
     function handleDragEnd(e) {
-        // Clear the stored task when the dragging ends
         draggedTask = null;
     }
 
     function handleDragOver(e) {
-        // Prevent default to allow drop
         e.preventDefault();
         e.dataTransfer.dropEffect = 'move';
     }
 
     function handleDrop(e) {
-        // Prevent default action
         e.preventDefault();
 
-        // Find the closest parent element with the class 'task-content'
         let dropTarget = e.target;
         while (!dropTarget.classList.contains('task-content')) {
             dropTarget = dropTarget.parentElement;
         }
 
-        console.log(`Drop event triggered on element with id: ${dropTarget.id}`); // Debugging line
+        console.log(`Drop event triggered on element with id: ${dropTarget.id}`);
 
-        // Check if the drop target is a valid task container
+
         if (dropTarget.classList.contains('task-content')) {
-            console.log('Drop target is a valid task container'); // Debugging line
+            console.log('Drop target is a valid task container');
 
-            // Move the dragged task to the dropped container
             if (draggedTask && dropTarget !== draggedTask) {
-                console.log('Moving the dragged task to the dropped container'); // Debugging line
+                console.log('Moving the dragged task to the dropped container');
 
                 dropTarget.appendChild(draggedTask);
                 updateTaskStatus(draggedTask, dropTarget.parentElement.id);
-                console.log("Wykonano updateTaskStatus")
+                console.log("Made updateTaskStatus")
 
-                // Debugging code
                 console.log(`Task ID: ${draggedTask.getAttribute('data-id')}`);
                 console.log(`New status: ${dropTarget.id}`);
             } else {
-                console.log('Dragged task is the same as the drop target'); // Debugging line
+                console.log('Dragged task is the same as the drop target');
             }
         } else {
-            console.log('Drop target is not a valid task container'); // Debugging line
+            console.log('Drop target is not a valid task container');
         }
     }
 
@@ -219,7 +195,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function mapContainerIdToTaskStatus(containerId) {
-        console.log(`Container ID: ${containerId}`); // Debugging line
+        console.log(`Container ID: ${containerId}`);
         switch (containerId) {
             case 'to-do':
                 return 'TODO';
@@ -251,7 +227,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
     function toggleMenu(e) {
-        // Check if the currentTarget is a more_vert icon
         if (!e.currentTarget.classList.contains('task-menu')) {
             return;
         }
@@ -261,7 +236,6 @@ document.addEventListener('DOMContentLoaded', function () {
         contextMenu.style.display = contextMenu.style.display === 'none' ? 'block' : 'none';
     }
 
-    // Close the context menu when clicking outside of it
     window.onclick = function () {
         const contextMenus = document.querySelectorAll('.context-menu');
         contextMenus.forEach(contextMenu => {
@@ -285,9 +259,7 @@ document.addEventListener('DOMContentLoaded', function () {
             })
                 .then(response => {
                     if (response.ok) {
-                        // Wyświetlenie alertu, że zadanie zostało pomyślnie usunięte
                         alert(`Task ${taskName} has been successfully deleted`);
-                        // Usunięcie elementu zadania z DOM
                         taskElement.remove();
                     } else {
                         return response.json();
@@ -316,16 +288,13 @@ document.addEventListener('DOMContentLoaded', function () {
         modal.close();
     });
 
-    // Select the start and end date input fields
     const startDateInput = document.querySelector('#startDate');
     const endDateInput = document.querySelector('#endDate');
 
-    // Add event listener to the start date input field
     startDateInput.addEventListener('change', function () {
-        // Set the min attribute of the end date input field to the selected start date
         endDateInput.min = startDateInput.value;
     });
-    // Add event listener to the start date input field
+
     endDateInput.addEventListener('change', function () {
         startDateInput.max = endDateInput.value;
     });
@@ -333,11 +302,9 @@ document.addEventListener('DOMContentLoaded', function () {
     const form = document.querySelector('.form');
 
     form.addEventListener('submit', function (event) {
-            // Prevent form submission
             event.preventDefault();
 
 
-            // Extract form data
             const taskName = document.getElementById('taskName')
             const taskDescription = document.getElementById('taskDescription')
             const taskStatus = document.getElementById('taskStatus')
@@ -354,14 +321,11 @@ document.addEventListener('DOMContentLoaded', function () {
                 endDate: endDate.value
             };
 
-            // Validate form data
             if (!newTask.taskName || !newTask.taskDescription || !newTask.taskStatus || !newTask.taskPriority || !newTask.startDate || !newTask.endDate) {
                 alert('All correct data should be provided');
                 return;
             }
 
-
-            // Send POST request to server
             fetch(`/api/v1/tasks/addTask/project/${projectId}`, {
                 method: 'POST',
                 headers: {

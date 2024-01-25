@@ -199,18 +199,18 @@
 
 
 .quantity-block {
-    display: flex; /* Używamy flexboxa do wyśrodkowania tekstu */
-    justify-content: center; /* Wyśrodkowanie tekstu w poziomie */
-    align-items: center; /* Wyśrodkowanie tekstu w pionie */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .quantity-block h3 {
-    font-size: 1.2em; /* Zwiększamy rozmiar czcionki */
-    margin-right: 10px; /* Dodajemy margines po prawej stronie */
+    font-size: 1.2em;
+    margin-right: 10px;
 }
 
 .quantity-block .counting-number {
-    font-size: 2em; /* Zwiększamy rozmiar czcionki */
-    font-weight: bold; /* Pogrubiamy czcionkę */
-    color: var(--color-primary); /* Zmieniamy kolor czcionki */
+    font-size: 2em;
+    font-weight: bold;
+    color: var(--color-primary);
 }

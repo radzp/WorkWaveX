@@ -56,10 +56,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
                 editButtons.forEach((button, index) => {
                     button.addEventListener('click', () => {
-                        // Pobranie danych pracownika
+
                         let employee = users[index];
 
-                        // Wypełnienie pól formularza danymi pracownika
                         document.getElementById('employeeName').value = employee.firstName + ' ' + employee.lastName;
                         document.getElementById('idNumber').value = parseInt(employee.id);
                         document.getElementById('position').value = employee.position;
@@ -67,7 +66,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         document.getElementById('phoneNumber').value = employee.fullPhoneNumber;
                         document.getElementById('salary').value = employee.salary;
 
-                        // Wyświetlenie modala
                         modal.showModal();
                     });
                 });
@@ -89,7 +87,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     salary: document.getElementById('salary').value
                 };
 
-                // Walidacja danych
                 if (!employeeData.firstName || !employeeData.lastName || !employeeData.position || !employeeData.email || !employeeData.fullPhoneNumber || !employeeData.salary) {
                     alert('All correct data should be provided');
                     return;
