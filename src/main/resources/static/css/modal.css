@@ -75,6 +75,21 @@
 .modal .cancel:hover{
     scale: 110%;
 }
-.modal-content .modal-header{
-    margin-bottom: 10px !important;
+.modal-content .modalHeader{
+    margin-bottom: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+.modal-content .modalHeader #closeModal{
+    color: var(--color-dark);
+    background:transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+.modal-content .modalHeader #closeModal:hover{
+    scale: 120%;
 }

@@ -106,6 +106,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     .then(response => response.json())
                     .then(data => {
                         console.log('Success:', data);
+                        location.reload();
                     })
                     .catch((error) => {
                         console.error('Error:', error);
