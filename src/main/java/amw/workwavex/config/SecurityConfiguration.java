@@ -29,7 +29,7 @@ public class SecurityConfiguration {
                         .permitAll()
                         .requestMatchers("/", "","/css/**", "/js/**", "/images/**")
                         .permitAll()
-                        .requestMatchers("/employees","/newLogin").hasAnyAuthority(Role.ADMIN.name())
+                        .requestMatchers("/employees","/newLogin", "/api/v1/projects/delete/**","/api/v1/user-controller/delete/**", "/api/v1/user-controller/update/**").hasAnyAuthority(Role.ADMIN.name())
                         .anyRequest()
                         .authenticated()
                 )

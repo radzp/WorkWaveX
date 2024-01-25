@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     const confirmation = confirm('Do you really wanna delete this user?');
                     if (confirmation) {
                         const userId = users[index].id;
-                        fetch(`/api/v1/user-controller/${userId}`, {
+                        fetch(`/api/v1/user-controller/delete/${userId}`, {
                             method: 'DELETE',
                         })
                             .then(response => {
@@ -116,7 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     return;
                 }
 
-                fetch(`/api/v1/user-controller/${employeeData.id}`, {
+                fetch(`/api/v1/user-controller/update/${employeeData.id}`, {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',
