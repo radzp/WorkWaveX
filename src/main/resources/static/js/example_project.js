@@ -18,12 +18,22 @@ document.addEventListener('DOMContentLoaded', function () {
                     const taskBlock = document.createElement('div');
                     taskBlock.classList.add('task-block');
                     taskBlock.setAttribute('data-id', task.id);
+
+                    let arrowDirection;
+                    if (task.taskPriority === 'LOW') {
+                        arrowDirection = 'arrow_downward';
+                    } else if (task.taskPriority === 'MEDIUM') {
+                        arrowDirection = 'arrow_forward';
+                    } else {
+                        arrowDirection = 'arrow_upward';
+                    }
+
                     taskBlock.innerHTML = `
                 <div class="task-row">
                     <div class="priority ${task.taskPriority.toLowerCase()}">
                         <div class="priority-icon">
                             <span class="material-icons-sharp">
-                                arrow_upward
+                                ${arrowDirection}
                             </span>
                         </div>
                         <div class="priority-text">
