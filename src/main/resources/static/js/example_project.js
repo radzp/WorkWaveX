@@ -354,6 +354,11 @@ document.addEventListener('DOMContentLoaded', function () {
                 endDate: endDate.value
             };
 
+            // Validate form data
+            if (!newTask.taskName || !newTask.taskDescription || !newTask.taskStatus || !newTask.taskPriority || !newTask.startDate || !newTask.endDate) {
+                alert('All correct data should be provided');
+                return;
+            }
 
 
             // Send POST request to server

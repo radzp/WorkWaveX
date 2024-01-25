@@ -75,38 +75,37 @@
 
     <!--    Modal-->
     <dialog class="modal" id="modal">
-        <div class="modal-content">
-            <form class="form" method="dialog">
-                <div class="modalHeader">
-                    <h2>Edit an employee</h2>
-                    <button id="closeModal">X</button>
-                </div>
-                <label for="employeeName"> Employee Name
-                    <input type="text" id="employeeName" name="employeeName" required>
-                </label>
-                <label for="idNumber"> ID Number
-                    <input type="number" id="idNumber" name="idNumber" required readonly>
-                </label>
-                <label for="position"> Position
-                    <input type="text" id="position" name="position" required>
-                </label>
-                <label for="email"> Email
-                    <input type="email" id="email" name="email" required>
-                </label>
-                <label for="phoneNumber"> Phone Number
-                    <input type="text" id="phoneNumber" name="phoneNumber" required>
-                </label>
-                <label for="salary"> Salary
-                    <input type="number" id="salary" name="salary" required>
-                </label>
-                <div class="buttons">
-                    <button class="cancel" type="reset">Reset</button>
-                    <button class="submit" type="submit">Submit</button>
-                </div>
-
-            </form>
-        </div>
-    </dialog>
+    <div class="modal-content">
+        <form class="form" method="dialog" id="employeeForm">
+            <div class="modalHeader">
+                <h2>Edit an employee</h2>
+                <button id="closeModal">X</button>
+            </div>
+            <label for="employeeName"> Employee Name
+                <input type="text" id="employeeName" name="employeeName" required minlength="2">
+            </label>
+            <label for="idNumber"> ID Number
+                <input type="number" id="idNumber" name="idNumber" required readonly>
+            </label>
+            <label for="position"> Position
+                <input type="text" id="position" name="position" required minlength="2">
+            </label>
+            <label for="email"> Email
+                <input type="email" id="email" name="email" required>
+            </label>
+            <label for="phoneNumber"> Phone Number
+                <input type="text" id="phoneNumber" name="phoneNumber" required>
+            </label>
+            <label for="salary"> Salary
+                <input type="number" id="salary" name="salary" required min="0">
+            </label>
+            <div class="buttons">
+                <button class="cancel" type="reset">Reset</button>
+                <button class="submit" type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+</dialog>
 
     <!-- Main Content -->
     <main>
@@ -168,7 +167,10 @@
 </body>
 
 <script>
-
+    if (!event.target.checkValidity()) {
+        event.preventDefault();
+        alert('Please correct the errors in the form!');
+    }
 
 </script>
 </html>

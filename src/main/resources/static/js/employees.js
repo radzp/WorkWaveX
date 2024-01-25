@@ -73,6 +73,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             });
 
+            const closeButton = document.getElementById('closeModal');
+            closeButton.addEventListener('click', () => {
+                modal.close();
+            });
+
             submitButton.addEventListener('click', () => {
                 const employeeData = {
                     id: document.getElementById('idNumber').value,
@@ -86,13 +91,31 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 // Walidacja danych
                 if (!employeeData.firstName || !employeeData.lastName || !employeeData.position || !employeeData.email || !employeeData.fullPhoneNumber || !employeeData.salary) {
-                    alert('Wszystkie pola muszą być wypełnione');
+                    alert('All correct data should be provided');
+                    return;
+                }
+
+                const nameRegex = /^[a-zA-Z]+$/;
+                if (!nameRegex.test(employeeData.firstName) || !nameRegex.test(employeeData.lastName)) {
+                    alert('First name and last name should contain only letters');
                     return;
                 }
 
                 const emailRegex = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
                 if (!emailRegex.test(employeeData.email)) {
-                    alert('Niepoprawny format email');
+                    alert('Email is not valid');
+                    return;
+                }
+
+                const phoneRegex = /^\+\d{1,3}\d{1,14}$/;
+                if (!phoneRegex.test(employeeData.fullPhoneNumber)) {
+                    alert('Phone number should start with + and contain only numbers');
+                    return;
+                }
+
+                const salaryRegex = /^\d+$/;
+                if (!salaryRegex.test(employeeData.salary)) {
+                    alert('Salary should contain only numbers');
                     return;
                 }
 

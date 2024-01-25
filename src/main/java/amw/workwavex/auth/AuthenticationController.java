@@ -4,6 +4,7 @@ package amw.workwavex.auth;
 
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.validation.Valid;
 import jdk.jfr.Registered;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -23,14 +24,14 @@ public class AuthenticationController {
     //endpoint for registering a new user
     @PostMapping("/register")
     public ResponseEntity<AuthenticationResponse> register (
-            @RequestBody RegisterRequest request
+            @RequestBody @Valid RegisterRequest request
             ) {
         return ResponseEntity.ok(service.register(request)); //returning a response entity with a body of the authentication response
     }
 
     @PostMapping("/authenticate")
     public ResponseEntity<AuthenticationResponse> authenticate(
-            @RequestBody AuthenticationRequest request,
+            @RequestBody @Valid AuthenticationRequest request,
             HttpServletResponse response
     ) {
         AuthenticationResponse authResponse = service.authenticate(request, response);

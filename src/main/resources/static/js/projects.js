@@ -156,6 +156,38 @@ document.addEventListener('DOMContentLoaded', function () {
             endDate: projectEndDate
         };
 
+        if (!newProject.projectName.trim()) {
+            alert('Project name is required');
+            return;
+        }
+
+        if (!newProject.projectDescription.trim()) {
+            alert('Project description is required');
+            return;
+        }
+
+        if (!newProject.projectMembers.length) {
+            alert('At least one project member is required');
+            return;
+        }
+
+        if (!newProject.projectStatus.trim()) {
+            alert('Project status is required');
+            return;
+        }
+
+        if (!newProject.startDate.trim()) {
+            alert('Start date is required');
+            return;
+        }
+
+        if (!newProject.endDate.trim()) {
+            alert('End date is required');
+            return;
+        }
+
+
+
         console.log(newProject); // Dodaj tę linię
 
         // Send POST request to server

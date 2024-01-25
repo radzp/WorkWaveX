@@ -1,5 +1,6 @@
 package amw.workwavex.project;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -38,12 +39,12 @@ public class ProjectController {
     }
 
     @PostMapping("/create")
-    public ProjectDTO createProject(@RequestBody ProjectDTO newProjectDTO) {
+    public ProjectDTO createProject(@RequestBody @Valid ProjectDTO newProjectDTO) {
         return projectService.createProject(newProjectDTO);
     }
 
     @PutMapping("/{id}")
-    public ProjectDTO updateProject(@PathVariable Integer id, @RequestBody Project updatedProject) {
+    public ProjectDTO updateProject(@PathVariable Integer id, @RequestBody @Valid Project updatedProject) {
         return projectService.updateProject(id, updatedProject);
     }
 
@@ -60,8 +61,7 @@ public class ProjectController {
             modelAndView.addObject("project", project);
             modelAndView.setViewName("example_project");
         } else {
-            // handle the case when the project is null
-            // for example, redirect to an error page or a list of projects
+
         }
         return modelAndView;
     }

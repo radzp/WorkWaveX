@@ -1,6 +1,7 @@
 package amw.workwavex.task;
 
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,12 +25,12 @@ public class TaskController {
     }
 
     @PostMapping("/create")
-    public TaskDTO createTask(@RequestBody Task newTask) {
+    public TaskDTO createTask(@RequestBody @Valid Task newTask) {
         return taskService.createTask(newTask);
     }
 
     @PutMapping("/{id}")
-    public TaskDTO updateTask(@PathVariable Integer id, @RequestBody Task updatedTask) {
+    public TaskDTO updateTask(@PathVariable Integer id, @RequestBody @Valid Task updatedTask) {
         return taskService.updateTask(id, updatedTask);
     }
 
@@ -43,7 +44,7 @@ public class TaskController {
         return ResponseEntity.ok().build();
     }
     @PostMapping("addTask/project/{projectId}")
-    public TaskDTO addTaskToProject(@PathVariable Integer projectId, @RequestBody Task newTask) {
+    public TaskDTO addTaskToProject(@PathVariable Integer projectId, @RequestBody @Valid Task newTask) {
         return taskService.addTaskToProject(projectId, newTask);
     }
 }

@@ -260,10 +260,67 @@
         const repeatedPassword = document.querySelector('input[name="repeatedPassword"]').value
         const role = document.querySelector('select[name="role"]').value
 
+        // Validate form data
+        if (!firstName.trim()) {
+            alert('First name is required');
+            return;
+        }
+
+        if (!lastName.trim()) {
+            alert('Last name is required');
+            return;
+        }
+
+        if (!email.trim()) {
+            alert('Email is required');
+            return;
+        }
+
+        if (!position.trim()) {
+            alert('Position is required');
+            return;
+        }
+
+        if (!salary.trim()) {
+            alert('Salary is required');
+            return;
+        }
+
+        if (!password.trim()) {
+            alert('Password is required');
+            return;
+        }
+
+        if (!repeatedPassword.trim()) {
+            alert('Repeated password is required');
+            return;
+        }
+
 
         // Sprawdź, czy hasła są takie same
         if (password !== repeatedPassword) {
             alert("Repeated password doesn't match with password");
+            return;
+        }
+
+        // Name validation (only letters)
+        const nameRegex = /^[a-zA-Z]+$/;
+        if (!nameRegex.test(firstName) || !nameRegex.test(lastName)) {
+            alert('First and last name can only contain letters');
+            return;
+        }
+
+        // Email address validation
+        const emailRegex = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
+        if (!emailRegex.test(email)) {
+            alert('Invalid email format');
+            return;
+        }
+
+        // Salary validation (only numbers)
+        const salaryRegex = /^\d+$/;
+        if (!salaryRegex.test(salary)) {
+            alert('Salary should be a number');
             return;
         }
 
@@ -287,6 +344,9 @@
             password,
             role
         }
+
+
+
         // URL endpointu API rejestracji
         const registerUrl = 'http://localhost:8080/api/v1/auth/register';
         // Wykonaj żądanie POST do API rejestracji
