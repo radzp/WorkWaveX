@@ -740,3 +740,44 @@ main .recent-orders a{
 ::-webkit-scrollbar-track {
     background-color: var(--color-background);
 }
+
+
+
+.grid-container {
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 30px;
+    padding: 20px;
+}
+
+.grid-item {
+    background-color: var(--color-white);
+    border: 1px solid var(--color-dark);
+    padding: 20px;
+    font-size: 1rem;
+    text-align: center;
+    border-radius: var(--card-border-radius);
+    box-shadow: var(--box-shadow);
+    transition: all 0.3s ease;
+}
+
+.grid-item:hover {
+    box-shadow: none;
+    background-color: var(--color-primary);
+    color: var(--color-white);
+}
+
+.grid-item {
+    display: flex;
+    flex-direction: column;
+    max-height: 45vh;
+    max-width: 65vh;
+    align-items: center;
+}
+
+.grid-item img {
+    margin-top: 20px;
+    width: 75%; /* Zajmuje całą szerokość kontenera */
+    height: 75%; /* Zajmuje całą wysokość kontenera */
+    object-fit: contain;
+}
