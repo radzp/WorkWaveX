@@ -290,6 +290,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const startDateInput = document.querySelector('#startDate');
     const endDateInput = document.querySelector('#endDate');
+    const today = new Date().toISOString().split('T')[0];
+    startDateInput.min = today;
+    endDateInput.min = today;
 
     startDateInput.addEventListener('change', function () {
         endDateInput.min = startDateInput.value;
@@ -326,6 +329,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 alert('All correct data should be provided');
                 return;
             }
+
 
             fetch(`/api/v1/tasks/addTask/project/${projectId}`, {
                 method: 'POST',
