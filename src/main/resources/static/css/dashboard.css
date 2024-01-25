@@ -551,7 +551,11 @@ main .recent-orders a{
     align-items: center;
     gap: 0.6rem;
 }
-
+.right-section .profile .info{
+    padding: 5px 15px;
+    border-radius: var(--border-radius-1);
+    background-color: var(--color-white);
+}
 @media screen and (max-width: 1200px) {
     .container{
         width: 95%;

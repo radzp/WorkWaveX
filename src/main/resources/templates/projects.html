@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="../static/css/projects.css" th:href="@{css/projects.css}">
     <link rel="stylesheet" href="../static/css/modal.css" th:href="@{css/modal.css}">
 
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
     <title>WorkWaveX</title>
@@ -26,7 +26,7 @@
     <aside>
         <div class="toggle">
             <div class="logo">
-                <img src="../static/images/contact-person.png" th:src="@{/images/contact-person.png}">
+
                 <h2>Work<span class="danger">WaveX</span></h2>
             </div>
             <div class="close" id="close-btn">
@@ -55,37 +55,14 @@
                     </span>
                 <h3>Calendar</h3>
             </a>
-            <a href="activity.html" th:href="@{/activity}">
-                    <span class="material-icons-sharp">
-                        insights
-                    </span>
-                <h3>Activity</h3>
-            </a>
-            <a href="chat.html" th:href="@{/chat}">
-                    <span class="material-icons-sharp">
-                        mail_outline
-                    </span>
-                <h3>Chat</h3>
-                <span class="message-count">27</span>
-            </a>
+
             <a href="projects.html" class="active" th:href="@{/projects}">
                     <span class="material-icons-sharp">
                         inventory
                     </span>
                 <h3>Projects</h3>
             </a>
-            <a href="reports.html" th:href="@{/reports}">
-                    <span class="material-icons-sharp">
-                        report_gmailerrorred
-                    </span>
-                <h3>Reports</h3>
-            </a>
-            <a href="settings.html" th:href="@{/settings}">
-                    <span class="material-icons-sharp">
-                        settings
-                    </span>
-                <h3>Settings</h3>
-            </a>
+
             <a href="newLogin.html" th:href="@{/newLogin}">
                     <span class="material-icons-sharp">
                         add
@@ -105,19 +82,20 @@
         <div class="modal-content">
             <form class="form" method="dialog">
                 <div class="modalHeader">
-                    <label for="projectName"> <h2>Project name:</h2></label>
+                    <label for="projectName"><h2>Project name:</h2></label>
                     <button id="closeModal">X</button>
                 </div>
                 <input type="text" id="projectName" name="projectName" required>
-                <label for="projectDescription"> <h2>Description:</h2></label>
-                <textarea type="text" id="projectDescription" name="projectDescription" rows="4" cols="5" maxlength="250" required></textarea>
-                <label for="projectMembers"> <h2>Members:</h2></label>
+                <label for="projectDescription"><h2>Description:</h2></label>
+                <textarea type="text" id="projectDescription" name="projectDescription" rows="4" cols="5"
+                          maxlength="250" required></textarea>
+                <label for="projectMembers"><h2>Members:</h2></label>
                 <select multiple="multiple" id="projectMembers" name="projectMembers" style="width: 100%;" required>
                     <!-- Opcje użytkowników będą dodane dynamicznie -->
                 </select>
                 <div class="row-section">
                     <div class="row-item">
-                        <label for="projectStatus"> <h2>Status:</h2></label>
+                        <label for="projectStatus"><h2>Status:</h2></label>
                         <select id="projectStatus" name="projectStatus" required>
                             <option value="OPEN">Open</option>
                             <option value="IN_PROGRESS">In Progress</option>
@@ -125,12 +103,12 @@
                         </select>
                     </div>
                     <div class="row-item">
-                        <label for="projectStartDate"> <h2>Start Date</h2></label>
+                        <label for="projectStartDate"><h2>Start Date</h2></label>
                         <input type="date" id="projectStartDate" name="projectStartDate" required>
                     </div>
                     <div class="row-item">
-                        <label for="projectEndDate"> <h2>End Date:</h2></label>
-                        <input type="date" id="projectEndDate" name="projectEndDate"  required>
+                        <label for="projectEndDate"><h2>End Date:</h2></label>
+                        <input type="date" id="projectEndDate" name="projectEndDate" required>
                     </div>
                     <div class="row-item">
                         <button class="close-button" type="submit">Create Project</button>
@@ -157,8 +135,6 @@
                 </div>
 
 
-
-
             </div>
 
         </div>
@@ -175,22 +151,12 @@
                         menu
                     </span>
             </button>
-            <div class="light-mode">
-                    <span class="material-icons-sharp">
-                        light_mode
-                    </span>
-                <span class="material-icons-sharp active">
-                        dark_mode
-                    </span>
-            </div>
+
 
             <div class="profile">
                 <div class="info">
-                    <p>Hey, <b>Reza</b></p>
-                    <small class="text-muted">Admin</small>
-                </div>
-                <div class="profile-photo">
-                    <img src="../static/images/profile-1.jpg" th:src="@{/images/profile-1.jpg}">
+                    <p th:text="'Hey, ' + ${#authentication.principal.firstName}">Hey, <b>Reza</b></p>
+                    <small class="text-muted" th:text="${#authentication.authorities[0].authority}">Admin</small>
                 </div>
             </div>
 

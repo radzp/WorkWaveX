@@ -23,7 +23,7 @@
     <aside>
         <div class="toggle">
             <div class="logo">
-                <img src="../static/images/contact-person.png" th:src="@{/images/contact-person.png}">
+
                 <h2>Work<span class="danger">WaveX</span></h2>
             </div>
             <div class="close" id="close-btn">
@@ -40,7 +40,7 @@
                     </span>
                 <h3>Dashboard</h3>
             </a>
-            <a href="employees.html" class="active" th:href="@{/employees}">
+            <a href="employees.html"  th:href="@{/employees}">
                     <span class="material-icons-sharp">
                         person_outline
                     </span>
@@ -52,38 +52,15 @@
                     </span>
                 <h3>Calendar</h3>
             </a>
-            <a href="activity.html" th:href="@{/activity}">
-                    <span class="material-icons-sharp">
-                        insights
-                    </span>
-                <h3>Activity</h3>
-            </a>
-            <a href="chat.html" th:href="@{/chat}">
-                    <span class="material-icons-sharp">
-                        mail_outline
-                    </span>
-                <h3>Chat</h3>
-                <span class="message-count">27</span>
-            </a>
+
             <a href="projects.html" th:href="@{/projects}">
                     <span class="material-icons-sharp">
                         inventory
                     </span>
                 <h3>Projects</h3>
             </a>
-            <a href="reports.html" th:href="@{/reports}">
-                    <span class="material-icons-sharp">
-                        report_gmailerrorred
-                    </span>
-                <h3>Reports</h3>
-            </a>
-            <a href="settings.html" th:href="@{/settings}">
-                    <span class="material-icons-sharp">
-                        settings
-                    </span>
-                <h3>Settings</h3>
-            </a>
-            <a href="newLogin.html" th:href="@{/newLogin}">
+
+            <a href="newLogin.html" class="active" th:href="@{/newLogin}">
                     <span class="material-icons-sharp">
                         add
                     </span>
@@ -140,7 +117,7 @@
                         <div>
                             <select name='areaCode' class='code-input' required>
                                 <option value="+44">+44 (UK)</option>
-                                <option value="+48" selected >+48 (Poland)</option>
+                                <option value="+48" selected>+48 (Poland)</option>
                                 <option value="+49">+49 (Germany)</option>
                                 <option value="+33">+33 (France)</option>
                                 <option value="+39">+39 (Italy)</option>
@@ -201,22 +178,12 @@
                         menu
                     </span>
             </button>
-            <div class="light-mode">
-                    <span class="material-icons-sharp">
-                        light_mode
-                    </span>
-                <span class="material-icons-sharp active">
-                        dark_mode
-                    </span>
-            </div>
+
 
             <div class="profile">
                 <div class="info">
-                    <p>Hey, <b>Reza</b></p>
-                    <small class="text-muted">Admin</small>
-                </div>
-                <div class="profile-photo">
-                    <img src="../static/images/profile-1.jpg" th:src="@{/images/profile-1.jpg}">
+                    <p th:text="'Hey, ' + ${#authentication.principal.firstName}">Hey, <b>Reza</b></p>
+                    <small class="text-muted" th:text="${#authentication.authorities[0].authority}">Admin</small>
                 </div>
             </div>
 
