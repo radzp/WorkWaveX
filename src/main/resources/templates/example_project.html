@@ -94,6 +94,10 @@
                         <textarea id="taskDescription" name="taskDescription" rows="4" cols="5" maxlength="100"
                                   style="resize: none;" required></textarea>
                     </label>
+                    <label for="projectMembers"><h2>Assign to:</h2></label>
+                    <select id="projectMembers" name="projectMembers" style="width: 100%;" required>
+                        <!-- Opcje użytkowników będą dodane dynamicznie -->
+                    </select>
                     <label for="taskStatus"> Task Status
                         <select id="taskStatus" name="taskStatus" required>
                             <option value="TODO">TODO</option>

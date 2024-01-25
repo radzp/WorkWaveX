@@ -11,6 +11,7 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -72,7 +73,8 @@ public class ProjectService {
         Project savedProject = projectRepository.save(newProject);
 
         // Save the relationship in the users as well
-        members.forEach(member -> {
+        List<User> membersCopy = new ArrayList<>(members);
+        membersCopy.forEach(member -> {
             member.getProjects().add(savedProject);
             userRepository.save(member);
         });

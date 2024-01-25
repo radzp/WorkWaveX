@@ -308,6 +308,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const taskName = document.getElementById('taskName')
             const taskDescription = document.getElementById('taskDescription')
             const taskStatus = document.getElementById('taskStatus')
+
             const taskPriority = document.getElementById('taskPriority')
             const startDate = document.getElementById('startDate')
             const endDate = document.getElementById('endDate')
@@ -345,4 +346,52 @@ document.addEventListener('DOMContentLoaded', function () {
 
         }
     );
+});
+
+$(document).ready(function () {
+
+    function matchCustom(params, data) {
+        if ($.trim(params.term) === '') {
+            return data;
+        }
+
+        if (typeof data.text === 'undefined') {
+            return null;
+        }
+
+        var searchTermLowerCase = params.term.toLowerCase();
+        var dataTextLowerCase = data.text.toLowerCase();
+
+        if (dataTextLowerCase.indexOf(searchTermLowerCase) > -1) {
+            var modifiedData = $.extend({}, data, true);
+            modifiedData.text += ' (matched)';
+
+            return modifiedData;
+        }
+
+        return null;
+    }
+
+    $('#projectMembers').select2({
+        dropdownParent: $('.form'),
+        matcher: matchCustom,
+        minimumInputLength: 1,
+        placeholder: 'Select members',
+        allowClear: true,
+        ajax: {
+            url: '/api/v1/user-controller/all',
+            dataType: 'json',
+            processResults: function (data) {
+                console.log(data)
+                return {
+                    results: data.map(user => {
+                        return {
+                            id: user.id,
+                            text: user.firstName + ' ' + user.lastName
+                        }
+                    })
+                };
+            }
+        }
+    });
 });
