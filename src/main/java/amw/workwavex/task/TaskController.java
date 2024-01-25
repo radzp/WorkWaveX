@@ -2,6 +2,7 @@ package amw.workwavex.task;
 
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -37,7 +38,8 @@ public class TaskController {
         return taskService.getTasksByProjectId(projectId);
     }
     @DeleteMapping("/{id}")
-    public void deleteTask(@PathVariable Integer id) {
+    public ResponseEntity<Void> deleteTask(@PathVariable Integer id) {
         taskService.deleteTask(id);
+        return ResponseEntity.ok().build();
     }
 }

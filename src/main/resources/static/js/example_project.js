@@ -274,12 +274,11 @@ document.addEventListener('DOMContentLoaded', function () {
                     method: 'DELETE',
                 })
                     .then(response => {
-                        if (response.ok && response.status === 204) {
+                        if (response.ok) {
                             // Wyświetlenie alertu, że zadanie zostało pomyślnie usunięte
                             alert(`Task ${taskName} has been successfully deleted`);
                             // Usunięcie elementu zadania z DOM
                             taskElement.remove();
-                            location.reload();
                         } else {
                             return response.json();
                         }
