@@ -1,5 +1,6 @@
 package amw.workwavex.user;
 
+import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Positive;

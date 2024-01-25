@@ -28,9 +28,6 @@ import java.util.Set;
         property = "id")
 public class User implements UserDetails {
 
-    @Id
-    @GeneratedValue
-    private Integer id;
 
     @NotBlank(message = "First name is mandatory")
     private String firstName;
@@ -38,8 +35,14 @@ public class User implements UserDetails {
     @NotBlank(message = "Last name is mandatory")
     private String lastName;
 
+    @Id
+    @GeneratedValue
+    private Integer id;
+
+    @Column(unique = true)
     @Email(message = "Email should be valid")
     private String email;
+
 
     @NotBlank(message = "Position is mandatory")
     private String position;

@@ -26,6 +26,11 @@ public class Task {
     @GeneratedValue
     private Integer id;
 
+
+    @Column(unique = true)
+    private String email;
+
+
     @NotBlank(message = "Task name is mandatory")
     private String taskName;
 
