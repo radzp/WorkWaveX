@@ -42,4 +42,8 @@ public class TaskController {
         taskService.deleteTask(id);
         return ResponseEntity.ok().build();
     }
+    @PostMapping("addTask/project/{projectId}")
+    public TaskDTO addTaskToProject(@PathVariable Integer projectId, @RequestBody Task newTask) {
+        return taskService.addTaskToProject(projectId, newTask);
+    }
 }

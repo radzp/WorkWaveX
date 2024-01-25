@@ -1,6 +1,7 @@
 package amw.workwavex.task;
 
 
+import amw.workwavex.project.ProjectRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +14,7 @@ import java.util.stream.Collectors;
 public class TaskService {
 
     private final TaskRepository taskRepository;
+    private final ProjectRepository projectRepository;
 
     public List<TaskDTO> getAllTasks() {
         return taskRepository.findAll().stream()
@@ -72,5 +74,14 @@ public class TaskService {
         return getAllTasks().stream()
                 .map(TaskEvent::new)
                 .collect(Collectors.toList());
+    }
+
+    public TaskDTO addTaskToProject(Integer projectId, Task newTask) {
+        return projectRepository.findById(projectId)
+                .map(project -> {
+                    newTask.setProject(project);
+                    return convertToDTO(taskRepository.save(newTask));
+                })
+                .orElse(null);
     }
 }
