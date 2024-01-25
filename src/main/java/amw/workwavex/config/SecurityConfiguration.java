@@ -38,6 +38,7 @@ public class SecurityConfiguration {
                 )
                 .logout((logout) -> logout
                         .logoutSuccessUrl("/")
+                        .deleteCookies("jwtToken")
                         .permitAll())
                 .authenticationProvider(authenticationProvider)
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
