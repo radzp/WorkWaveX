@@ -72,14 +72,14 @@ public class ProjectService {
 
         Project savedProject = projectRepository.save(newProject);
 
-        // Save the relationship in the users as well
+        // Zapisz relację w userach
         List<User> membersCopy = new ArrayList<>(members);
         membersCopy.forEach(member -> {
             member.getProjects().add(savedProject);
             userRepository.save(member);
         });
 
-        // Save the relationship in the tasks as well
+        // Zapiz relację w zadaniach
         tasks.forEach(task -> {
             task.setProject(savedProject);
             taskService.saveTask(task);

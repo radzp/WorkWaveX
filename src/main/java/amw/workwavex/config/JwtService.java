@@ -14,7 +14,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 
-@Service   // This is a service class that will be used to generate and validate JWT tokens
+@Service
 
 public class JwtService {
 

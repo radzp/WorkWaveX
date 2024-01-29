@@ -14,23 +14,23 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-// will hold all the application configurations such as beans and so on
+
 @Configuration
-@RequiredArgsConstructor //it will create a constructor with all required fields for final fields
+@RequiredArgsConstructor
 public class ApplicationConfig {
 
     private final UserRepository repository;
-    @Bean // Spring annotation to indicate that a method produces a bean to be managed by the Spring container
+    @Bean
     public UserDetailsService userDetailsService() {
         return username -> repository.findByEmail(username)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found: " +  username));
     }
 
     @Bean
-    public AuthenticationProvider authenticationProvider() { //  the data access object used to fetch userDetails and encode a password
+    public AuthenticationProvider authenticationProvider() { //  pobiera userdetails i enkoduje haslo
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
-        authProvider.setUserDetailsService(userDetailsService()); //info from which service we will get the user details
-        authProvider.setPasswordEncoder(passwordEncoder()); //info which password encoder we will use
+        authProvider.setUserDetailsService(userDetailsService()); //info skad bedziemy brac user details
+        authProvider.setPasswordEncoder(passwordEncoder()); //info ktory encoder bedziemy miec
         return authProvider;
     }
 

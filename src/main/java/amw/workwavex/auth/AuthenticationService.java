@@ -20,9 +20,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class AuthenticationService {
 
-    //injecting the user repository
     private final UserRepository repository;
-    //injecting the password encoder
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
@@ -52,23 +50,23 @@ public AuthenticationResponse authenticate(AuthenticationRequest request, HttpSe
                     request.getPassword()
             )
     );
-    //user is authenticated, so I generate a token and send it back
+    // użytkownik jest uwierzytelniony, więc generuję token i wysyłam go z powrotem
     var user = repository.findByEmail(request.getEmail())
             .orElseThrow(); // handle the exception later
     var jwtToken = jwtService.generateToken(user);
 
-    // Get JWT expiration time
+    // Pobierz czas wygaśnięcia JWT
     Date jwtIssuedAt = jwtService.extractClaim(jwtToken, Claims::getIssuedAt);
     Date jwtExpiration = jwtService.extractClaim(jwtToken, Claims::getExpiration);
     long jwtLifetimeInSeconds = (jwtExpiration.getTime() - jwtIssuedAt.getTime()) / 1000;
 
-    // Create new cookie
+    // Utwórz nowe ciasteczko
     Cookie jwtCookie = new Cookie("jwtToken", jwtToken);
-    jwtCookie.setHttpOnly(true); // Set the cookie as HttpOnly to increase security, preventing access to the cookie via client-side scripts
-    jwtCookie.setMaxAge((int)jwtLifetimeInSeconds); // Set the cookie expiration time (the amount of time until the cookie expires) in seconds
-    jwtCookie.setPath("/"); // Set the cookie's path to "/", meaning the cookie will be available for the entire site
+    jwtCookie.setHttpOnly(true); // Ustaw ciasteczko jako HttpOnly, aby zwiększyć bezpieczeństwo, uniemożliwiając dostęp do ciasteczka za pomocą skryptów po stronie klienta
+    jwtCookie.setMaxAge((int)jwtLifetimeInSeconds); // Ustaw czas wygaśnięcia ciasteczka (ilość czasu do wygaśnięcia ciasteczka) w sekundach
+    jwtCookie.setPath("/"); // Ustaw ścieżkę ciasteczka na "/", co oznacza, że ciasteczko będzie dostępne dla całej strony
 
-    // Add the cookie to the HTTP response
+    // Dodaj ciasteczko do odpowiedzi HTTP
     response.addCookie(jwtCookie);
 
     return AuthenticationResponse.builder()

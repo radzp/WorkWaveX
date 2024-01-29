@@ -68,7 +68,7 @@ public class ProjectController {
             modelAndView.addObject("progress", formattedProgress);
             modelAndView.setViewName("example_project");
         } else {
-            // handle case when project is null
+
         }
         return modelAndView;
     }
