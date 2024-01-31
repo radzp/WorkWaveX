@@ -11,10 +11,7 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -26,11 +23,12 @@ public class ProjectService {
     private final UserService userService;
     private final TaskService taskService;
 
-    public List<ProjectDTO> getAllProjects() {
-        return projectRepository.findAll().stream()
-                .map(this::convertToDTO)
-                .collect(Collectors.toList());
-    }
+public List<ProjectDTO> getAllProjects() {
+    return projectRepository.findAll().stream()
+            .filter(Objects::nonNull)
+            .map(this::convertToDTO)
+            .collect(Collectors.toList());
+}
 
     public List<ProjectDTO> getProjectsByName(String name) {
         return projectRepository.findByProjectName(name).stream()
@@ -107,21 +105,34 @@ public class ProjectService {
 
     private ProjectDTO convertToDTO(Project project) {
         ProjectDTO dto = new ProjectDTO();
-        dto.setId(project.getId());
-        dto.setProjectName(project.getProjectName());
-        dto.setProjectDescription(project.getProjectDescription());
-        dto.setProjectStatus(project.getProjectStatus());
-        dto.setStartDate(project.getStartDate());
-        dto.setEndDate(project.getEndDate());
-        dto.setProjectMembers(
-                project.getProjectMembers().stream()
-                        .map(userService::convertToDTO) // użyj metody convertToDTO z UserService
-                        .collect(Collectors.toSet())
-        );
-        dto.setProjectTasks(
-                project.getProjectTasks().stream()
-                        .map(taskService::convertToDTO) // użyj metody convertToDTO z TaskService
-                        .collect(Collectors.toSet()));
+        if (project.getId() != null) {
+            dto.setId(project.getId());
+        }
+        if (project.getProjectName() != null) {
+            dto.setProjectName(project.getProjectName());
+        }
+        if (project.getProjectDescription() != null) {
+            dto.setProjectDescription(project.getProjectDescription());
+        }
+        if (project.getProjectStatus() != null) {
+            dto.setProjectStatus(project.getProjectStatus());
+        }
+        if (project.getStartDate() != null) {
+            dto.setStartDate(project.getStartDate());
+        }
+        if (project.getEndDate() != null) {
+            dto.setEndDate(project.getEndDate());
+        }
+        if (project.getProjectMembers() != null) {
+            dto.setProjectMembers(project.getProjectMembers().stream()
+                    .map(user -> userService.convertToDTO(user))
+                    .collect(Collectors.toSet()));
+        }
+        if (project.getProjectTasks() != null) {
+            dto.setProjectTasks(project.getProjectTasks().stream()
+                    .map(task -> taskService.convertToDTO(task))
+                    .collect(Collectors.toSet()));
+        }
         return dto;
     }
 

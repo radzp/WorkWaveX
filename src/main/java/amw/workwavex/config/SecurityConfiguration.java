@@ -27,7 +27,7 @@ public class SecurityConfiguration {
                 .authorizeRequests(authorize -> authorize
                         .requestMatchers("/api/v1/auth/**")
                         .permitAll()
-                        .requestMatchers("/", "","/css/**", "/js/**", "/images/**")
+                        .requestMatchers("/","/css/**", "/js/**", "/images/**")
                         .permitAll()
                         .requestMatchers("/employees","/newLogin", "/api/v1/projects/delete/**","/api/v1/user-controller/delete/**", "/api/v1/user-controller/update/**").hasAnyAuthority(Role.ADMIN.name())
                         .anyRequest()
