@@ -22,7 +22,7 @@ public class ProjectServiceTest {
 
     @Test
     public void testGetAllProjects() {
-        // Arrange
+        // given
         Project project1 = new Project();
         project1.setId(1);
         project1.setProjectName("Project 1");
@@ -35,12 +35,31 @@ public class ProjectServiceTest {
 
         when(projectRepository.findAll()).thenReturn(projects);
 
-        // Act
+        // when
         List<ProjectDTO> result = projectService.getAllProjects();
 
-        // Assert
+        // then
         assertEquals(2, result.size());
         assertEquals("Project 1", result.get(0).getProjectName());
         assertEquals("Project 2", result.get(1).getProjectName());
+    }
+
+
+
+
+    @Test
+    public void testGetProjectById() {
+        // given
+        Project project = new Project();
+        project.setId(1);
+        project.setProjectName("Project 1");
+
+        when(projectRepository.findById(1)).thenReturn(java.util.Optional.of(project));
+
+        // when
+        ProjectDTO result = projectService.getProjectById(1);
+
+        // then
+        assertEquals("Project 1", result.getProjectName());
     }
 }
