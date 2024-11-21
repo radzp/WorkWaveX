@@ -1,4 +1,4 @@
-# WorkWaveX - managing employees
+# WorkWaveX - Managing Employees
 
 ## 📚 Table of Contents
 - [WorkWaveX - managing employees](#workwavex---managing-employees)
